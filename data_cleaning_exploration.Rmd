@@ -23,9 +23,10 @@ Network retrieved data until the end but sometimes the connection failed, logger
 ```
 Temperature:
 ```{r}
-#why are min & max NA?
+#why are min & max NA? Doesnt matter becuase summary accurately gives min and max
 range(data_net$humid_temp)
 range(data_log$humid_temp)
+#similar mean and median, exist in same reasonable scale except outliers
 summary(data_net$humid_temp)
 summary(data_log$humid_temp)
 ggplot(data_net, aes(x=humid_temp)) + geom_histogram()
@@ -51,7 +52,7 @@ summary(data_log$hamatop)
 ggplot(data_net, aes(x=hamatop)) + geom_histogram()
 ggplot(data_log, aes(x=hamatop)) + geom_histogram()
 ```
-Reflective PAR:check column use here
+Reflective PAR:check column use here?
 ```{r}
 range(data_net$hamabot)
 range(data_log$hamabot)
