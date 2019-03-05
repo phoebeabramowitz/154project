@@ -77,7 +77,14 @@ range(data_net$epoch)-range(data_log$epoch)
 #Why does nodeid go so high in log? 
 range(data_net$nodeid)-range(data_log$nodeid)
 ```
-Choose to combine net and log, or find a way to use all? Either can work to become the "Main Table"
+Choose to combine net and log Either can work to become the "Main Table"
+```{r}
+#creates too many columns 
+library(dplyr)
+anti_join(data_net, data_log, by = c("nodeid" = "nodeid", "epoch" = "epoch"))
+data_main <- full_join(data_net, data_log, by = c("nodeid" = "nodeid", "epoch" = "epoch"))
+```
+
 What is epoch?
 Are all the missing Values NA? How to get range to stop giving NA
 When should zero values be NAs?
