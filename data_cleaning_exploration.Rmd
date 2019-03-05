@@ -7,6 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library("tidyverse")
 ```
 
 Upload Files:
@@ -81,4 +82,42 @@ What is epoch?
 Are all the missing Values NA? How to get range to stop giving NA
 When should zero values be NAs?
 How to use the HUmid adjustment column?
+
+_____________________________________
+Voltage:
+range for data_net is 198-1023
+range for data_log is 0.009 - 3.03
+range for data_all is 0.009 - 1023
+Maybe because the log is a physical node located at the redwood tree, while the net data was transferred through the GPRS? (prob not but I asked my bro)
+
+ATmega128 has a 10-bit ADC operating on 4.5 - 5.5V (http://ww1.microchip.com/downloads/en/DeviceDoc/doc2467.pdf)
+
+5V is assumed to be 1023, use the following equation of ratios for the conversion.
+(https://learn.sparkfun.com/tutorials/analog-to-digital-conversion/relating-adc-value-to-voltage)
+
+1023/5 = ADC reading/analog voltage measured
+
+I think ADC reading is the voltage value in data_net, and 'analog voltage measured is' what we want to convert to
+
+Hence the formula we should use to convert data_net voltage is as follows:
+x = (5*data_net reading) / 1023
+```{r}
+data_net %>%
+  mutate("converted_voltage" = data_net$voltage*5 / 1023) %>%
+  select(c("voltage", "converted_voltage"))
+```
+
+________________________________________
+result time in data log are all exactly the same. There are different node IDs and epochs across the nodeid's, but there are some repeats with slight variation in humidity or temp or depth.. wtf is going on? 
+
+some result times in data net have no nodeid or epoch ..?
+
+```{r}
+length(unique(data_net$parent))
+length(unique(data_net$nodeid))
+length(unique(data_log$parent))
+length(unique(data_log$nodeid))
+length(unique(data_all$parent))
+length(unique(data_all$nodeid))
+```
 
