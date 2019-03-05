@@ -1,0 +1,36 @@
+---
+title: "Data Cleaning Exploration"
+author: "Phoebe Abramowitz"
+date: "3/4/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Upload Files:
+```{r}
+setwd("~/Desktop/Berkeley/Spring19/stat_154/154project")
+source("./data_cleaning .R")
+```
+
+Network retrieved data until the end but sometimes the connection failed, logger has data from when the connection failed but not always until the end
+
+```{r}
+#ASK AROUND on how to read this, igore for now
+#datetime <- read.delim("./data/sonoma-dates", header=FALSE)
+```
+
+```{r}
+#range of epoch, voltage is very inconsistant
+#voltage is clearly different scales
+range(data_net$voltage)-range(data_log$voltage)
+range(data_net$epoch)-range(data_log$epoch)
+```
+Why does nodeid go so high? 
+```{r}
+range(data_net$nodeid)-range(data_log$nodeid)
+
+```
+
