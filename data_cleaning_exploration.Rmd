@@ -71,22 +71,27 @@ range(data_net$voltage)-range(data_log$voltage)
 ```
 epoch, nodeid, result_time-Distinguishing between points
 ```{r}
-#range of epoch is very inconsistant
+#range of epoch is very inconsistant, why?
 range(data_net$epoch)-range(data_log$epoch)
 
-#Why does nodeid go so high in log? 
-range(data_net$nodeid)-range(data_log$nodeid)
+#Why does nodeid go so high in log?-Just one nodeid is extremely wrong. Look at that Data point
+summary(data_log$nodeid)
+log_nodeid_outlier <- filter(data_log, nodeid>60000)
+log_nodeid_outlier
+#manually take out single outlier, shows nothign else is above 200, which is correct
+data_log_ex <- filter(data_log, nodeid<60000)
+#inconsistant number of instances per node
+ggplot(data_log_ex, aes(x=nodeid)) + geom_histogram(bindwidth=5)
 ```
 Choose to combine net and log Either can work to become the "Main Table"
 ```{r}
 #First need to equate ranges, as above
-#data_net has more precise times
-#concatenate everything in data_net with everything in data_log that isn;t in data_net, defined by epoch and nodeid
+
+#concatenate everything in data_net with everything in data_log that isn't in data_net, defined by epoch and nodeid
 library(dplyr)
 data_log$result_time
 just_log <- anti_join(data_log, data_net, by = c("nodeid" = "nodeid", "epoch" = "epoch"))
-#add .000000 ti every result_time in data_log
-just_log$result_time <- just_log$result_time+".000000"
+#what to do about the essentially lack of result_time in data_log
 data_main <- full_join(data_net, just_log )
 ```
 
