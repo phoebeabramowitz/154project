@@ -79,10 +79,15 @@ range(data_net$nodeid)-range(data_log$nodeid)
 ```
 Choose to combine net and log Either can work to become the "Main Table"
 ```{r}
-#creates too many columns 
+#First need to equate ranges, as above
+#data_net has more precise times
+#concatenate everything in data_net with everything in data_log that isn;t in data_net, defined by epoch and nodeid
 library(dplyr)
-anti_join(data_net, data_log, by = c("nodeid" = "nodeid", "epoch" = "epoch"))
-data_main <- full_join(data_net, data_log, by = c("nodeid" = "nodeid", "epoch" = "epoch"))
+data_log$result_time
+just_log <- anti_join(data_log, data_net, by = c("nodeid" = "nodeid", "epoch" = "epoch"))
+#add .000000 ti every result_time in data_log
+just_log$result_time <- just_log$result_time+".000000"
+data_main <- full_join(data_net, just_log )
 ```
 
 What is epoch?
