@@ -26,6 +26,8 @@ Temperature:
 #why are min & max NA?
 range(data_net$humid_temp)
 range(data_log$humid_temp)
+summary(data_net$humid_temp)
+summary(data_log$humid_temp)
 ggplot(data_net, aes(x=humid_temp)) + geom_histogram()
 ggplot(data_log, aes(x=humid_temp)) + geom_histogram()
 ```
@@ -33,6 +35,9 @@ Relative Humidity:
 ```{r}
 range(data_net$humidity)
 range(data_log$humidity)
+summary(data_net$humidity)
+#Same Scale just with crazy lower outlier
+summary(data_log$humidity)
 ggplot(data_net, aes(x=humidity)) + geom_histogram()
 ggplot(data_log, aes(x=humidity)) + geom_histogram()
 ```
@@ -41,6 +46,8 @@ Incident PAR:hamatop? wavelength from 350 to 700 nm
 #range for net is in the 90s, for log in the 40s
 range(data_net$hamatop)
 range(data_log$hamatop)
+summary(data_net$hamatop)
+summary(data_log$hamatop)
 ggplot(data_net, aes(x=hamatop)) + geom_histogram()
 ggplot(data_log, aes(x=hamatop)) + geom_histogram()
 ```
@@ -48,6 +55,9 @@ Reflective PAR:check column use here
 ```{r}
 range(data_net$hamabot)
 range(data_log$hamabot)
+summary(data_net$hamabot)
+#similar in scale except for Max. >1/2 zeros bc median=0
+summary(data_log$hamabot)
 ggplot(data_net, aes(x=hamabot)) + geom_histogram()
 ggplot(data_log, aes(x=hamabot)) + geom_histogram()
 ```
@@ -56,6 +66,7 @@ Voltage-measure of Battery:
 range(data_net$voltage)-range(data_log$voltage)
 #range of voltage is very inconsistant
 #voltage is clearly different scales between log and net
+#loig data matches the paper
 ```
 epoch, nodeid, result_time-Distinguishing between points
 ```{r}
