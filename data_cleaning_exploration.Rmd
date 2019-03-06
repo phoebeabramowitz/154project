@@ -42,13 +42,13 @@ summary(data_log$humidity)
 ggplot(data_net, aes(x=humidity)) + geom_histogram()
 ggplot(data_log, aes(x=humidity)) + geom_histogram()
 ```
-Incident PAR:hamatop? wavelength from 350 to 700 nm
+Incident PAR:hamatop? 
 ```{r}
-#range for net is in the 90s, for log in the 40s
-range(data_net$hamatop)
-range(data_log$hamatop)
+# > half zero, implies PAR becuase was done before the solstice so usually no sun
 summary(data_net$hamatop)
+#massive outlier(s) on the max in log
 summary(data_log$hamatop)
+
 ggplot(data_net, aes(x=hamatop)) + geom_histogram()
 ggplot(data_log, aes(x=hamatop)) + geom_histogram()
 ```
@@ -57,7 +57,7 @@ Reflective PAR:check column use here?
 range(data_net$hamabot)
 range(data_log$hamabot)
 summary(data_net$hamabot)
-#similar in scale except for Max. >1/2 zeros bc median=0
+#massive outlier(s) on the max in log
 summary(data_log$hamabot)
 ggplot(data_net, aes(x=hamabot)) + geom_histogram()
 ggplot(data_log, aes(x=hamabot)) + geom_histogram()
@@ -111,8 +111,20 @@ Why do numbers go up to 200? Do the numbers matter, hopefully not?
 
 Are all the missing values NA? 
   When should zero values be NAs?
-How to use the Humid adjustment column?- As humidity? 
 
+ANSWERED How to use the Humid adjustment column?- As humidity? YES
 
 In log, why is epoch+nodeid is not a unique descriptor of row? Within these rows with same epoch & nodeid, there's variation between voltage, humid_temp, humidity, humid_adjust. 
   If we group by epoch + nodeid, what happens?
+
+Voltage Conversion? Omri's is not giving correct range
+
+check that humid_temp summary matches the paper 
+
+Hamatop&hamabot- incident and reflective, respectively?   
+ANWERED: hamatop and hamabot need Lux to PPFD conversion in order to be consistent with the paper. 
+ Lux to PPFD(µmol m-2 s-1, used in the paper): 0.0185
+ Lux of full sunlight is 108,000, consistant with the maximum numbers in 
+
+
+We're choosing to combine then deal with most outliers: justify this
