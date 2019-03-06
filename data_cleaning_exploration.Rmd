@@ -67,7 +67,8 @@ Voltage-measure of Battery:
 range(data_net$voltage)-range(data_log$voltage)
 #range of voltage is very inconsistant
 #voltage is clearly different scales between log and net
-#loig data matches the paper
+#log data matches the paper
+#Omri's conversion for net?
 ```
 epoch, nodeid, result_time-Distinguishing between points
 ```{r}
@@ -82,6 +83,10 @@ log_nodeid_outlier
 data_log_ex <- filter(data_log, nodeid<60000)
 #inconsistant number of instances per node
 ggplot(data_log_ex, aes(x=nodeid)) + geom_histogram(bindwidth=5)
+summary(data_log_ex$nodeid)
+
+summary(data_net$nodeid) #without outlier in log, they're similar ranges and scales
+ggplot(data_net, aes(x=nodeid)) + geom_histogram(bindwidth=5)
 ```
 Choose to combine net and log Either can work to become the "Main Table"
 ```{r}
@@ -94,9 +99,20 @@ just_log <- anti_join(data_log, data_net, by = c("nodeid" = "nodeid", "epoch" = 
 #what to do about the essentially lack of result_time in data_log
 data_main <- full_join(data_net, just_log )
 ```
+```{r}
+nrow(filter(data_log, nodeid==2))
+summary(data_log$epoch)
+```
 
-What is epoch?
-Are all the missing Values NA? How to get range to stop giving NA
-When should zero values be NAs?
-How to use the HUmid adjustment column?
+What is epoch?- Sample Number
 
+Why are there so many unique nodeids? 31 for net but 72 (extra) for log, paper says there's 33 sensors. 
+Why do numbers go up to 200? Do the numbers matter, hopefully not?
+
+Are all the missing values NA? 
+  When should zero values be NAs?
+How to use the Humid adjustment column?- As humidity? 
+
+
+In log, why is epoch+nodeid is not a unique descriptor of row? Within these rows with same epoch & nodeid, there's variation between voltage, humid_temp, humidity, humid_adjust. 
+  If we group by epoch + nodeid, what happens?
