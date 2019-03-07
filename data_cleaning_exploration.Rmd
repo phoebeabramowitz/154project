@@ -63,10 +63,12 @@ data_log$hamabot <- data_log$hamabot*0.0185
 data_log <- filter(data_log, hamatop < 10*quantile(data_log$hamatop, na.rm=TRUE)[4])
 ggplot(data_net) + 
   geom_histogram(aes(x=hamatop),color="darkblue", fill="lightblue",binwidth=20)+
-  ggtitle("Net Incident PAR")
+  ggtitle("Net Incident PAR")+
+  theme_minimal()
 ggplot(data_log) + 
   geom_histogram(aes(x=hamatop),color="darkblue", fill="lightblue",binwidth=20)+
-  ggtitle("Log Incident PAR")
+  ggtitle("Log Incident PAR")+
+  theme_minimal()
 ```
 Reflective PAR:check column use here?
 ```{r}
