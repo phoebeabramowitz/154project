@@ -12,8 +12,8 @@ library("tidyverse")
 
 Upload Files:
 ```{r}
-#setwd("~/Desktop/Berkeley/Spring19/stat_154/154project")
-#source("./data_cleaning .R")
+setwd("~/Desktop/Berkeley/Spring19/stat_154/154project")
+source("./data_cleaning .R")
 ```
 
 Network retrieved data until the end but sometimes the connection failed, logger has data from when the connection failed but not always until the end
@@ -61,9 +61,17 @@ data_net$hamabot <- data_net$hamabot*0.0185
 data_log$hamatop <- data_log$hamatop*0.0185
 data_log$hamabot <- data_log$hamabot*0.0185
 
+#before modifying the range 
+data_log <- filter(data_log, hamatop < 10*quantile(data_log$hamatop, na.rm=TRUE)[4])
+ggplot(data_net) + 
+  geom_histogram(aes(x=hamatop),color="darkblue", fill="lightblue",binwidth=20)+
+  ggtitle("Net Incident PAR")+
+  theme_minimal()
+ggplot(data_log) + 
+  geom_histogram(aes(x=hamatop),color="darkblue", fill="lightblue",binwidth=20)+
+  ggtitle("Log Incident PAR")+
+  theme_minimal()
 
-ggplot(data_net, aes(x=hamatop)) + geom_histogram()
-ggplot(data_log, aes(x=hamatop)) + geom_histogram()
 ```
 Reflective PAR:check column use here?
 ```{r}
@@ -72,8 +80,15 @@ range(data_log$hamabot)
 summary(data_net$hamabot)
 #massive outlier(s) on the max in log
 summary(data_log$hamabot)
-ggplot(data_net, aes(x=hamabot)) + geom_histogram()
-ggplot(data_log, aes(x=hamabot)) + geom_histogram()
+
+ggplot(data_net) + 
+  geom_histogram(aes(x=hamabot),color="darkblue", fill="lightblue",binwidth=6)+
+  ggtitle("Net Reflected PAR")+
+  theme_minimal()
+ggplot(data_log) + 
+  geom_histogram(aes(x=hamabot),color="darkblue", fill="lightblue",binwidth=6)+
+  ggtitle("Log Reflected PAR")+
+  theme_minimal()
 ```
 Voltage-measure of Battery:
 ```{r}
@@ -81,6 +96,15 @@ range(data_net$voltage)-range(data_log$voltage)
 #voltage is clearly different scales between log and net
 #log data matches the paper
 #convert net data to match the paper
+ggplot(data_net) + 
+  geom_histogram(aes(x=voltage),color="darkblue", fill="lightblue",binwidth=10)+
+  ggtitle("Net Unconverted Voltage")+
+  theme_minimal()
+ggplot(data_log) + 
+  geom_histogram(aes(x=voltage),color="darkblue", fill="lightblue",binwidth=0.2)+
+  ggtitle("Log Voltage")+
+  theme_minimal()
+
 test <- data_net %>%
   mutate("converted_voltage" = data_net$voltage*12.33 / 1023)
 
