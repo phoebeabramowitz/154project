@@ -22,7 +22,7 @@ head(data_sub)
 
 # Humidity
 ggplot(data_sub)+
-  geom_point(aes(x=epoch, y=humid, alpha=0.3),color="maroon2")+
+  geom_point(aes(x=epoch, y=humid, alpha=0.3),color="firebrick2")+
   ggtitle("Humidity Over Time")+
   theme_minimal()
 
