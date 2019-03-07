@@ -13,7 +13,7 @@ library("tidyverse")
 Upload Files:
 ```{r}
 setwd("~/Desktop/Berkeley/Spring19/stat_154/154project")
-source("./data_cleaning .R")
+#source("./data_cleaning .R")
 ```
 
 Network retrieved data until the end but sometimes the connection failed, logger has data from when the connection failed but not always until the end
@@ -118,16 +118,16 @@ epoch, nodeid, result_time-Distinguishing between points
 range(data_net$epoch)-range(data_log$epoch)
 summary(data_log$epoch)
 summary(data_net$epoch)
+
 #Why does nodeid go so high in log?-Just one nodeid is extremely wrong. Look at that Data point
 summary(data_log$nodeid)
-log_nodeid_outlier <- filter(data_log, nodeid>60000)
-log_nodeid_outlier
 #manually take out single outlier, shows nothign else is above 200, which is correct
-data_log_ex <- filter(data_log, nodeid<60000)
-#inconsistant number of instances per node
+data_log <- filter(data_log, nodeid<60000)
+#inconsistant number of instances per node in both net and log 
 ggplot(data_log_ex, aes(x=nodeid)) + geom_histogram(bindwidth=5)
-summary(data_log_ex$nodeid)
+ggplot(data_net, aes(x=nodeid)) + geom_histogram(bindwidth=5)
 
+summary(data_log_ex$nodeid)
 summary(data_net$nodeid) #without outlier in log, they're similar ranges and scales
 ggplot(data_net, aes(x=nodeid)) + geom_histogram(binwidth=5)
 ```
@@ -140,8 +140,14 @@ library(dplyr)
 data_log$result_time
 just_log <- anti_join(data_log, data_net, by = c("nodeid" = "nodeid", "epoch" = "epoch"))
 #what to do about the essentially lack of result_time in data_log
+<<<<<<< HEAD
+all_readings <- full_join(data_net, just_log)
+all_readings <- all_readings[,1:11]
+=======
 data_main <- full_join(data_net, just_log)
+#shouldnt need this step 
 data_main <- data_main[,1:11]
+>>>>>>> c2810cee2a4c063294ec4754b08a2111ee4072ad
 ```
 
 ```{r}
@@ -150,7 +156,7 @@ data_main <- data_main[,1:11]
 # Then I cast the result_time column as a date + time object in R so we can work with it.. 
 # remove one outlier..
 
-df <- data_main %>%
+df <- all_readings %>%
   select(c("result_time", "epoch", "nodeid", "voltage", "humid_temp", "humid_adj", "hamatop", "hamabot")) %>%
   rename(temp = humid_temp) %>%
   rename(humid = humid_adj) %>%
@@ -192,6 +198,7 @@ ggplot(sample_data) + geom_point(aes(x=epoch, y=result_time))
 ```{r}
 ggplot(df) + geom_point(aes(x=epoch, y=result_time))
 ```
+
 ```{r}
 mote_location <- mote_location %>%
   rename(nodeid = ID)
@@ -199,6 +206,7 @@ mote_location <- mote_location %>%
 main <- left_join(df, mote_location)
 #337743 observations of 12 variables
 ```
+
 ```{r}
 # the radial distance should be between 0-1 meter, the original dataset had some distances of up to 5 meters... should we remove them?
 ggplot(main %>% filter(Dist <= 1)) + geom_point(aes(x=Dist, y=Height))
@@ -298,6 +306,8 @@ result time in data log are all exactly the same. There are different node IDs a
 length(unique(data_net$nodeid))
 
 length(unique(data_log$nodeid))
+
+data_main <- good_volt
 ```
 
 

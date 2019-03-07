@@ -20,6 +20,7 @@ library(ggplot2)
 \date{Due by: \textbf{11 PM, Friday, Mar 8}}
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 
 \maketitle
 
@@ -45,7 +46,24 @@ This data set contains gross outliers, inconsistencies, and lots of missing valu
 \item
 For the initial comparison in hamatop (Incident PAR) between \textbf{sonoma-data-log.csv} and \textbf{sonoma-data-net.csv}, we remove outliers that are ten times larger than the third quartile in an effort to explore the ranges more thoroughly. We notice a slight bump in the right tail of incident PARs histogram for \textbf{sonoma-data-net.csv}, which does not occur in \textbf{sonoma-data-log.csv}.
 <<eval=TRUE, echo=FALSE, warning=FALSE>>=
+#LOAD ALL THE DATA FRESH FROM The Directory
+# Make sure working directory is project dircector which contains /data with all files
+#For Phoebe setwd("~/Desktop/Berkeley/Spring19/stat_154/154project")
+# For Omri setwd("~/Stat 154/Project 1/Proj1")
+#location data
+mote_location <- read.delim("./data/mote-location-data.txt", sep="")
 
+#datetime
+datetime <- read.csv("./data/sonoma-dates", header=FALSE)
+
+#data retrieved from the flash logs
+data_log <- read.csv("./data/sonoma-data-log.csv")
+
+#data retrieved over the wireless network
+data_net <- read.csv("./data/sonoma-data-net.csv")
+
+#simply concatenated
+data_all <- read.csv("./data/sonoma-data-all.csv")
 # Incident PAR histograms
 
 data_log <- filter(data_log, hamatop < 10*quantile(data_log$hamatop, na.rm=TRUE)[4])
@@ -92,13 +110,41 @@ ggplot(data_log) +
 To reconcile these inconsistencies, we applied two separate conversions as to match the ranges from the paper:
 The voltage readings in \textbf{sonoma-data-log.csv} are all within the correct range of just a few volts, while the readings in \textbf{sonoma-data-net.csv} had significantly higher values. This discrepancy can be attributed to the analog-to-digital converter used within the ATmega128 node $^1$. To switch from the 10-bit ADC readings to actual voltage measured, we followed a simple ratiometric conversion scheme $^2$. We multiplied the values by 12.33 and divided by 1023 which transformed the data into the desired range.
 
-We also noticed the ranges for hamatop and hamabot differ from the paper. They are missing a Lux to PPFD conversion in order to be consistent, which requires a 0.0185 conversion factor.
+We also noticed the ranges for hamatop and hamabot differ from the paper. We convert the measurements of both types of PAR from Lux to PPMG, the units expressed in the visualizations in the study which requires a 0.0185 conversion factor.
+
 
 While they are not shown here, the histograms of temperature and humidity revealed no inconsistencies in the ranges, only some outliers.
+<<eval=TRUE, echo=FALSE, warning=FALSE>>==
+# ONLY RUN THIS ONCE!!!
+# Converting data to same range
 
-\section
-Voltage was not consistant between data_log and data_net. For the data_net values, we scaled using....
-We convert the measurements of both types of PAR from Lux to PPMG, the units expressed in the visualizations in the study.
+#Incident and Reflected PAR
+data_net$hamatop <- data_net$hamatop*0.0185
+data_net$hamabot <- data_net$hamabot*0.0185
+data_log$hamatop <- data_log$hamatop*0.0185
+data_log$hamabot <- data_log$hamabot*0.0185
+
+# Voltage
+data_net$voltage = data_net$voltage*12.33 / 1023
+@
+
+<<eval=TRUE, echo=FALSE, warning=FALSE>>==
+# Concatenate everything in data_net with everything in data_log
+# that isn't in data_net, defined by epoch and nodeid
+just_log <- anti_join(data_log, data_net, by = c("nodeid" = "nodeid", "epoch" = "epoch"))
+all_readings <- full_join(data_net, just_log)
+# to combat different error all_readings <- all_readings[,1:11]
+
+# Cleaning all_readings before adding mote_location
+df <- all_readings %>%
+  select(c("result_time", "epoch", "nodeid", "voltage", "humid_temp", "humid_adj", "hamatop", "hamabot")) %>%
+  rename(temp = humid_temp) %>%
+  rename(humid = humid_adj) %>%
+  rename(incident_PAR = hamatop) %>%
+  rename(reflect_PAR = hamabot) %>%
+  mutate(result_time = as.POSIXct(result_time))
+
+@
 
 \item Remove missing data. Comment on the number of missing measurements and the corresponding date and time period.
 \item The location data is separate in another file \textbf{mote-location-data.txt}. Incorporate it in the main table. Hint: here the nodeid serves a key to add columns for height, direction, distance and tree. State the number of variables in your new data frame.

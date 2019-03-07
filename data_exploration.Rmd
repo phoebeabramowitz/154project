@@ -8,11 +8,73 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
+Make some pairwise scatterplots of some variables. Pick a reasonable time period.
+Explain your choice and describe your findings.
 ```{r}
-#once data_cleaning is good 
-source("./data_cleaning .R")
-#temporary 
-source("./data_cleaning .R")
+#good head 
+head(data_main)
+
+# Reasonable time period is within range of 1000<epoch<3500, because most values occur there, not first
+data_sub <- filter(filter(data_main,epoch<3500),(epoch>1000))
+head(data_sub)
+
+#I'm using epoch--the sample number-- as a substitute for time & date here, becuase it's numeric
+
+# Humidity
+ggplot(data_sub)+
+  geom_point(aes(x=epoch, y=humid, alpha=0.3),color="maroon2")+
+  ggtitle("Humidity Over Time")+
+  theme_minimal()
+
+ggplot(data_sub)+
+  geom_point(aes(x=Height, y=humid, alpha=0.3),color="violet")+
+  ggtitle("Humidity by Height")+
+  theme_minimal()
+
+# Tempurature
+
+ggplot(data_sub)+
+  geom_point(aes(x=epoch, y=temp, alpha=0.2),color="orangered1")+
+  ggtitle("Temperature Over Time")+
+  theme_minimal()
+
+ggplot(data_sub)+
+  geom_point(aes(x=Height, y=temp, alpha=0.3),color="deeppink1")+
+  ggtitle("Temperature by Height")+
+  theme_minimal()
+
+#Reflective PAR
+#loosely indicates cycles of daylight
+ggplot(data_sub)+
+  geom_point(aes(x=epoch, y=reflect_PAR, alpha=0.3),color="deeppink1")+
+  ggtitle("Reflective PAR Over Time")+
+  theme_minimal()
+
+ggplot(data_sub)+
+  geom_point(aes(x=Height, y=reflect_PAR, alpha=0.3), color="deeppink1")+
+  ggtitle("Reflective PAR by Height")+
+  theme_minimal()
+
+# Direct PAR
+
+#Clearly shows daylight cycle
+ggplot(data_sub)+
+  geom_point(aes(x=epoch, y=incident_PAR, alpha=0.3),color="orangered1")+
+  ggtitle("Incident PAR Over Time")+
+  theme_minimal()
+
+ggplot(data_sub)+
+  geom_point(aes(x=Height, y=reflect_PAR, alpha=0.3), color="deeppink1")+
+  ggtitle("Incident PAR by Height")+
+  theme_minimal()
+
+#Incident & Reflective PAR(intresting)
+ggplot(data_sub)+
+  geom_point(aes(x=incident_PAR, y=reflect_PAR, alpha=0.3),color="darkgoldenrod")+
+  ggtitle("Incident vs Refletive PAR")+
+  theme_minimal()
+
+
+
 ```
 

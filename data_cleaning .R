@@ -1,5 +1,10 @@
 #setwd("~/Desktop/Berkeley/Spring19/stat_154/154project")
 
+library(tidyverse)
+library(GGally)
+library(dplyr)
+library(ggplot2)
+
 #location data
 mote_location <- read.delim("./data/mote-location-data.txt", sep="")
 
@@ -45,3 +50,30 @@ ggplot(data_log) +
   geom_histogram(aes(x=voltage),color="darkblue", fill="lightblue",binwidth=0.2)+
   ggtitle("Log Voltage")+
   theme_minimal()
+
+# Converting data to same range ONLY RUN THIS ONCE
+#Incident and Reflected PAR
+data_net$hamatop <- data_net$hamatop*0.0185
+data_net$hamabot <- data_net$hamabot*0.0185
+data_log$hamatop <- data_log$hamatop*0.0185
+data_log$hamabot <- data_log$hamabot*0.0185
+# Voltage
+data_net$voltage = data_net$voltage*12.33 / 1023
+
+# Removing missing data...?
+
+
+# Concatenate everything in data_net with everything in data_log
+# that isn't in data_net, defined by epoch and nodeid
+just_log <- anti_join(data_log, data_net, by = c("nodeid" = "nodeid", "epoch" = "epoch"))
+all_readings <- full_join(data_net, just_log)
+all_readings <- all_readings[,1:11]
+
+# Cleaning all_readings before adding mote_location
+df <- all_readings %>%
+  select(c("result_time", "epoch", "nodeid", "voltage", "humid_temp", "humid_adj", "hamatop", "hamabot")) %>%
+  rename(temp = humid_temp) %>%
+  rename(humid = humid_adj) %>%
+  rename(incident_PAR = hamatop) %>%
+  rename(reflect_PAR = hamabot) %>%
+  mutate(result_time = as.POSIXct(result_time))
