@@ -14,6 +14,8 @@ Explain your choice and describe your findings.
 #good head 
 head(data_main)
 
+
+
 # Reasonable time period is within range of 1000<epoch<3500, because most values occur there, not first
 data_sub <- filter(filter(data_main,epoch<3500),(epoch>1000))
 head(data_sub)
@@ -74,7 +76,10 @@ ggplot(data_sub)+
   ggtitle("Incident vs Refletive PAR")+
   theme_minimal()
 
-
+ggplot(data_sub)+
+  geom_point(aes(x=epoch, y=nodeid, alpha=0.3),color="darkgoldenrod")+
+  ggtitle("nodeid by height")+
+  theme_minimal()
 
 ```
 
