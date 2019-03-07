@@ -69,6 +69,7 @@ ggplot(data_log) +
   geom_histogram(aes(x=hamatop),color="darkblue", fill="lightblue",binwidth=20)+
   ggtitle("Log Incident PAR")+
   theme_minimal()
+
 ```
 Reflective PAR:check column use here?
 ```{r}
@@ -77,8 +78,15 @@ range(data_log$hamabot)
 summary(data_net$hamabot)
 #massive outlier(s) on the max in log
 summary(data_log$hamabot)
-ggplot(data_net, aes(x=hamabot)) + geom_histogram()
-ggplot(data_log, aes(x=hamabot)) + geom_histogram()
+
+ggplot(data_net) + 
+  geom_histogram(aes(x=hamabot),color="darkblue", fill="lightblue",binwidth=6)+
+  ggtitle("Net Reflected PAR")+
+  theme_minimal()
+ggplot(data_log) + 
+  geom_histogram(aes(x=hamabot),color="darkblue", fill="lightblue",binwidth=6)+
+  ggtitle("Log Reflected PAR")+
+  theme_minimal()
 ```
 Voltage-measure of Battery:
 ```{r}
