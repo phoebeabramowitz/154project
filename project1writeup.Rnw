@@ -149,7 +149,12 @@ df <- all_readings %>%
 <<<<<<< HEAD
 In our main data table, we remove 3686 rows where the temperature, humidity, reflective PAR, and incident PAR are all missing. 
 <<>>=
-#Initial Number of rows missing every measurements
+#Number of missing values for each variable
+sum(is.na(data_main$temp))
+sum(is.na(data_main$humid))
+sum(is.na(data_main$incident_PAR))
+sum(is.na(data_main$reflect_PAR))
+#Initial Number of rows missing any measurements
 na_vals <- data_main %>% filter(is.na(temp)) %>% filter(is.na(humid)) %>%
   filter(is.na(incident_PAR)) %>% filter(is.na(reflect_PAR))
 #we dont want it to evaluate this value

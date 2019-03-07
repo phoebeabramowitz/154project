@@ -313,6 +313,7 @@ length(unique(data_log$nodeid))
 
 data_main <- good_volt
 ```
+NA full rows
 ```{r}
 #add to writeup
 #Initial Number of rows missing every measurements
@@ -324,6 +325,16 @@ nrow(na_vals)
 data_main <- data_main %>% filter(!is.na(temp)) %>% filter(!is.na(humid)) %>%
   filter(!is.na(incident_PAR)) %>% filter(!is.na(reflect_PAR))
 ```
+Explore other NA values
+```{r}
+head(data_main)
+sum(is.na(data_main$temp))
+sum(is.na(data_main$humid))
+sum(is.na(data_main$incident_PAR))
+sum(is.na(data_main$reflect_PAR))
+
+```
+
 
 
 
