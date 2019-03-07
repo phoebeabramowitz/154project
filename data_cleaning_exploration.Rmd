@@ -94,6 +94,15 @@ range(data_net$voltage)-range(data_log$voltage)
 #voltage is clearly different scales between log and net
 #log data matches the paper
 #convert net data to match the paper
+ggplot(data_net) + 
+  geom_histogram(aes(x=voltage),color="darkblue", fill="lightblue",binwidth=10)+
+  ggtitle("Net Unconverted Voltage")+
+  theme_minimal()
+ggplot(data_log) + 
+  geom_histogram(aes(x=voltage),color="darkblue", fill="lightblue",binwidth=0.2)+
+  ggtitle("Log Voltage")+
+  theme_minimal()
+
 test <- data_net %>%
   mutate("converted_voltage" = data_net$voltage*12.33 / 1023)
 
