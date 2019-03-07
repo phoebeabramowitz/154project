@@ -203,13 +203,17 @@ ggplot(df) + geom_point(aes(x=epoch, y=result_time))
 mote_location <- mote_location %>%
   rename(nodeid = ID)
 
-main <- left_join(df, mote_location)
+main <- left_join(df, mote_location) %>%
+  rename(height = Height) %>%
+  rename(direc = Direc) %>%
+  rename(dist = Dist) %>%
+  rename(tree = Tree)
 #337743 observations of 12 variables
 ```
 
 ```{r}
 # the radial distance should be between 0-1 meter, the original dataset had some distances of up to 5 meters... should we remove them?
-ggplot(main %>% filter(Dist <= 1)) + geom_point(aes(x=Dist, y=Height))
+ggplot(main %>% filter(dist <= 1)) + geom_point(aes(x=dist, y=height))
 ```
 
 ```{r}
@@ -310,14 +314,13 @@ length(unique(data_log$nodeid))
 data_main <- good_volt
 ```
 ```{r}
-#count rows where everything is NA
+#add to writeup
+#Initial Number of rows missing every measurements
 na_vals <- data_main %>% filter(is.na(temp)) %>% filter(is.na(humid)) %>%
   filter(is.na(incident_PAR)) %>% filter(is.na(reflect_PAR))
+#we dont want it to evaluate this value
 nrow(na_vals)
-
-#shows theres 3686
-
-#remove those rows from data_main
+#Remove missing Data rows 
 data_main <- data_main %>% filter(!is.na(temp)) %>% filter(!is.na(humid)) %>%
   filter(!is.na(incident_PAR)) %>% filter(!is.na(reflect_PAR))
 ```
