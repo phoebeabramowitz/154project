@@ -14,13 +14,18 @@ Explain your choice and describe your findings.
 #good head 
 head(data_main)
 
-
-
 # Reasonable time period is within range of 1000<epoch<3500, because most values occur there, not first
+#99,000 rows(too big?)
 data_sub <- filter(filter(data_main,epoch<3500),(epoch>1000))
-head(data_sub)
+nrow(data_sub)
 
-#I'm using epoch--the sample number-- as a substitute for time & date here, becuase it's numeric
+#I'm using epoch--the sample number-- as a substitute for time & date throughout, becuase it's numeric
+
+#The number of the nodeid is not meaningfully correlated to height
+ggplot(data_sub)+
+  geom_point(aes(x=epoch, y=nodeid, alpha=0.3),color="darkgoldenrod")+
+  ggtitle("nodeid by height")+
+  theme_minimal()
 
 # Humidity
 ggplot(data_sub)+
@@ -33,7 +38,7 @@ ggplot(data_sub)+
   ggtitle("Humidity by Height")+
   theme_minimal()
 
-# Tempurature
+# Temperature
 
 ggplot(data_sub)+
   geom_point(aes(x=epoch, y=temp, alpha=0.2),color="orangered1")+
@@ -58,28 +63,70 @@ ggplot(data_sub)+
   theme_minimal()
 
 # Direct PAR
+```
+b)Are any of the predictors associated with Incident PAR? If so, explain the relationship
 
+Incident PAR is visibly cyclical over time. The relationship can be explained by the daily daylight cycle of the sun rising and setting, since Incident PAR measures direct sunlight. 
+```{r}
 #Clearly shows daylight cycle
 ggplot(data_sub)+
   geom_point(aes(x=epoch, y=incident_PAR, alpha=0.3),color="orangered1")+
   ggtitle("Incident PAR Over Time")+
   theme_minimal()
 
+#These two plots show that certain nodes are exposed to more direct Sunlight, but not necessarily by height
 ggplot(data_sub)+
-  geom_point(aes(x=Height, y=reflect_PAR, alpha=0.3), color="deeppink1")+
+  geom_point(aes(x=Height, y=incident_PAR, alpha=0.3), color="deeppink1")+
   ggtitle("Incident PAR by Height")+
   theme_minimal()
 
-#Incident & Reflective PAR(intresting)
+ggplot(data_sub)+
+  geom_point(aes(x=nodeid, y=incident_PAR, alpha=0.3), color="deeppink1")+
+  ggtitle("Incident PAR by Node")+
+  theme_minimal()
+
+#Incident & Reflective PAR(interesting how little these seems correlated)
 ggplot(data_sub)+
   geom_point(aes(x=incident_PAR, y=reflect_PAR, alpha=0.3),color="darkgoldenrod")+
   ggtitle("Incident vs Refletive PAR")+
   theme_minimal()
 
+```
+
+Consider each variable as a time series and look at its temporal trend. Generate such
+plots (value vs time) with height as color cue for at least four variables (Temperature,
+Relative Humidity, Incident PAR and Reflected PAR). You can do it for different time
+scales (during an hour, during a day or during the entire experiment). However, at
+least the plots with days as x-axis are required. Comment on the range, continuity and
+strange behaviors in these variables.
+```{r}
+#Is it okay to use epoch?
+#Is result_time in a format that r can recognize as chronological? In plot below, no
 ggplot(data_sub)+
-  geom_point(aes(x=epoch, y=nodeid, alpha=0.3),color="darkgoldenrod")+
-  ggtitle("nodeid by height")+
+  geom_point(aes(x=result_time, y=epoch, alpha=0.3))+
+  ggtitle("epoch by result time")+
   theme_minimal()
 
+#Time Series Plots
+ggplot(data_sub)+
+  geom_point(aes(x=epoch, y=incident_PAR, alpha=0.3,color=Height))+
+  ggtitle("Incident PAR Over Time")+
+  theme_minimal()
+
+ggplot(data_sub)+
+  geom_point(aes(x=epoch, y=reflect_PAR, alpha=0.3,color=Height))+
+  ggtitle("Reflective PAR Over Time")+
+  theme_minimal()
+
+ggplot(data_sub)+
+  geom_point(aes(x=epoch, y=temp, alpha=0.3,color=Height))+
+  ggtitle("Temperature Over Time")+
+  theme_minimal()
+
+ggplot(data_sub)+
+  geom_point(aes(x=epoch, y=humid, alpha=0.3,color=Height))+
+  ggtitle("Humidity Over Time")+
+  theme_minimal()
 ```
+
 

@@ -147,9 +147,9 @@ df <- all_readings %>%
 \item Remove missing data. Comment on the number of missing measurements and the corresponding date and time period.
 
 <<<<<<< HEAD
-In our main data table, we remove 3686 rows where the temperature, humidity, reflective PAR, and incident PAR are all missing. 
+In our main data table, we remove 3686 rows where the temperature, humidity, reflective PAR, and incident PAR are missing. There are 3686 values missing for each of the 4 variables. 
 <<>>=
-#Number of missing values for each variable
+#Number of missing values for each variable(don't display this)
 sum(is.na(data_main$temp))
 sum(is.na(data_main$humid))
 sum(is.na(data_main$incident_PAR))
