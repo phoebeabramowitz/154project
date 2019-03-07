@@ -16,17 +16,13 @@
 
 \section{Paper Summary (20 pts)}
 
-\begin{enumerate}[label=(\alph*)]
 \item This study of microclimatic monitoring aims to get a better understanding of the life of a Redwood tree in Sonoma, CA. To do this, an interdisciplinary team from the University of California, Berkeley designed an experiment that paints a picture of a redwood tree’s ecophysiology spanning fourty-four days in Spring 2004. They did this using a unique network of nodes and wireless sensors to gather spatio-temporal and environmental dynamic data over the entire organism. Each of the thirty-three nodes collected hundreds of thousands of data points, which lie in four different three-dimensional spaces (time x height x value). This wireless sensor network, or macroscope, allows for rich analysis on an unprecedented dataset.
 After brainstorming with several biologists, Sonoma’s coastal redwood forest was chosen as the site of this study because of its dynamic ecosystem. Longer daylight hours during the Spring provided sufficient time for the photosynthetically active radiation sensors to collect data, and the coastal fog coming off the Pacific guaranteed a wide range of temperature and humidity gradients.
 A thorough analysis of the redwood data confirmed the biologists’ hypothesis, which premised the existence of dynamic gradients present in the redwood trees ecophysiology. By projecting the data points onto a subset of the three-dimensions, the analysis task became simpler.
-One drawback to using the sensor network was the presence of missing values throughout the data set in both the time and height dimensions. However, the team worked in spite of this by studying distributions in most of their analyses.  Beyond this initial evidence, more was extracted from the analysis about the climatic distribution of the tree. One main impact was using the data to build a quantitative model of the effect of microclimatic gradients on the sap flow rate of redwood trees. By getting a better understanding of this process, biologists can begin piecing together a more detailed picture of the larger scale carbon and water exchange within a forest ecosystem.
-
-\item The main variables of interest in this study are ones that shed light on the overall microclimate and ecophysiology of the redwood tree. As a result, each data point can be viewed in three dimensions with a time dimension, height dimension, and value dimension. The network of sensors recorded information on temperature, humidity, incident photosynthetically active solar radiation (PAR), and reflected PAR. Collecting this data over an extended period of time required a powerful system and precise deployment methodology. The data collection time period spanned fourty-four days in the early summer, sampling all sensors every five minutes. The nodes were placed along the seventy meter redwood tree starting at fifteen meters from the ground, with two-meter spacing between nodes. The west side of the tree had a thicker canopy and served as protection against environmental effects, so majority of the nodes were placed there. Lastly, the nodes were placed close to the trunk (0.1-1.0 meter) such that the recordings were of the microclimatic trends of the tree and not the wider climate.
-Multiple sensors were integrated into the Mica2Dot wireless node, as a means to gather data on the environmental dynamics of the redwood tree. This node has a one inch diameter form factor, used an Atmel microcontroller running at 4 MHz, a 433 MHz radio from Chipcon operating at 40Kbps, and 512kB of flash memory. The node was packaged into a sealed cylindrical enclosure made from white high-density polyethylene that reflects radiated heat. The enclosure contained the node, the battery, and the two sensor boards - one for direct radiation and one for all other measurements. Data collected from these nodes was stored in a local database or gateway, and then transmitted to an offsite database via a general packet radio service (GPRS) cellular modem. The UCB team used TASK software as the node operating system and data collection scheme to aid them with this work. This multi-hop system utilized TinyOS and MintRoute systems to retrieve data from the nodes and store them in the gateway as efficiently as possible. The entire network of nodes was awake for four seconds every five minutes, in order to take sensor readings, transfer the data to the base stations, and then return to sleep.
-Two calibration schemes were completed by the team to ensure a satisfactory operation prior to setting up the final system. The first calibration consisted of collecting photosynthetically active radiation, by leaving the sensors on a roof for two weeks, collecting PAR data every thirty seconds as to verify the accuracy of the readings. The second calibrations purpose was to understand the response of the temperature and humidity sensors. The nodes were tested in a controllable weather chamber that had varying temperature and humidity conditions and recorded readings every thirty seconds. The various calibration techniques utilized on the nodes took up space on the 512kB flash memory, for this reason, some of the data loggers in the local database gateway ran out of memory before the end of the data collection time period. These loggers were meant to serve as a backup in the case of network failure, and were able to store data in the case of lost connectivity through the GPRS. On the other hand however, the logger data that was stored in the gateway could only be accessed at the end of the data collection time period, and there was lost information amongst the nodes that ran out of flash memory. This defines the main difference between sonoma-data-net.csv and sonoma-data-log.csv.
-
-\end{enumerate}
+ One drawback to using the sensor network was the presence of missing values throughout the data set in both time and height dimensions. However, the team worked in spite of this by studying distributions in most of their analyses.  In addition to confirming the team’s hypothesis, more information about the climatic distribution of the tree was extracted from the analysis. One impactful step was using the data to build a quantitative model of the effect of microclimatic gradients on the sap flow rate of redwood trees. By better understanding this process, biologists can piece together a more detailed picture of the larger scale carbon and water exchange within a forest ecosystem.
+The main variables of interest in this study are those that shed light on the microclimate and ecophysiology of the redwood tree. Thus, each data point can be viewed in three dimensions-- time, height, and value. The values, recorded by the network of sensors, are temperature, humidity, incident photosynthetically active solar radiation (PAR), and reflected PAR. Collecting this data over an extended period of time required a powerful system and precise deployment methodology. The data collection time period started in late April and spanned fourty-four days, sampling all sensors every five minutes. The nodes were placed along the seventy meter redwood tree starting at a height of fifteen meters, with two-meter spacing between nodes. The west side of the tree had a thicker canopy that served as protection against environmental effects, so the majority of the nodes were placed there. Lastly, the nodes were placed close to the trunk (0.1-1.0 meter) such that the recordings were of the microclimatic trends of the tree and not the wider climate.
+Multiple sensors were integrated into the Mica2Dot wireless node, as a means to gather data on the environmental dynamics of the tree. This node has a one inch diameter form factor, an Atmel microcontroller running at 4 MHz, a 433 MHz radio from Chipcon operating at 40Kbps, and 512kB of flash memory. The node was packaged into a sealed cylindrical enclosure made from white high-density polyethylene that reflects radiated heat. The enclosure contained the node, battery, and two sensor boards - one for direct radiation and one for all other measurements. Data collected from these nodes were stored in a local database or gateway, then transmitted to an offsite database via a general packet radio service (GPRS) cellular modem. The UCB team used TASK software as the node operating system and data collection scheme to aid with this work. This multi-hop system utilized TinyOS and MintRoute systems to retrieve data from the nodes and store them in the gateway as efficiently as possible. The entire network of nodes was awake for four seconds every five minutes, in order to take sensor readings, transfer the data to the base stations, and then return to sleep.
+Two calibration schemes were completed by the team to ensure a satisfactory operation prior to setting up the final system. The first calibration consisted of leaving the sensors on a roof collecting PAR data every thirty second for two weeks to verify the accuracy of the readings. The purpose of the second calibration was to understand the response of the temperature and humidity sensors. The nodes were tested in a controllable weather chamber that had varying temperature and humidity conditions, and recorded readings every thirty seconds. The calibration techniques used on the nodes took up space on the 512kB flash memory. Thus, some of the data loggers in the local database gateway ran out of memory before the end of the data collection time period. These loggers were meant to serve as a backup in case of network failure, and stored data in the case of lost GPRS connectivity. On the other hand, the logger data that was stored in the gateway could only be accessed at the end of the data collection time period, and there was lost information in the nodes that ran out of flash memory. This defines the main difference between sonoma-data-net.csv and sonoma-data-log.csv, which both contain values the other is missing.
 
 \section{Data cleaning (40 pts)}
 
@@ -50,13 +46,56 @@ While they are not shown here, the histograms of temperature and humidity reveal
 
 \item Remove missing data. Comment on the number of missing measurements and the corresponding date and time period.
 
+In our main data table, we remove 3686 rows where the temperature, humidity, reflective PAR, and incident PAR are missing. There are 3686 values missing for each of the 4 variables.
+\begin{Schunk}
+\begin{Sinput}
+> #Number of missing values for each variable(don't display this)
+> sum(is.na(df$temp))
+\end{Sinput}
+\begin{Soutput}
+[1] 4262
+\end{Soutput}
+\begin{Sinput}
+> sum(is.na(df$humid))
+\end{Sinput}
+\begin{Soutput}
+[1] 4262
+\end{Soutput}
+\begin{Sinput}
+> sum(is.na(df$incident_PAR))
+\end{Sinput}
+\begin{Soutput}
+[1] 4262
+\end{Soutput}
+\begin{Sinput}
+> sum(is.na(df$reflect_PAR))
+\end{Sinput}
+\begin{Soutput}
+[1] 4262
+\end{Soutput}
+\begin{Sinput}
+> #Initial Number of rows missing any measurements
+> na_vals <- df %>% filter(is.na(temp)) %>% filter(is.na(humid)) %>%
++   filter(is.na(incident_PAR)) %>% filter(is.na(reflect_PAR))
+> #we dont want it to evaluate this value
+> nrow(na_vals)
+\end{Sinput}
+\begin{Soutput}
+[1] 4262
+\end{Soutput}
+\begin{Sinput}
+> #Remove missing Data rows
+> df <- df %>% filter(!is.na(temp)) %>% filter(!is.na(humid)) %>%
++   filter(!is.na(incident_PAR)) %>% filter(!is.na(reflect_PAR))
+\end{Sinput}
+\end{Schunk}
+
 \item
 After removing missing data, reconciling inconsistencies, and joining the \textbf{sonoma-data-log.csv} and \textbf{sonoma-data-net.csv}, we incorporate the \textbf{mote-location-data.txt} using nodeid as a unique identifier. All together we have the location of each mote within the two trees, along with the respective sensor data. We selected only the variables of interest amongst the 11 to create a desired dataset of all the readings. Our main table has 337,744 observations and 12 variables.
 
 \item Use histogram and quantiles to visually identify easy outliers for each of the four variables: humidity, humid temp, hamatop, hamabot. And remove them. Comment on the rationality behind your removal.
 
-By noting the ranges of each variable in the paper, we
-
+By noting the ranges of each variable in the paper, we...
 
 \item (Bonus) Discuss other possible outliers and explain your reason why it is better to remove them than to keep them.
 \end{enumerate}

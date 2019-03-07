@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  7 MAR 2019 11:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  7 MAR 2019 14:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -713,18 +713,55 @@ You have given more \span or & marks than there were
 in the preamble to the \halign or \valign now in progress.
 So I'll assume that you meant to type \cr instead.
 
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.19 \item T
+            his study of microclimatic monitoring aims to get a better under...
+
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 19
+[][]
+ []
+
 [1
 
 
 
 {/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 [2]
-Overfull \hbox (7.72804pt too wide) in paragraph at lines 37--40
+Overfull \hbox (7.72804pt too wide) in paragraph at lines 33--36
 []\T1/aer/m/n/10.95 For the ini-tial com-par-i-son in ham-atop (In-ci-dent PAR)
  be-tween \T1/aer/bx/n/10.95 sonoma-
  []
 
-[3] [4] [5]
+[3]
+LaTeX Font Info:    Try loading font information for T1+aett on input line 51.
+ (/usr/local/texlive/2018/texmf-dist/tex/latex/ae/t1aett.fd
+File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
+)
+LaTeX Font Info:    Try loading font information for TS1+aett on input line 52.
+
+
+(/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/ts1aett.fd
+File: ts1aett.fd 
+)
+LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 52.
+
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/base/ts1cmtt.fd
+File: ts1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `TS1/aett/m/sl' in size <10.95> not available
+(Font)              Font shape `TS1/cmtt/m/sl' tried instead on input line 52.
+ [4] [5]
 
 ! LaTeX Error: There's no line here to end.
 
@@ -732,45 +769,49 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.89 \newline
-              1: "10-bit Atmel Microcontroller with 128KBytes In-System Prog...
+l.128 \newline
+               1: "10-bit Atmel Microcontroller with 128KBytes In-System Pro...
 
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (10.23674pt too wide) in paragraph at lines 89--91
+Overfull \hbox (10.23674pt too wide) in paragraph at lines 128--130
 []\T1/aer/m/n/10.95 1: "10-bit At-mel Mi-cro-con-troller with 128KBytes In-Syst
 em Pro-grammable
  []
 
 
-Overfull \hbox (14.61095pt too wide) in paragraph at lines 89--91
+Overfull \hbox (14.61095pt too wide) in paragraph at lines 128--130
 \T1/aer/m/n/10.95 2: "Ana-log to Dig-i-tal Con-ver-sion" https://learn.sparkfun
 .com/tutorials/analog-
  []
 
 [6] (./project1writeup.aux) ) 
 Here is how much of TeX's memory you used:
- 13345 strings out of 492649
- 254687 string characters out of 6129622
- 299724 words of memory out of 5000000
- 16933 multiletter control sequences out of 15000+600000
- 29202 words of font info for 71 fonts, out of 8000000 for 9000
+ 13397 strings out of 492649
+ 255941 string characters out of 6129622
+ 305724 words of memory out of 5000000
+ 16971 multiletter control sequences out of 15000+600000
+ 30481 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 54i,6n,73p,1322b,251s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2018/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr17.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr8.pfb>
-Output written on project1writeup.pdf (6 pages, 93778 bytes).
+ 54i,6n,73p,1257b,404s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2018/texmf-dist/fonts/enc/dvip
+s/cm-super/cm-super-ts1.enc}</usr/local/texlive/2018/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr12.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr17.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmr8.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmsltt10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmtt10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/cm-supe
+r/sfst1095.pfb>
+Output written on project1writeup.pdf (6 pages, 129878 bytes).
 PDF statistics:
- 51 PDF objects out of 1000 (max. 8388607)
- 35 compressed objects within 1 object stream
+ 64 PDF objects out of 1000 (max. 8388607)
+ 45 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  17 words of extra memory for PDF output out of 10000 (max. 10000000)
 
