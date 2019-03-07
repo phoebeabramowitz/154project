@@ -12,8 +12,8 @@ library("tidyverse")
 
 Upload Files:
 ```{r}
-setwd("~/Desktop/Berkeley/Spring19/stat_154/154project")
-source("./data_cleaning .R")
+#setwd("~/Desktop/Berkeley/Spring19/stat_154/154project")
+#source("./data_cleaning .R")
 ```
 
 Network retrieved data until the end but sometimes the connection failed, logger has data from when the connection failed but not always until the end
@@ -24,6 +24,9 @@ Network retrieved data until the end but sometimes the connection failed, logger
 ```
 Temperature:
 ```{r}
+library(ggplot2)
+library(dplyr)
+library(GGally)
 #why are min & max NA? Doesnt matter becuase summary accurately gives min and max
 range(data_net$humid_temp)
 range(data_log$humid_temp)
@@ -43,13 +46,20 @@ summary(data_log$humidity)
 ggplot(data_net, aes(x=humidity)) + geom_histogram()
 ggplot(data_log, aes(x=humidity)) + geom_histogram()
 ```
-Incident PAR:hamatop? wavelength from 350 to 700 nm
+Incident PAR:hamatop? 
 ```{r}
-#range for net is in the 90s, for log in the 40s
-range(data_net$hamatop)
-range(data_log$hamatop)
+# > half zero, implies PAR becuase was done before the solstice so usually no sun
 summary(data_net$hamatop)
+#massive outlier(s) on the max in log
 summary(data_log$hamatop)
+
+#ONLY RUN THIS ONCE, following link 
+data_net$hamatop <- data_net$hamatop*0.0185
+data_net$hamabot <- data_net$hamabot*0.0185
+data_log$hamatop <- data_log$hamatop*0.0185
+data_log$hamabot <- data_log$hamabot*0.0185
+
+
 ggplot(data_net, aes(x=hamatop)) + geom_histogram()
 ggplot(data_log, aes(x=hamatop)) + geom_histogram()
 ```
@@ -58,7 +68,7 @@ Reflective PAR:check column use here?
 range(data_net$hamabot)
 range(data_log$hamabot)
 summary(data_net$hamabot)
-#similar in scale except for Max. >1/2 zeros bc median=0
+#massive outlier(s) on the max in log
 summary(data_log$hamabot)
 ggplot(data_net, aes(x=hamabot)) + geom_histogram()
 ggplot(data_log, aes(x=hamabot)) + geom_histogram()
@@ -66,15 +76,22 @@ ggplot(data_log, aes(x=hamabot)) + geom_histogram()
 Voltage-measure of Battery:
 ```{r}
 range(data_net$voltage)-range(data_log$voltage)
-#range of voltage is very inconsistant
 #voltage is clearly different scales between log and net
-#loig data matches the paper
+#log data matches the paper
+#convert net data to match the paper
+test <- data_net %>%
+  mutate("converted_voltage" = data_net$voltage*12.33 / 1023)
+
+data_net$voltage = data_net$voltage*12.33 / 1023
+summary(data_net$voltage)
+summary(test$converted_voltage)
 ```
 epoch, nodeid, result_time-Distinguishing between points
 ```{r}
 #range of epoch is very inconsistant, why?
 range(data_net$epoch)-range(data_log$epoch)
-
+summary(data_log$epoch)
+summary(data_net$epoch)
 #Why does nodeid go so high in log?-Just one nodeid is extremely wrong. Look at that Data point
 summary(data_log$nodeid)
 log_nodeid_outlier <- filter(data_log, nodeid>60000)
@@ -83,6 +100,10 @@ log_nodeid_outlier
 data_log_ex <- filter(data_log, nodeid<60000)
 #inconsistant number of instances per node
 ggplot(data_log_ex, aes(x=nodeid)) + geom_histogram(bindwidth=5)
+summary(data_log_ex$nodeid)
+
+summary(data_net$nodeid) #without outlier in log, they're similar ranges and scales
+ggplot(data_net, aes(x=nodeid)) + geom_histogram(binwidth=5)
 ```
 Choose to combine net and log Either can work to become the "Main Table"
 ```{r}
@@ -93,14 +114,128 @@ library(dplyr)
 data_log$result_time
 just_log <- anti_join(data_log, data_net, by = c("nodeid" = "nodeid", "epoch" = "epoch"))
 #what to do about the essentially lack of result_time in data_log
-data_main <- full_join(data_net, just_log )
+data_main <- full_join(data_net, just_log)
+data_main <- data_main[,1:11]
 ```
 
-What is epoch?
-Are all the missing Values NA? How to get range to stop giving NA
-When should zero values be NAs?
-How to use the HUmid adjustment column?
+```{r}
+# trying to reconcile the duplicate values of nodeid and epoch
+# first I selected only the columns of interest and renamed them
+# Then I cast the result_time column as a date + time object in R so we can work with it.. 
+# remove one outlier..
 
+df <- data_main %>%
+  select(c("result_time", "epoch", "nodeid", "voltage", "humid_temp", "humid_adj", "hamatop", "hamabot")) %>%
+  rename(temp = humid_temp) %>%
+  rename(humid = humid_adj) %>%
+  rename(incident_PAR = hamatop) %>%
+  rename(reflect_PAR = hamabot) %>%
+  mutate(result_time = as.POSIXct(result_time))
+
+  # group_by(nodeid, epoch) %>%
+  # summarise(parent = mean(parent)) %>%
+  # summarise(voltage = mean(voltage)) %>%
+  # summarise(depth = mean(depth)) %>%
+  # summarise(humidity = mean(humidity)) %>%
+  # summarise(humid_temp = mean(humid_temp)) %>%
+  # summarise(humid_adj = mean(humid_adj)) %>%
+  # summarise(hamatop = mean(hamatop)) %>%
+  # summarise(hamabot = mean(hamabot)) %>%
+  # select(c("parent", "voltage", "depth", "humidity", "humid_temp", "humid_adj", "hamatop", "hamabot"))
+```
+
+```{r}
+# My idea here was to group by id and epoch, and then take average across all other columns, but i dont know if this is a good idea anymore given the graph i plotted. Also im still not sure how to do this type of grouping in R..
+
+# df %>%
+# group_by(nodeid, epoch) %>%
+# summarise(result_time = mean(result_time)) 
+  # summarise(voltage = mean(voltage)) %>%
+  # summarise(humid = mean(humid)) %>%
+  # summarise(incident_PAR = mean(incident_PAR)) %>%
+  # summarise(reflect_PAR = mean(reflect_PAR)) %>%
+  # summarise(temperature = mean(temperature))
+```
+
+
+```{r}
+sample_data <- data_net[sample(1:114980, 2000),]
+ggplot(sample_data) + geom_point(aes(x=epoch, y=result_time))
+```
+
+```{r}
+ggplot(df) + geom_point(aes(x=epoch, y=result_time))
+```
+```{r}
+mote_location <- mote_location %>%
+  rename(nodeid = ID)
+
+main <- left_join(df, mote_location)
+#337743 observations of 12 variables
+```
+```{r}
+# the radial distance should be between 0-1 meter, the original dataset had some distances of up to 5 meters... should we remove them?
+ggplot(main %>% filter(Dist <= 1)) + geom_point(aes(x=Dist, y=Height))
+```
+
+```{r}
+# getting rid of bad temperature readings.. using the temp range from the paper
+ggplot(main %>% filter(temp > 6 & temp < 33 )) + geom_point(aes(x=result_time, y=temp))
+```
+
+```{r}
+# looks similarish to the histogram in the paper, after removing outliers and fault readings
+temp_test <- main %>% filter(temp > 6 & temp < 33 )
+hist(temp_test$temp)
+```
+
+```{r}
+ggplot(main) + geom_point(aes(x=nodeid, y=voltage))
+```
+```{r}
+ggplot(main %>% filter(voltage >= 2.4 & voltage <= 3)) + geom_point(aes(x=result_time, y=voltage))
+```
+
+```{r}
+# im only going to remove entries with fault voltage readings, and see if that's enough for outlier detection..
+
+good_volt <- main %>%
+  filter(voltage >= 2.4 & voltage <= 3)
+# removes 35,886 rows..
+
+```
+
+```{r}
+good_volt %>% 
+  filter(epoch < 2000)
+```
+
+
+ANSWERED We chose adjusted humidity becuase it matches the max in the report, and it's importatn to adjust for teemp
+
+Are all the missing values NA? 
+  When should zero values be NAs?
+
+ANSWERED How to use the Humid adjustment column?- As humidity? YES
+
+In log, why is epoch+nodeid is not a unique descriptor of row? Within these rows with same epoch & nodeid, there's variation between voltage, humid_temp, humidity, humid_adjust.
+  What is epoch?- Sample Number
+  If we group by epoch + nodeid, what happens?
+  Why are there so many unique nodeids? 31 for net but 72 (extra) for log, paper says there's 33     sensors. 
+  Why do numbers go up to 200? Do the numbers matter, hopefully not?
+
+ANSWERED(for now)Voltage Conversion? 
+
+ANSWERED check that humid_temp summary matches the paper 
+
+ANSWEREDHamatop&hamabot- incident and reflective, respectively?   
+ANWERED: hamatop and hamabot need Lux to PPFD conversion in order to be consistent with the paper. 
+ Lux to PPFD(µmol m-2 s-1, used in the paper): 0.0185
+ Lux of full sunlight is 108,000, consistant with the maximum numbers in 
+
+We're choosing to combine then deal with most outliers: justify this
+
+<<<<<<< HEAD
 _____________________________________
 Voltage:
 range for data_net is 198-1023
@@ -139,5 +274,6 @@ length(unique(data_net$nodeid))
 length(unique(data_log$nodeid))
 ```
 
-just checking if this works
+
+Choosing to deal with duplicate epoch nodeid after joining
 
