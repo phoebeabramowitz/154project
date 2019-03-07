@@ -77,3 +77,13 @@ df <- all_readings %>%
   rename(incident_PAR = hamatop) %>%
   rename(reflect_PAR = hamabot) %>%
   mutate(result_time = as.POSIXct(result_time))
+
+# Incorporate mote_location into all_readings
+mote_location <- mote_location %>%
+  rename(nodeid = ID)
+
+main <- left_join(df, mote_location) %>%
+  rename(height = Height) %>%
+  rename(direc = Direc) %>%
+  rename(dist = Dist) %>%
+  rename(tree = Tree)

@@ -203,13 +203,17 @@ ggplot(df) + geom_point(aes(x=epoch, y=result_time))
 mote_location <- mote_location %>%
   rename(nodeid = ID)
 
-main <- left_join(df, mote_location)
+main <- left_join(df, mote_location) %>%
+  rename(height = Height) %>%
+  rename(direc = Direc) %>%
+  rename(dist = Dist) %>%
+  rename(tree = Tree)
 #337743 observations of 12 variables
 ```
 
 ```{r}
 # the radial distance should be between 0-1 meter, the original dataset had some distances of up to 5 meters... should we remove them?
-ggplot(main %>% filter(Dist <= 1)) + geom_point(aes(x=Dist, y=Height))
+ggplot(main %>% filter(dist <= 1)) + geom_point(aes(x=dist, y=height))
 ```
 
 ```{r}
