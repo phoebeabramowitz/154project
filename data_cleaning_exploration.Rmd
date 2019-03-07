@@ -139,6 +139,7 @@ data_log$result_time
 just_log <- anti_join(data_log, data_net, by = c("nodeid" = "nodeid", "epoch" = "epoch"))
 #what to do about the essentially lack of result_time in data_log
 data_main <- full_join(data_net, just_log)
+#shouldnt need this step 
 data_main <- data_main[,1:11]
 ```
 
@@ -296,6 +297,8 @@ result time in data log are all exactly the same. There are different node IDs a
 length(unique(data_net$nodeid))
 
 length(unique(data_log$nodeid))
+
+data_main <- good_volt
 ```
 
 
