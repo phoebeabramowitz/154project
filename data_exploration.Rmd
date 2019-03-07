@@ -1,0 +1,18 @@
+---
+title: "Data Exploration"
+author: "Phoebe Abramowitz"
+date: "3/6/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#once data_cleaning is good 
+source("./data_cleaning .R")
+#temporary 
+source("./data_cleaning .R")
+```
+
