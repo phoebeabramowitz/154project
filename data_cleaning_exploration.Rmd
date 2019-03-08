@@ -27,14 +27,13 @@ Temperature:
 library(ggplot2)
 library(dplyr)
 library(GGally)
-#why are min & max NA? Doesnt matter becuase summary accurately gives min and max
-range(data_net$humid_temp)
-range(data_log$humid_temp)
+
 #similar mean and median, exist in same reasonable scale except outliers
 summary(data_net$humid_temp)
 summary(data_log$humid_temp)
 ggplot(data_net, aes(x=humid_temp)) + geom_histogram()
 ggplot(data_log, aes(x=humid_temp)) + geom_histogram()
+
 ```
 
 Change the data-log time values to date-times that exist for that epoch value in data_net.  
@@ -43,10 +42,32 @@ Change the data-log time values to date-times that exist for that epoch value in
 data_log[7776,"epoch"]
 data_net["epoch"==4784]
 
-#data_net doesn't have any of the values from the beginning
+#shows that there are(and loosely where) gaps in values on data_net - need data-log but also makes it harder
+ggplot(data_main %>% filter(result_time <= as.Date("2004-11-10"))) +
+  geom_histogram(aes(x=result_time,color="darkblue", fill="lightblue"), binwidth=100)
+
+r <- sample(3000:10000,1)
+epoch_test <- data_log[r,"epoch"]
+net_epoch_test <- data_net["epoch"==epoch_i]
+if (nrow(net_epoch_test)>0){
+  print("nice")
+  #from error, return function is wrong
+  return(net_epoch_test$result_time[1])
+}
+
+
+  for(i in nrow(data_log)){
+  epoch_i <- data_log[i,"epoch"]
+  net_epoch_i <- data_net["epoch"==epoch_i]
+  if (nrow(net_epoch_i)>0){
+    data_log[i,"result_time"] <- net_epoch_i$result_time[1]
+  }
+}
+#data_net doesn't have any of the values from the beginning, which we need for log
 summary(data_net$epoch)
 summary(data_log$epoch)
 hist(data_net$epoch)
+hist(data_log$epoch)
 ```
 If theres data_log time values with no 
 Relative Humidity:
