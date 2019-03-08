@@ -12,12 +12,20 @@ library(lubridate)
 Make some pairwise scatterplots of some variables. Pick a reasonable time period.
 Explain your choice and describe your findings.
 ```{r}
+data_main %>% 
+  filter(result_time >= as.Date("2004-05-23") & result_time <= as.Date("2004-05-30"))
+
+# using this subsection of the data, we get an accurate reading of result_time, by replacing data_log result time with respective data_net result_time using the epoch as an identifier (we noticed epoch and result time are linearly correlated). The last week of May experiences higher levels of daylight hours as the seasons begin to shift and the summer solstice gets closer. We postulate this extended day light hours will have certain affects on the 
+```
+
+```{r}
 #good head 
 head(data_main)
 
 # Reasonable time period is within range of 1000<epoch<3500, because most values occur there, not first
 #99,000 rows(too big?)
-data_sub <- filter(filter(data_main,epoch<3500),(epoch>1000))
+data_sub <- data_main %>% 
+  filter(result_time >= as.Date("2004-05-23") & result_time <= as.Date("2004-05-30"))
 nrow(data_sub)
 
 #I'm using epoch--the sample number-- as a substitute for time & date throughout, becuase it's numeric
@@ -169,16 +177,16 @@ ggplot() +
    labs(x = "PC1", y = "PC2") + ggtitle("PC1 vs. PC2")
 
 ggplot() + 
-  geom_point(aes(x = scores[, 2], y=scores[, 3], alpha=0.1)) +
-   labs(x = "PC2", y = "PC3") + ggtitle("PC2 vs. PC3")
+  geom_point(aes(x = scores[, 1], y=scores[, 3], alpha=0.1)) +
+   labs(x = "PC1", y = "PC3") + ggtitle("PC1 vs. PC3")
 
 ggplot() + 
-  geom_point(aes(x = scores[, 3], y=scores[, 4], alpha=0.1)) +
-   labs(x = "PC3", y = "PC4") + ggtitle("PC3 vs. PC4")
+  geom_point(aes(x = scores[, 1], y=scores[, 4], alpha=0.1)) +
+   labs(x = "PC1", y = "PC4") + ggtitle("PC1 vs. PC4")
 
 ggplot() + 
-  geom_point(aes(x = scores[, 4], y=scores[, 5], alpha=0.1)) +
-   labs(x = "PC4", y = "PC5") + ggtitle("PC4 vs. PC5")
+  geom_point(aes(x = scores[, 1], y=scores[, 5], alpha=0.1)) +
+   labs(x = "PC1", y = "PC5") + ggtitle("PC1 vs. PC5")
 ```
 ```{r}
 # trying to do kmeans on PC1 and PC2
