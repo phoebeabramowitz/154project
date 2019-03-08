@@ -47,6 +47,7 @@ ggplot(data_main %>% filter(result_time <= as.Date("2004-11-10"))) +
   geom_histogram(aes(x=result_time,color="darkblue", fill="lightblue"), binwidth=100)
 
 r <- sample(3000:10000,1)
+r
 epoch_test <- data_log[r,"epoch"]
 net_epoch_test <- filter(data_net,epoch==epoch_test)
 net_epoch_test
@@ -57,6 +58,9 @@ if (nrow(net_epoch_test)>0){
 }
 date_time
 
+filter(data_net, "epoch"==7202)
+
+data_net[7202,]
 
 #for every row in data_log(expensive operation!)
 
@@ -68,6 +72,8 @@ for(i in 1:nrow(data_log)){
   }
 }
 summary(data_log$result_time)
+
+data_log$result_time[7202]
 
 #data_net doesn't have any of the values from the beginning, which we need for log
 summary(data_net$epoch)
