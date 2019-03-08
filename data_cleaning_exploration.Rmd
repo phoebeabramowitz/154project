@@ -48,21 +48,27 @@ ggplot(data_main %>% filter(result_time <= as.Date("2004-11-10"))) +
 
 r <- sample(3000:10000,1)
 epoch_test <- data_log[r,"epoch"]
-net_epoch_test <- data_net["epoch"==epoch_i]
+net_epoch_test <- filter(data_net,epoch==epoch_test)
+net_epoch_test
 if (nrow(net_epoch_test)>0){
   print("nice")
   #from error, return function is wrong
-  return(net_epoch_test$result_time[1])
+  date_time <- net_epoch_test[1,"result_time"]
 }
+date_time
 
 
-  for(i in nrow(data_log)){
+#for every row in data_log(expensive operation!)
+
+for(i in 1:nrow(data_log)){
   epoch_i <- data_log[i,"epoch"]
-  net_epoch_i <- data_net["epoch"==epoch_i]
+  net_epoch_i <- filter(data_net,"epoch"==epoch_i)
   if (nrow(net_epoch_i)>0){
-    data_log[i,"result_time"] <- net_epoch_i$result_time[1]
+    data_log[i,"result_time"] <- net_epoch_i[1,"result_time"]
   }
 }
+summary(data_log$result_time)
+
 #data_net doesn't have any of the values from the beginning, which we need for log
 summary(data_net$epoch)
 summary(data_log$epoch)
