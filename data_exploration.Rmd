@@ -7,6 +7,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(lubridate)
 ```
 Make some pairwise scatterplots of some variables. Pick a reasonable time period.
 Explain your choice and describe your findings.
@@ -23,7 +24,7 @@ nrow(data_sub)
 
 #The number of the nodeid is not meaningfully correlated to height
 ggplot(data_sub)+
-  geom_point(aes(x=epoch, y=nodeid, alpha=0.3),color="darkgoldenrod")+
+  geom_point(aes(x=height, y=nodeid, alpha=0.3),color="darkgoldenrod")+
   ggtitle("nodeid by height")+
   theme_minimal()
 
@@ -34,7 +35,7 @@ ggplot(data_sub)+
   theme_minimal()
 
 ggplot(data_sub)+
-  geom_point(aes(x=Height, y=humid, alpha=0.3),color="violet")+
+  geom_point(aes(x=height, y=humid, alpha=0.3),color="violet")+
   ggtitle("Humidity by Height")+
   theme_minimal()
 
@@ -46,7 +47,7 @@ ggplot(data_sub)+
   theme_minimal()
 
 ggplot(data_sub)+
-  geom_point(aes(x=Height, y=temp, alpha=0.3),color="deeppink1")+
+  geom_point(aes(x=height, y=temp, alpha=0.3),color="deeppink1")+
   ggtitle("Temperature by Height")+
   theme_minimal()
 
@@ -58,7 +59,7 @@ ggplot(data_sub)+
   theme_minimal()
 
 ggplot(data_sub)+
-  geom_point(aes(x=Height, y=reflect_PAR, alpha=0.3), color="deeppink1")+
+  geom_point(aes(x=height, y=reflect_PAR, alpha=0.3), color="deeppink1")+
   ggtitle("Reflective PAR by Height")+
   theme_minimal()
 
@@ -76,7 +77,7 @@ ggplot(data_sub)+
 
 #These two plots show that certain nodes are exposed to more direct Sunlight, but not necessarily by height
 ggplot(data_sub)+
-  geom_point(aes(x=Height, y=incident_PAR, alpha=0.3), color="deeppink1")+
+  geom_point(aes(x=height, y=incident_PAR, alpha=0.3), color="deeppink1")+
   ggtitle("Incident PAR by Height")+
   theme_minimal()
 
@@ -109,24 +110,28 @@ ggplot(data_sub)+
 
 #Time Series Plots
 ggplot(data_sub)+
-  geom_point(aes(x=epoch, y=incident_PAR, alpha=0.3,color=Height))+
+  geom_point(aes(x=epoch, y=incident_PAR, alpha=0.3,color=height))+
   ggtitle("Incident PAR Over Time")+
   theme_minimal()
 
 ggplot(data_sub)+
-  geom_point(aes(x=epoch, y=reflect_PAR, alpha=0.3,color=Height))+
+  geom_point(aes(x=epoch, y=reflect_PAR, alpha=0.3,color=height))+
   ggtitle("Reflective PAR Over Time")+
   theme_minimal()
 
 ggplot(data_sub)+
-  geom_point(aes(x=epoch, y=temp, alpha=0.3,color=Height))+
+  geom_point(aes(x=epoch, y=temp, alpha=0.3,color=height))+
   ggtitle("Temperature Over Time")+
   theme_minimal()
 
 ggplot(data_sub)+
-  geom_point(aes(x=epoch, y=humid, alpha=0.3,color=Height))+
+  geom_point(aes(x=epoch, y=humid, alpha=0.3,color=height))+
   ggtitle("Humidity Over Time")+
   theme_minimal()
+```
+```{r}
+ggplot(data_main %>% filter(result_time <= as.Date("2004-11-10"))) +
+  geom_point(aes(x=result_time, y=epoch))
 ```
 
 
