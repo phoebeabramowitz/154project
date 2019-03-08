@@ -4,6 +4,7 @@ library(tidyverse)
 library(GGally)
 library(dplyr)
 library(ggplot2)
+library(lubridate)
 
 #location data
 mote_location <- read.delim("./data/mote-location-data.txt", sep="")

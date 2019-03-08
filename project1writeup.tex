@@ -1,101 +1,16 @@
-\documentclass[]{article}
-\usepackage{lmodern}
-\usepackage{amssymb,amsmath}
-\usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-  \usepackage[T1]{fontenc}
-  \usepackage[utf8]{inputenc}
-\else % if luatex or xelatex
-  \ifxetex
-    \usepackage{mathspec}
-  \else
-    \usepackage{fontspec}
-  \fi
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
-\fi
-% use upquote if available, for straight quotes in verbatim environments
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
-}{}
-\usepackage[margin=1in]{geometry}
-\usepackage{hyperref}
-\hypersetup{unicode=true,
-            pdftitle={Project 1 Redwood Data Report},
-            pdfauthor={Phoebe Abramowitz(26386343) \& Omri Newman(3032273024)},
-            pdfborder={0 0 0},
-            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
-\usepackage{graphicx,grffile}
-\makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{0}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-
-%%% Use protect on footnotes to avoid problems with footnotes in titles
-\let\rmarkdownfootnote\footnote%
-\def\footnote{\protect\rmarkdownfootnote}
-
-%%% Change title format to be more compact
-\usepackage{titling}
-
-% Create subtitle command for use in maketitle
-\newcommand{\subtitle}[1]{
-  \posttitle{
-    \begin{center}\large#1\end{center}
-    }
-}
-
-\setlength{\droptitle}{-2em}
-
-  \title{Project 1 Redwood Data Report}
-    \pretitle{\vspace{\droptitle}\centering\huge}
-  \posttitle{\par}
-    \author{Phoebe Abramowitz(26386343) \& Omri Newman(3032273024)}
-    \preauthor{\centering\large\emph}
-  \postauthor{\par}
-    \date{}
-    \predate{}\postdate{}
-  
-
-\begin{document}
-\maketitle
-
 \documentclass[11pt]{article}
 \usepackage{amsmath,amssymb,float,amsfonts,enumitem,tcolorbox}
 
 \include{macros}
 
 
+\title{Project 1 Redwood Data Report}
+\author{Phoebe Abramowitz(26386343) & Omri Newman(3032273024)}
+\date{Due by: \textbf{11 PM, Friday, Mar 8}}
 
+\usepackage{Sweave}
 \begin{document}
-\SweaveOpts{concordance=TRUE}
+\input{project1writeup-concordance}
 
 \maketitle
 
@@ -116,28 +31,11 @@ This data set contains gross outliers, inconsistencies, and lots of missing valu
 \begin{enumerate}[label=(\alph*)]
 \item
 For the initial comparison in hamatop (Incident PAR) between \textbf{sonoma-data-log.csv} and \textbf{sonoma-data-net.csv}, we remove outliers that are ten times larger than the third quartile in an effort to explore the ranges more thoroughly. We notice a slight bump in the right tail of incident PARs histogram for \textbf{sonoma-data-net.csv}, which does not occur in \textbf{sonoma-data-log.csv}.
-
-\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-2-1} \end{center}
-
-
-
-\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-2-2} \end{center}
-
+\includegraphics{project1writeup-002}
 The histograms for hamabot (Reflected PAR) reveal some interesting trends that both \textbf{sonoma-data-log.csv} and \textbf{sonoma-data-net.csv} share. Not only are the ranges the same between the two, but they both exhibit the same gaps in the data.
-
-\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-3-1} \end{center}
-
-
-
-\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-3-2} \end{center}
-
+\includegraphics{project1writeup-003}
 It is clear from the histograms below that voltage readings are not consistent between \textbf{sonoma-data-log.csv} and \textbf{sonoma-data-net.csv}.
-
-\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-4-1} \end{center}
-
-
-
-\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-4-2} \end{center}
+\includegraphics{project1writeup-004}
 
 To reconcile the inconsistencies between voltage and PAR, we applied two separate conversions as to match the ranges from the paper: \newline
 The voltage readings in \textbf{sonoma-data-log.csv} are all within the correct range of just a few volts, while the readings in \textbf{sonoma-data-net.csv} had significantly higher values. This discrepancy can be attributed to the analog-to-digital converter used within the ATmega128 node $^1$. To switch from the 10-bit ADC readings to actual voltage measured, we followed a simple ratiometric conversion scheme $^2$. We multiplied the values by 12.33 and divided by 1023 which transformed the data into the desired range.
@@ -145,74 +43,116 @@ The voltage readings in \textbf{sonoma-data-log.csv} are all within the correct 
 We also noticed the ranges for hamatop and hamabot differ from the paper. We convert the measurements of both types of PAR from Lux to PPMG, the units expressed in the visualizations in the study which requires a 0.0185 conversion factor.
 
 
+While they are not shown here, the histograms of temperature and humidity revealed no inconsistencies in the ranges, only some outliers.
 
+\begin{Schunk}
+\begin{Sinput}
+> # ONLY RUN THIS ONCE!!!
+> # Converting data to same range
+> 
+> #Incident and Reflected PAR
+> data_net$hamatop <- data_net$hamatop*0.0185
+> data_net$hamabot <- data_net$hamabot*0.0185
+> data_log$hamatop <- data_log$hamatop*0.0185
+> data_log$hamabot <- data_log$hamabot*0.0185
+> # Voltage
+> data_net$voltage = data_net$voltage*12.33 / 1023
+\end{Sinput}
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+> # Concatenate everything in data_net with everything in data_log
+> # that isn't in data_net, defined by epoch and nodeid
+> just_log <- anti_join(data_log, data_net, by = c("nodeid" = "nodeid", "epoch" = "epoch"))
+> all_readings <- full_join(data_net, just_log)
+> # to combat different error all_readings <- all_readings[,1:11]
+> 
+> # Cleaning all_readings before adding mote_location
+> df <- all_readings %>%
++   select(c("result_time", "epoch", "nodeid", "voltage", "humid_temp", "humid_adj", "hamatop", "hamabot")) %>%
++   rename(temp = humid_temp) %>%
++   rename(humid = humid_adj) %>%
++   rename(incident_PAR = hamatop) %>%
++   rename(reflect_PAR = hamabot) %>%
++   mutate(result_time = as.POSIXct(result_time))
+> 
+\end{Sinput}
+\end{Schunk}
 
 \item
 In our main data table, we remove 3686 rows where the temperature, humidity, reflective PAR, and incident PAR are missing. There are 3686 values missing for each of the 4 variables.
-
+\begin{Schunk}
+\begin{Sinput}
+> #Number of missing values for each variable(don't display this)
+> sum(is.na(df$temp))
+\end{Sinput}
+\begin{Soutput}
+[1] 4262
+\end{Soutput}
+\begin{Sinput}
+> sum(is.na(df$humid))
+\end{Sinput}
+\begin{Soutput}
+[1] 4262
+\end{Soutput}
+\begin{Sinput}
+> sum(is.na(df$incident_PAR))
+\end{Sinput}
+\begin{Soutput}
+[1] 4262
+\end{Soutput}
+\begin{Sinput}
+> sum(is.na(df$reflect_PAR))
+\end{Sinput}
+\begin{Soutput}
+[1] 4262
+\end{Soutput}
+\begin{Sinput}
+> #Initial Number of rows missing any measurements
+> na_vals <- df %>% filter(is.na(temp)) %>% filter(is.na(humid)) %>%
++   filter(is.na(incident_PAR)) %>% filter(is.na(reflect_PAR))
+> #we dont want it to evaluate this value
+> nrow(na_vals)
+\end{Sinput}
+\begin{Soutput}
+[1] 4262
+\end{Soutput}
+\begin{Sinput}
+> #Remove missing Data rows
+> df <- df %>% filter(!is.na(temp)) %>% filter(!is.na(humid)) %>%
++   filter(!is.na(incident_PAR)) %>% filter(!is.na(reflect_PAR))
+\end{Sinput}
+\end{Schunk}
 
 \item
 After removing missing data, reconciling inconsistencies, and joining the \textbf{sonoma-data-log.csv} and \textbf{sonoma-data-net.csv}, we incorporate the \textbf{mote-location-data.txt} using nodeid as a unique identifier. All together we have the location of each mote within the two trees, along with the respective sensor data. We selected only the variables of interest amongst the 11 to create a desired dataset of all the readings. Our main table has 337,744 observations and 12 variables.
-
+\begin{Schunk}
+\begin{Sinput}
+> # Incorporate mote_location into all_readings
+> mote_location <- mote_location %>%
++   rename(nodeid = ID)
+> main <- left_join(df, mote_location) %>%
++   rename(height = Height) %>%
++   rename(direc = Direc) %>%
++   rename(dist = Dist) %>%
++   rename(tree = Tree)
+> 
+> #337743 observations of 12 variables
+\end{Sinput}
+\end{Schunk}
 
 \item
 We worked to match the range of each variable as they are presented in the paper. It is clear in the following histograms that all of the variables contain some outliers. Instead of removing these data points per variable, we noticed that filtering out faulty voltage readings does the same job in one fell swoop. Just as is described in the paper, filtering out readings below 2.4V or above 3V removes 33,833 observations.
+\begin{Schunk}
+\begin{Soutput}
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.000   0.000   0.000   3.529   0.000 175.394 
+\end{Soutput}
+\begin{Soutput}
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.00    0.00    0.00  135.65   96.67 2097.46 
+\end{Soutput}
+\end{Schunk}
+\includegraphics{project1writeup-009}
 
-\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-9-1} \end{center}
-
-
-
-\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-9-2} \end{center}
-
-
-
-\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-9-3} \end{center}
-
-```
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   0.000   0.000   0.000   3.529   0.000 175.394
-```
-
-```
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    0.00    0.00    0.00  135.65   96.67 2097.46
-```
-
-
-
-\item (Bonus) Discuss other possible outliers and explain your reason why it is better to remove them than to keep them.
-\end{enumerate}
-
-\section{Data Exploration (40 pts)}
-\begin{enumerate}[label=(\alph*)]
-\item Make some pairwise scatterplots of some variables. Pick a reasonable time period. Explain your choice and describe your findings.
-\item Are any of the predictors associated with Incident PAR? If so, explain the relationship.
-\item Each variable of our data basically have three dimensions: value, height and time. Consider each variable as a time series and look at its temporal trend. Generate such plots (value vs time) with height as color cue for at least four variables (Temperature, Relative Humidity, Incident PAR and Reflected PAR). You can do it for different time scales (during an hour, during a day or during the entire experiment). However, at least the plots with days as x-axis are required. Comment on the range, continuity and strange behaviors in these variables.
-\item After PCA analysis, generate scree plot of the data. Can this data be approximated by some low-dimensional representation?
-\end{enumerate}
-
-\section{Interesting Findings (15 * 2 pts)}
-Describe two/three interesting findings from exploratory analysis of the data. Try to use the techniques that you have learned, such as histograms, PCA, K-means, GMM and hierachical clustering etc. Comment on your interesting findings. Different bonuses are given based on how interesing your result is.
-\begin{enumerate}[label=(\alph*)]
-\item Finding 1.
-\item Finding 2.
-\item (Bonus) Finding 3. Bonus is given only if we also find it interesting.
-\end{enumerate}
-
-\section{Graph Critique in the paper (40 pts)}
-The overall quality of the paper by Tolle et al. is good. However, some plots are not perfect from a statistician's point of view.
-\begin{enumerate}[label=(\alph*)]
-\item Figure 3[a] shows the distributions of sensor readings projected onto the value dimension, using a histogram. It turns out that both the incident and reflected PAR have long tail. We could not read full information from this histogram. Try to make a better plot with log transform of the data.
-\item What message do the boxplots in Figure 3[c] and 3[d] try to convey? Do you think the plots convey the right messages? If not generate a new plot with the same data. Hint: compare to some plots in Figure 4.
-\item Any suggestions for improving the first two plots in Figure 4? Can you distinguish all the colors in these two plots?
-\item Comment on Figure 7. Is it possible to generate a better visualization to highlight the difference between network and log data?
-\end{enumerate}
-
-
-\newline 1: "10-bit Atmel Microcontroller with 128KBytes In-System Programmable Flash" http://ww1.microchip.com/downloads/en/DeviceDoc/doc2467.pdf
-\newline 2: "Analog to Digital Conversion" https://learn.sparkfun.com/tutorials/analog-to-digital-conversion/relating-adc-value-to-voltage
-
-\end{document}
-
-
-\end{document}
