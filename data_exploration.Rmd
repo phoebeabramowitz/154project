@@ -135,4 +135,38 @@ ggplot(data_main %>% filter(result_time <= as.Date("2004-11-10"))) +
   geom_point(aes(x=result_time, y=epoch))
 ```
 
+```{r}
+# PCA analysis
+dat <- data_sub %>%
+  select(c("epoch", "temp", "humid", "incident_PAR", "reflect_PAR", "height"))
+
+pca <- prcomp(na.omit(dat), scale. = TRUE)
+summary(pca)
+```
+
+```{r}
+loadings <- pca$rotation
+scores <- pca$x
+eigenvalues <- pca$sdev^2
+eigenvalues
+sum(eigenvalues)
+
+loadings[1:5,]
+scores[1:5,]
+```
+```{r}
+eigs_cum = cumsum(eigenvalues) / sum(eigenvalues)
+ggplot() + geom_point(aes(x = 1:length(eigenvalues), y=eigs_cum)) +
+  labs(x = "first PCs", y = "fraction of total variance explained") +
+  ggtitle("Screeplot") + theme_minimal()
+```
+```{r}
+biplot(x = scores[1:1000 ,1:2], y = loadings)
+```
+
+```{r}
+# K-means
+K5 <- kmeans(na.omit(dat), 5)
+table(K5$cluster)
+```
 
