@@ -366,6 +366,16 @@ sum(is.na(data_main$reflect_PAR))
 
 ```
 
+```{r}
+# trying to deal with the log result time...
+
+log_epoch = unique(data_log$epoch)
+log_epoch = as.data.frame(log_epoch)
+log_epoch = log_epoch %>% rename(epoch = log_epoch)
+log_epoch$column = mat.or.vec(12556, 1) + 1
+something = semi_join(data_net, log_epoch, by="epoch")
+
+```
 
 
 

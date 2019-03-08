@@ -138,7 +138,7 @@ ggplot(data_main %>% filter(result_time <= as.Date("2004-11-10"))) +
 ```{r}
 # PCA analysis
 dat <- data_sub %>%
-  select(c("epoch", "temp", "humid", "incident_PAR", "reflect_PAR", "height"))
+  select(c("temp", "humid", "incident_PAR", "reflect_PAR", "height"))
 
 pca <- prcomp(na.omit(dat), scale. = TRUE)
 summary(pca)
@@ -159,14 +159,70 @@ eigs_cum = cumsum(eigenvalues) / sum(eigenvalues)
 ggplot() + geom_point(aes(x = 1:length(eigenvalues), y=eigs_cum)) +
   labs(x = "first PCs", y = "fraction of total variance explained") +
   ggtitle("Screeplot") + theme_minimal()
+# use first two principal components because they both have variances greater than one (Kaiser's criterion)
+```
+
+```{r}
+# principal component scatter plots
+ggplot() + 
+  geom_point(aes(x = scores[, 1], y=scores[, 2], alpha=0.1)) +
+   labs(x = "PC1", y = "PC2") + ggtitle("PC1 vs. PC2")
+
+ggplot() + 
+  geom_point(aes(x = scores[, 2], y=scores[, 3], alpha=0.1)) +
+   labs(x = "PC2", y = "PC3") + ggtitle("PC2 vs. PC3")
+
+ggplot() + 
+  geom_point(aes(x = scores[, 3], y=scores[, 4], alpha=0.1)) +
+   labs(x = "PC3", y = "PC4") + ggtitle("PC3 vs. PC4")
+
+ggplot() + 
+  geom_point(aes(x = scores[, 4], y=scores[, 5], alpha=0.1)) +
+   labs(x = "PC4", y = "PC5") + ggtitle("PC4 vs. PC5")
 ```
 ```{r}
-biplot(x = scores[1:1000 ,1:2], y = loadings)
+# trying to do kmeans on PC1 and PC2
+pca_kmeans <- kmeans(scores[,1:2], 3)
+plot(dat, col=(pca_kmeans$cluster+1), main="K-Means Results on First Two Principal Components (K=3)", xlab="", ylab="", pch=20, cex=2)
+```
+
+```{r}
+biplot(pca, scale=0)
+#biplot(x = scores[1:500, 1:2], y=loadings)
 ```
 
 ```{r}
 # K-means
 K5 <- kmeans(na.omit(dat), 5)
 table(K5$cluster)
+```
+
+```{r}
+# 5a.
+ggplot(data_main) +
+  geom_histogram(aes(x=incident_PAR),color="darkblue", fill="lightblue") +
+  ggtitle("Incident PAR") +
+  scale_y_sqrt() +
+  theme_minimal()
+
+ggplot(data_main) +
+  geom_histogram(aes(x=reflect_PAR),color="darkblue", fill="lightblue") +
+  ggtitle("Reflected PAR") +
+  scale_y_sqrt() +
+  theme_minimal()
+```
+
+
+```{r}
+# 5b.
+# What messages are figures 3c and 3d trying to convey? Do they convey the right message? If not, generate a new plot with the same data (compare to some plots in figure 4)
+
+# They are 'projecting onto height and value dimensions' to look for spatial trends. 3c shows the distribution of all the readings taken by each sensor at each height. 
+# We see a very different spatial trend in the temperature and humidity readings: nothing. Every sensor reached practically every point in the space of possible temperature and humidity readings. This suggests that the amount of variation over time overwhelmed the amount of variation over space. However, instead of just collapsing the temporal variation, we can explicitly remove it and focus more closely on the spatial trends. At every timestep, we take the mean of all the sensor readings. We can subtract the timestep mean from each sensor reading, and examine the distributions of the differences 3d 
+
+ggplot(data_main) +
+  geom_point(aes(x=temp, y=height, alpha=0.1)) +
+  theme_minimal()
+
 ```
 
