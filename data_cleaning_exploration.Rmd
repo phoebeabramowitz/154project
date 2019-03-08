@@ -36,6 +36,19 @@ summary(data_log$humid_temp)
 ggplot(data_net, aes(x=humid_temp)) + geom_histogram()
 ggplot(data_log, aes(x=humid_temp)) + geom_histogram()
 ```
+
+Change the data-log time values to date-times that exist for that epoch value in data_net.  
+```{r}
+#random epoch 
+data_log[7776,"epoch"]
+data_net["epoch"==4784]
+
+#data_net doesn't have any of the values from the beginning
+summary(data_net$epoch)
+summary(data_log$epoch)
+hist(data_net$epoch)
+```
+If theres data_log time values with no 
 Relative Humidity:
 ```{r}
 range(data_net$humidity)
