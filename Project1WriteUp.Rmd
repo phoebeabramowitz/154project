@@ -1,19 +1,9 @@
 ---
 title: "Project 1 Redwood Data Report"
 author: "Phoebe Abramowitz(26386343) & Omri Newman(3032273024)"
-<<<<<<< HEAD
-<<<<<<< HEAD
 output:
   pdf_document: default
-  pdf document: default
-=======
 date: "3/8/2019"
-output: pdf_document
->>>>>>> d643f8a4fd9448a8d9213a3975c79b9049b3abb7
-=======
-date: "3/8/2019"
-output: pdf_document
->>>>>>> d643f8a4fd9448a8d9213a3975c79b9049b3abb7
 ---
 
 ```{r, include=FALSE}
@@ -154,13 +144,13 @@ df <- df %>% filter(!is.na(temp)) %>% filter(!is.na(humid)) %>%
   filter(!is.na(incident_PAR)) %>% filter(!is.na(reflect_PAR))
 ```
 
-<<<<<<< HEAD
+
 \item
 After removing missing data, reconciling inconsistencies, and joining the **sonoma-data-log.csv** and **sonoma-data-net.csv**, we incorporate the **mote-location-data.txt** using nodeid as a unique identifier for each sensor. All together we have the location of each mote, along with the respective sensor data. We selected only the variables of interest amongst the 11 to create a desired dataset of all the readings. Our main table has 337,744 observations and 12 variables.
-=======
+
 
 After removing missing data, reconciling inconsistencies, and joining the **sonoma-data-log.csv** and **sonoma-data-net.csv**, we incorporate the **mote-location-data.txt** using nodeid as a unique identifier for each sensor. All together we have the location of each mote within the two trees, along with the respective sensor data. We selected only the variables of interest amongst the 11 to create a desired dataset of all the readings. Our main table has 337,744 observations and 12 variables.
->>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
+
 ```{r, include=FALSE}
 # Incorporate mote_location into all_readings
 mote_location <- mote_location %>%
@@ -306,22 +296,13 @@ ggplot(data_sub)+
   ggtitle("Temperature Over Time")+
   theme_minimal()
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 # using this subsection of the data, we get an accurate reading of result_time, by replacing data_log result time with respective data_net result_time using the epoch as an identifier (we noticed epoch and result time are linearly correlated). The last week of May experiences higher levels of daylight hours as the seasons begin to shift and the summer solstice gets closer. We postulate these extended day light hours will have certain affects on the 
-=======
-=======
->>>>>>> d643f8a4fd9448a8d9213a3975c79b9049b3abb7
+
 ggplot(data_sub)+
   geom_point(aes(x=epoch, y=humid, alpha=0.3,color=height))+
   ggtitle("Humidity Over Time")+
   theme_minimal()
-<<<<<<< HEAD
->>>>>>> d643f8a4fd9448a8d9213a3975c79b9049b3abb7
-=======
->>>>>>> d643f8a4fd9448a8d9213a3975c79b9049b3abb7
 ```
-
 
 
 PCA analysis & scree plot of the data. Can this data be approximated by some low-dimensional representation?
