@@ -123,5 +123,6 @@ summary(main$incident_PAR)
 
 # Remove outliers based on faulty voltage readings
 # removes 33,833 rows..
+
 data_main <- main %>%
   filter(voltage >= 2.4 & voltage <= 3)
