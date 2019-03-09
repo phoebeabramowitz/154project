@@ -32,7 +32,7 @@ nrow(data_sub)
 
 #The number of the nodeid is not meaningfully correlated to height
 ggplot(data_sub)+
-  geom_point(aes(x=height, y=nodeid, alpha=0.3),color="darkgoldenrod")+
+  geom_point(aes(x=height, y=nodeid),color="darkgoldenrod")+
   ggtitle("nodeid by height")+
   theme_minimal()
 
@@ -138,6 +138,7 @@ ggplot(data_sub)+
   theme_minimal()
 ```
 
+Plot Showing we can use epoch to represent time
 ```{r}
 ggplot(data_main %>% filter(result_time <= as.Date("2004-11-10"))) +
   geom_point(aes(x=result_time, y=epoch))
