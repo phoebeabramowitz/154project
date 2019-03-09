@@ -271,7 +271,7 @@ ggplot(data_sub)+
   theme_minimal()
 ```
 *Next, we consider each variable in the context of it's temporal trends, with height as color cue:
-( You can do it for different time scales during an hour, during a day or during the entire experiment). However, at least the plots with days as x-axis are required. As shown in the histogram below, I used epoch as the x variable for time here becuase their positive, linear relationship justifies our use of epoch as a standin for time that doesn't lose any information from data_log. We could also use result_time.)
+( You can do it for different time scales during an hour, during a day or during the entire experiment). However, at least the plots with days as x-axis are required. As shown in the histogram below, I used epoch as the x variable for time here becuase their positive, linear relationship justifies our use of epoch as a standin for time that doesn't lose any information from data_log. We could also use result_time.
 ```{r}
 ggplot(data_main %>% filter(result_time <= as.Date("2004-11-10"))) +
   geom_point(aes(x=result_time, y=epoch))+
@@ -306,12 +306,74 @@ ggplot(data_sub)+
 
 
 PCA analysis & scree plot of the data. Can this data be approximated by some low-dimensional representation?
+```{r}
+# PCA analysis
+dat <- data_sub %>%
+  select(c("temp", "humid", "incident_PAR", "reflect_PAR", "height"))
+
+pca <- prcomp(na.omit(dat), scale. = TRUE)
+summary(pca)
+
+loadings <- pca$rotation
+scores <- pca$x
+eigenvalues <- pca$sdev^2
+eigenvalues
+sum(eigenvalues)
+```
+
+```{r}
+#scree plot
+eigs_cum = cumsum(eigenvalues) / sum(eigenvalues)
+ggplot() + geom_point(aes(x = 1:length(eigenvalues), y=eigs_cum)) +
+  labs(x = "Principal Component", y = "Fraction of Total Variance Explained") +
+  ggtitle("Screeplot") + theme_minimal()
+# use first two principal components because they both have variances greater than one (Kaiser's criterion)
+```
+
+```{r}
+# principal component scatter plots & biplot
+ggplot() + 
+  geom_point(aes(x = scores[, 1], y=scores[, 2], alpha=0.1)) +
+   labs(x = "PC1", y = "PC2") + ggtitle("PC1 vs. PC2")
+
+biplot(pca, scale=0)
+```
+
 \end{enumerate}
 
 \section{Interesting Findings (15 * 2 pts)}
 Describe two/three interesting findings from exploratory analysis of the data. Try to use the techniques that you have learned, such as histograms, PCA, K-means, GMM and hierachical clustering etc. Comment on your interesting findings. Different bonuses are given based on how interesing your result is.
 \begin{enumerate}[label=(\alph*)]
 \item Finding 1.
+```{r}
+# hierarchical clutering on the data
+hierarch <- hclust(dist(scale(dat)), method="complete")
+summary(hierarch)
+plot(hierarch, main="Complete Linkage", xlab="", sub="",
+cex = .01)
+abline(h=7, col="red")
+```
+
+```{r}
+# compare hierarchical clustering cut at 6 to K-means with K=6
+K6 <- kmeans(na.omit(dat), 6)
+km.clusters <- K6$cluster
+table(km.clusters, hc.clusters[1:length(km.clusters)] )
+```
+
+```{r}
+# perform hierarchical clustering on the first 2 or  principal components..
+hc <- hclust(dist(scores[,1:2]))
+plot(hc, main="Hier. Clustering on First 2 Principal Components", xlab="", sub="",
+cex = .01)
+abline(h=5, col="red")
+
+# hierarchical clustering on the data vs on the first two principal components 
+table(hc.clusters) # on the dat 
+table(cutree(hc, 6)) # on the principal components 
+```
+
+
 2. Finding 2:
  
 Another interesting finding is how little Incident and Reflective PAR(Direct and Ambien) seem to be correlated when you look at their 2 dimensional scatter plot, given that both measure energy available for photosynthesis and tell us about drivers for the carbon balance in the forest.
@@ -337,7 +399,30 @@ ggplot(data_sub)+
 The overall quality of the paper by Tolle et al. is good. However, some plots are not perfect from a statistician's point of view.
 
 * Figure 3[a] shows the distributions of sensor readings projected onto the value dimension, using a histogram. It turns out that both the incident and reflected PAR have long tail. We could not read full information from this histogram. Try to make a better plot with log transform of the data.
+```{r}
+# 5a.
+ggplot(data_main) +
+  geom_histogram(aes(x=incident_PAR),color="darkblue", fill="lightblue") +
+  ggtitle("Incident PAR") +
+  scale_y_sqrt() +
+  theme_minimal()
+
+ggplot(data_main) +
+  geom_histogram(aes(x=reflect_PAR),color="darkblue", fill="lightblue") +
+  ggtitle("Reflected PAR") +
+  scale_y_sqrt() +
+  theme_minimal()
+```
+
 * What message do the boxplots in Figure 3[c] and 3[d] try to convey? Do you think the plots convey the right messages? If not generate a new plot with the same data. Hint: compare to some plots in Figure 4.
+```{r}
+# 5b.
+# What messages are figures 3c and 3d trying to convey? Do they convey the right message? If not, generate a new plot with the same data (compare to some plots in figure 4)
+
+# They are 'projecting onto height and value dimensions' to look for spatial trends. 3c shows the distribution of all the readings taken by each sensor at each height. 
+# We see a very different spatial trend in the temperature and humidity readings: nothing. Every sensor reached practically every point in the space of possible temperature and humidity readings. This suggests that the amount of variation over time overwhelmed the amount of variation over space. However, instead of just collapsing the temporal variation, we can explicitly remove it and focus more closely on the spatial trends. At every timestep, we take the mean of all the sensor readings. We can subtract the timestep mean from each sensor reading, and examine the distributions of the differences 3d
+```
+
 *item Any suggestions for improving the first two plots in Figure 4? Can you distinguish all the colors in these two plots?
 *item Comment on Figure 7. Is it possible to generate a better visualization to highlight the difference between network and log data?
 
