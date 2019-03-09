@@ -80,10 +80,18 @@
     \author{Phoebe Abramowitz(26386343) \& Omri Newman(3032273024)}
     \preauthor{\centering\large\emph}
   \postauthor{\par}
+<<<<<<< HEAD
     \date{}
     \predate{}\postdate{}
   
 
+=======
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{3/8/2019}
+
+
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 \begin{document}
 \maketitle
 
@@ -247,9 +255,16 @@ After removing missing data, reconciling inconsistencies, and joining
 the \textbf{sonoma-data-log.csv} and \textbf{sonoma-data-net.csv}, we
 incorporate the \textbf{mote-location-data.txt} using nodeid as a unique
 identifier for each sensor. All together we have the location of each
+<<<<<<< HEAD
 mote, along with the respective sensor data. We selected only the
 variables of interest amongst the 11 to create a desired dataset of all
 the readings. Our main table has 337,744 observations and 12 variables.
+=======
+mote within the two trees, along with the respective sensor data. We
+selected only the variables of interest amongst the 11 to create a
+desired dataset of all the readings. Our main table has 337,744
+observations and 12 variables.
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 
 We chose to match the range of each variable as they are presented in
 the paper. It is clear in the following histograms that all of the
@@ -274,6 +289,7 @@ them.}\label{bonus-discuss-other-possible-outliers-and-explain-your-reason-why-i
 \begin{itemize}
 \tightlist
 \item
+<<<<<<< HEAD
   Make some pairwise scatterplots of some variables. Pick a reasonable
   time period. Explain your choice and describe your findings.
 \end{itemize}
@@ -16967,6 +16983,88 @@ representation? \textbackslash{}end\{enumerate\}
 
 \section{Interesting Findings (15 * 2 pts)}
 
+=======
+  We choose the subset of the data occuring during the week of May 23rd
+  through May 30th. There are more hours of sunlight in the last week of
+  May as the summer solstice gets closer. This subset--containing
+  \textasciitilde{}28,000 values-- in particular has fewer missing
+  values than other time periods, as shown in the histogram.
+\end{itemize}
+
+\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-11-1} \end{center}
+
+\subsubsection{Some pairwise scatterplots of some variables and
+descriptions of our
+findings:}\label{some-pairwise-scatterplots-of-some-variables-and-descriptions-of-our-findings}
+
+The number of the nodeid is not meaningfully correlated to height
+
+\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-12-1} \end{center}
+
+Humidity and Temperature by time and height
+
+\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-13-1} \end{center}
+
+\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-13-2} \end{center}
+
+\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-13-3} \end{center}
+
+\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-13-4} \end{center}
+
+Reflective PAR over time loosely indicates cycles of daylight, and the
+maximum value observed of reflective PAR increases with height.
+
+\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-14-1} \end{center}
+
+\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-14-2} \end{center}
+
+Are any of the predictors associated with Incident PAR? If so, explain
+the relationship.
+
+Incident PAR is visibly cyclical over time. The relationship can be
+explained by the daily daylight cycle of the sun rising and setting,
+since Incident PAR measures direct sunlight. The second and third plots
+here show that certain nodes are exposed to more direct Sunlight, but
+not necessarily by height
+
+\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-15-1} \end{center}
+
+\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-15-2} \end{center}
+
+\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-15-3} \end{center}
+
+*Next, we consider each variable in the context of it's temporal trends,
+with height as color cue: ( You can do it for different time scales
+during an hour, during a day or during the entire experiment). However,
+at least the plots with days as x-axis are required. As shown in the
+histogram below, I used epoch as the x variable for time here becuase
+their positive, linear relationship justifies our use of epoch as a
+standin for time that doesn't lose any information from data\_log. We
+could also use result\_time.)
+
+\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-16-1} \end{center}
+
+During the day, incident PAR is noteably least at the lowest height of
+the tree. However, there's not a height gradient throughout. Reflective
+PAR lacks this trait.
+
+\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-17-1} \end{center}
+
+\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-17-2} \end{center}
+
+The lowest temperatures occur and the least height when and only when
+temperature is rising during the day.
+
+\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-18-1} \end{center}
+
+\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-18-2} \end{center}
+
+PCA analysis \& scree plot of the data. Can this data be approximated by
+some low-dimensional representation? \textbackslash{}end\{enumerate\}
+
+\section{Interesting Findings (15 * 2 pts)}
+
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 Describe two/three interesting findings from exploratory analysis of the
 data. Try to use the techniques that you have learned, such as
 histograms, PCA, K-means, GMM and hierachical clustering etc. Comment on
@@ -16975,7 +17073,19 @@ interesing your result is.
 
 \begin{enumerate}[label=(\alph*)]
 \item Finding 1.
+<<<<<<< HEAD
 \item Finding 2.
+=======
+2. Finding 2:
+ 
+Another interesting finding is how little Incident and Reflective PAR(Direct and Ambien) seem to be correlated when you look at their 2 dimensional scatter plot, given that both measure energy available for photosynthesis and tell us about drivers for the carbon balance in the forest.
+
+\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-19-1} \end{center}
+However, looking at both over time it's clear they experience similar cycles with the daylight, with the fluctuations of incident PAR having a much greater magnitude.
+
+\begin{center}\includegraphics{Project1WriteUp_files/figure-latex/unnamed-chunk-20-1} \end{center}
+
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 \item (Bonus) Finding 3. Bonus is given only if we also find it interesting.
 \end{enumerate}
 

@@ -154,8 +154,13 @@ df <- df %>% filter(!is.na(temp)) %>% filter(!is.na(humid)) %>%
   filter(!is.na(incident_PAR)) %>% filter(!is.na(reflect_PAR))
 ```
 
+<<<<<<< HEAD
 \item
 After removing missing data, reconciling inconsistencies, and joining the **sonoma-data-log.csv** and **sonoma-data-net.csv**, we incorporate the **mote-location-data.txt** using nodeid as a unique identifier for each sensor. All together we have the location of each mote, along with the respective sensor data. We selected only the variables of interest amongst the 11 to create a desired dataset of all the readings. Our main table has 337,744 observations and 12 variables.
+=======
+
+After removing missing data, reconciling inconsistencies, and joining the **sonoma-data-log.csv** and **sonoma-data-net.csv**, we incorporate the **mote-location-data.txt** using nodeid as a unique identifier for each sensor. All together we have the location of each mote within the two trees, along with the respective sensor data. We selected only the variables of interest amongst the 11 to create a desired dataset of all the readings. Our main table has 337,744 observations and 12 variables.
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 ```{r, include=FALSE}
 # Incorporate mote_location into all_readings
 mote_location <- mote_location %>%
@@ -344,17 +349,17 @@ ggplot(data_sub)+
   theme_minimal()
 ```
 
-\item (Bonus) Finding 3. Bonus is given only if we also find it interesting.
-\end{enumerate}
+3.(Bonus) Finding 3. Bonus is given only if we also find it interesting.
 
-\section{Graph Critique in the paper (40 pts)}
+
+#Graph Critique in the paper (40 pts)}\
 The overall quality of the paper by Tolle et al. is good. However, some plots are not perfect from a statistician's point of view.
-\begin{enumerate}[label=(\alph*)]
-\item Figure 3[a] shows the distributions of sensor readings projected onto the value dimension, using a histogram. It turns out that both the incident and reflected PAR have long tail. We could not read full information from this histogram. Try to make a better plot with log transform of the data.
-\item What message do the boxplots in Figure 3[c] and 3[d] try to convey? Do you think the plots convey the right messages? If not generate a new plot with the same data. Hint: compare to some plots in Figure 4.
-\item Any suggestions for improving the first two plots in Figure 4? Can you distinguish all the colors in these two plots?
-\item Comment on Figure 7. Is it possible to generate a better visualization to highlight the difference between network and log data?
-\end{enumerate}
+
+* Figure 3[a] shows the distributions of sensor readings projected onto the value dimension, using a histogram. It turns out that both the incident and reflected PAR have long tail. We could not read full information from this histogram. Try to make a better plot with log transform of the data.
+* What message do the boxplots in Figure 3[c] and 3[d] try to convey? Do you think the plots convey the right messages? If not generate a new plot with the same data. Hint: compare to some plots in Figure 4.
+*item Any suggestions for improving the first two plots in Figure 4? Can you distinguish all the colors in these two plots?
+*item Comment on Figure 7. Is it possible to generate a better visualization to highlight the difference between network and log data?
+
 
 
 * 1: "10-bit Atmel Microcontroller with 128KBytes In-System Programmable Flash" http://ww1.microchip.com/downloads/en/DeviceDoc/doc2467.pdf

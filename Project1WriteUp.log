@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  8 MAR 2019 18:50
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  8 MAR 2019 22:27
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -480,6 +484,7 @@ Package: titling 2009/09/04 v2.1d maketitle typesetting
 No file Project1WriteUp.aux.
 \openout1 = `Project1WriteUp.aux'.
 
+<<<<<<< HEAD
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 87.
 LaTeX Font Info:    ... okay on input line 87.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 87.
@@ -507,6 +512,35 @@ LaTeX Font Info:    Try loading font information for T1+lmr on input line 87.
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Info: Redefining \microtypecontext on input line 87.
+=======
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 88.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 88.
+(/usr/local/texlive/2018/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 88.
+(/usr/local/texlive/2018/texmf-dist/tex/latex/lm/t1lmr.fd
+File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Info: Redefining \microtypecontext on input line 88.
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
@@ -555,7 +589,11 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box28
+<<<<<<< HEAD
 Package hyperref Info: Link coloring OFF on input line 87.
+=======
+Package hyperref Info: Link coloring OFF on input line 88.
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -563,9 +601,15 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count115
 )
+<<<<<<< HEAD
 LaTeX Info: Redefining \ref on input line 87.
 LaTeX Info: Redefining \pageref on input line 87.
 LaTeX Info: Redefining \nameref on input line 87.
+=======
+LaTeX Info: Redefining \ref on input line 88.
+LaTeX Info: Redefining \pageref on input line 88.
+LaTeX Info: Redefining \nameref on input line 88.
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 \@outlinefile=\write3
 \openout3 = `Project1WriteUp.out'.
 
@@ -605,7 +649,11 @@ File: Project1WriteUp_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (ty
 pe pdf)
 <use Project1WriteUp_files/figure-latex/unnamed-chunk-2-1.pdf>
 Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-2-1.p
+<<<<<<< HEAD
 df  used on input line 198.
+=======
+df  used on input line 199.
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 (pdftex.def)             Requested size: 206.77829pt x 206.77829pt.
 <Project1WriteUp_files/figure-latex/unnamed-chunk-2-2.pdf, id=15, 206.7725pt x 
 206.7725pt>
@@ -613,7 +661,11 @@ File: Project1WriteUp_files/figure-latex/unnamed-chunk-2-2.pdf Graphic file (ty
 pe pdf)
 <use Project1WriteUp_files/figure-latex/unnamed-chunk-2-2.pdf>
 Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-2-2.p
+<<<<<<< HEAD
 df  used on input line 200.
+=======
+df  used on input line 201.
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 (pdftex.def)             Requested size: 206.77829pt x 206.77829pt.
 [2 <./Project1WriteUp_files/figure-latex/unnamed-chunk-2-1.pdf>]
 <Project1WriteUp_files/figure-latex/unnamed-chunk-3-1.pdf, id=30, 206.7725pt x 
@@ -622,7 +674,11 @@ File: Project1WriteUp_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (ty
 pe pdf)
 <use Project1WriteUp_files/figure-latex/unnamed-chunk-3-1.pdf>
 Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-3-1.p
+<<<<<<< HEAD
 df  used on input line 207.
+=======
+df  used on input line 208.
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 (pdftex.def)             Requested size: 206.77829pt x 204.77072pt.
 <Project1WriteUp_files/figure-latex/unnamed-chunk-3-2.pdf, id=31, 206.7725pt x 
 204.765pt>
@@ -630,7 +686,11 @@ File: Project1WriteUp_files/figure-latex/unnamed-chunk-3-2.pdf Graphic file (ty
 pe pdf)
 <use Project1WriteUp_files/figure-latex/unnamed-chunk-3-2.pdf>
 Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-3-2.p
+<<<<<<< HEAD
 df  used on input line 209.
+=======
+df  used on input line 210.
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 (pdftex.def)             Requested size: 206.77829pt x 204.77072pt.
 [3 <./Project1WriteUp_files/figure-latex/unnamed-chunk-2-2.pdf> <./Project1Writ
 eUp_files/figure-latex/unnamed-chunk-3-1.pdf>]
@@ -640,7 +700,11 @@ File: Project1WriteUp_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (ty
 pe pdf)
 <use Project1WriteUp_files/figure-latex/unnamed-chunk-4-1.pdf>
 Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-4-1.p
+<<<<<<< HEAD
 df  used on input line 215.
+=======
+df  used on input line 216.
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 (pdftex.def)             Requested size: 206.77829pt x 206.77829pt.
 <Project1WriteUp_files/figure-latex/unnamed-chunk-4-2.pdf, id=51, 206.7725pt x 
 206.7725pt>
@@ -648,43 +712,76 @@ File: Project1WriteUp_files/figure-latex/unnamed-chunk-4-2.pdf Graphic file (ty
 pe pdf)
 <use Project1WriteUp_files/figure-latex/unnamed-chunk-4-2.pdf>
 Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-4-2.p
+<<<<<<< HEAD
 df  used on input line 217.
 (pdftex.def)             Requested size: 206.77829pt x 206.77829pt.
 [4 <./Project1WriteUp_files/figure-latex/unnamed-chunk-3-2.pdf> <./Project1Writ
 eUp_files/figure-latex/unnamed-chunk-4-1.pdf>]
 LaTeX Font Info:    Try loading font information for OT1+lmr on input line 225.
+=======
+df  used on input line 218.
+(pdftex.def)             Requested size: 206.77829pt x 206.77829pt.
+[4 <./Project1WriteUp_files/figure-latex/unnamed-chunk-3-2.pdf> <./Project1Writ
+eUp_files/figure-latex/unnamed-chunk-4-1.pdf>]
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 226.
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
+<<<<<<< HEAD
 LaTeX Font Info:    Try loading font information for OML+lmm on input line 225.
+=======
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 226.
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
+<<<<<<< HEAD
 LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 225
+=======
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 226
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 .
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
+<<<<<<< HEAD
 LaTeX Font Info:    Try loading font information for OMX+lmex on input line 225
+=======
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 226
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 .
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
+<<<<<<< HEAD
 (Font)              <10> on input line 225.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 225.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 225.
 LaTeX Font Info:    Try loading font information for U+msa on input line 225.
+=======
+(Font)              <10> on input line 226.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 226.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 226.
+LaTeX Font Info:    Try loading font information for U+msa on input line 226.
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
+<<<<<<< HEAD
 LaTeX Font Info:    Try loading font information for U+msb on input line 225.
+=======
+LaTeX Font Info:    Try loading font information for U+msb on input line 226.
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -697,12 +794,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
+<<<<<<< HEAD
 l.245 
+=======
+l.246 
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
        
 Here is how much of TeX's memory you used:
  11965 strings out of 492649
  176772 string characters out of 6129622
+<<<<<<< HEAD
  283088 words of memory out of 5000000
+=======
+ 283108 words of memory out of 5000000
+>>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
  15642 multiletter control sequences out of 15000+600000
  44506 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
