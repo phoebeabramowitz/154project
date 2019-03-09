@@ -35,7 +35,7 @@ This data set contains gross outliers, inconsistencies, and lots of missing valu
 
 
 1. For the initial comparison in hamatop (Incident PAR) between **sonoma-data-log.csv** and **sonoma-data-net.csv**, we remove outliers that are ten times larger than the third quartile in an effort to explore the ranges more thoroughly. We notice a slight bump in the right tail of incident PARs histogram for **sonoma-data-net.csv**, which does not occur in **sonoma-data-log.csv**.
-```{r, echo=FALSE,eval=TRUE}
+```{r, include=FALSE}
 # Make sure working directory is project directory which contains /data with all files
 #For Phoebe setwd("~/Desktop/Berkeley/Spring19/stat_154/154project")
 # For Omri setwd("~/Stat 154/Project 1/Proj1")
@@ -58,29 +58,9 @@ data_all <- read.csv("./data/sonoma-data-all.csv")
 
 #remove an outlier
 data_log <- filter(data_log, hamatop < 10*quantile(data_log$hamatop, na.rm=TRUE)[4])
-
-ggplot(data_net) +
-  geom_histogram(aes(x=hamatop),color="darkblue", fill="lightblue",binwidth=20)+
-  ggtitle("Net Incident PAR")+
-  theme_minimal()
-ggplot(data_log) +
-  geom_histogram(aes(x=hamatop),color="darkblue", fill="lightblue",binwidth=20)+
-  ggtitle("Log Incident PAR")+
-  theme_minimal()
 ```
 
-The histograms for hamabot (Reflected PAR) reveal some interesting trends shared by *** sonoma-data-log.csv** and **sonoma-data-net.csv**. Not only are their ranges the same, but they both exhibit the same gaps in the values of hamabot that occur.
-```{r, echo=FALSE}
-# Reflected PAR histograms
-ggplot(data_net) +
-  geom_histogram(aes(x=hamabot),color="darkblue", fill="lightblue",binwidth=6)+
-  ggtitle("Net Reflected PAR")+
-  theme_minimal()
-ggplot(data_log) +
-  geom_histogram(aes(x=hamabot),color="darkblue", fill="lightblue",binwidth=6)+
-  ggtitle("Log Reflected PAR")+
-  theme_minimal()
-```
+The histograms for hamabot (Reflected PAR) reveal some interesting trends shared by **sonoma-data-log.csv** and **sonoma-data-net.csv**. Not only are their ranges the same, but they both exhibit the same gaps in the values of hamabot that occur.
 
 It is clear from the histograms below that voltage readings are not consistent between **sonoma-data-log.csv** and **sonoma-data-net.csv**
 ```{r, echo=FALSE}
@@ -145,10 +125,6 @@ df <- df %>% filter(!is.na(temp)) %>% filter(!is.na(humid)) %>%
 
 ```
 
-
-After removing missing data, reconciling inconsistencies, and joining the **sonoma-data-log.csv** and **sonoma-data-net.csv**, we incorporate the **mote-location-data.txt** using nodeid as a unique identifier for each sensor. All together we have the location of each mote, along with the respective sensor data. We selected only the variables of interest amongst the 11 to create a desired dataset of all the readings. Our main table has 337,744 observations and 12 variables.
-
-
 After removing missing data, reconciling inconsistencies, and joining the **sonoma-data-log.csv** and **sonoma-data-net.csv**, we incorporate the **mote-location-data.txt** using nodeid as a unique identifier for each sensor. All together we have the location of each mote within the two trees, along with the respective sensor data. We selected only the variables of interest amongst the 11 to create a desired dataset of all the readings. Our main table has 337,744 observations and 12 variables.
 
 ```{r, include=FALSE}
@@ -194,7 +170,7 @@ Outliers in this dataset are ones with recorded sensor values that don't fit the
 
 #Data Exploration (40 pts)
 
-* We choose the subset of the data occuring during the week of May 23rd through May 30th. There are more hours of sunlight in the last week of May as the summer solstice gets closer. This subset--containing ~28,000 values-- in particular has fewer missing values than other time periods, as shown in the histogram. 
+* We choose the subset of the data occuring during the week of May 23rd through May 30th. There are more hours of sunlight in the last week of May as the summer solstice gets closer. This subset--containing ~28,000 values-- in particular has fewer missing values than other time periods
 ```{r, include=FALSE}
 for(i in 1:nrow(data_log)){
   epoch_i <- data_log[i,"epoch"]
@@ -207,22 +183,11 @@ for(i in 1:nrow(data_log)){
 ```
 
 ```{r, echo=FALSE}
-ggplot(data_main %>% filter(result_time <= as.Date("2004-11-10"))) +
-  geom_histogram(aes(x=result_time), color="violet",fill="darkblue", binwidth=100)+
-  ggtitle("Occurences of Data Values Over Time")+
-  theme_minimal()
-
 data_sub <- data_main %>% 
   filter(result_time >= as.Date("2004-05-23") & result_time <= as.Date("2004-05-30"))
 ```
 ###Some pairwise scatterplots of some variables and descriptions of our findings:
-The number of the nodeid is not meaningfully correlated to height
-```{r, echo=FALSE}
-ggplot(data_sub)+
-  geom_point(aes(x=height, y=nodeid),color="darkgoldenrod")+
-  ggtitle("nodeid by height")+
-  theme_minimal()
-```
+The number of the nodeid is not meaningfully correlated to height.
 Humidity and Temperature by time and height
 ```{r, echo=FALSE}
 ggplot(data_sub)+
@@ -231,19 +196,10 @@ ggplot(data_sub)+
   theme_minimal()
 
 ggplot(data_sub)+
-  geom_point(aes(x=height, y=humid, alpha=0.3),color="violet")+
-  ggtitle("Humidity by Height")+
-  theme_minimal()
-
-ggplot(data_sub)+
   geom_point(aes(x=epoch, y=temp, alpha=0.2),color="orangered1")+
   ggtitle("Temperature Over Time")+
   theme_minimal()
 
-ggplot(data_sub)+
-  geom_point(aes(x=height, y=temp, alpha=0.3),color="deeppink1")+
-  ggtitle("Temperature by Height")+
-  theme_minimal()
 ```
 
 Reflective PAR over time loosely indicates cycles of daylight, and the maximum value observed of reflective PAR increases with height. 
@@ -339,7 +295,7 @@ eigenvalues <- pca$sdev^2
 eigenvalues
 sum(eigenvalues)
 ```
-####Scree Plot
+
 ```{r, echo=FALSE}
 
 eigs_cum = cumsum(eigenvalues) / sum(eigenvalues)
@@ -361,12 +317,11 @@ biplot(pca, scale=0)
 
 
 Describe two interesting findings from exploratory analysis of the data and comment on these findings.
-\begin{enumerate}[label=(\alph*)]
-\item Finding 1.
+
+Finding 1.
 
 Unsupervised learning techniques like clustering allow us to study patterns within multi-dimensional data sets. To start off, we run hierarchical clustering with complete linkage on the subset of interest, and notice that six clusters is a good starting point for this data. 
 
-1. Finding 1.
 
 ```{r, echo=FALSE}
 # hierarchical clutering on the data
