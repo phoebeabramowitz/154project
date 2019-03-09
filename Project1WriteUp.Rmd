@@ -165,6 +165,7 @@ main <- left_join(df, mote_location) %>%
 ```
 
 We chose to match the range of each variable as they are presented in the paper. It is clear in the following histograms that all of the variables contain some outliers. Instead of removing these data points per variable, we noticed that filtering out rows with faulty voltage readings--which are not reliable, as detailed in the paper-- does the same job in one fell swoop. Just as is described in the paper, filtering out readings below 2.4V or above 3V removes 33,833 observations.
+
 ```{r, echo=FALSE}
 # use histograms and quantiles on main, to show outliers. data_main below gets rid of faulty voltage readings..
 ggplot(main) +
@@ -194,8 +195,18 @@ Outliers in this dataset are ones with recorded sensor values that don't fit the
 #Data Exploration (40 pts)
 
 * We choose the subset of the data occuring during the week of May 23rd through May 30th. There are more hours of sunlight in the last week of May as the summer solstice gets closer. This subset--containing ~28,000 values-- in particular has fewer missing values than other time periods, as shown in the histogram. 
+```{r, include=FALSE}
+for(i in 1:nrow(data_log)){
+  epoch_i <- data_log[i,"epoch"]
+  net_epoch_i <- filter(data_net,epoch==epoch_i)
+  if (nrow(net_epoch_i)>0){
+    date_time_i <- net_epoch_i[1,"result_time"]
+    data_log[i,"result_time"] <- date_time_i
+  }
+}
+```
 
-```{r}
+```{r, echo=FALSE}
 ggplot(data_main %>% filter(result_time <= as.Date("2004-11-10"))) +
   geom_histogram(aes(x=result_time), color="violet",fill="darkblue", binwidth=100)+
   ggtitle("Occurences of Data Values Over Time")+
@@ -206,14 +217,14 @@ data_sub <- data_main %>%
 ```
 ###Some pairwise scatterplots of some variables and descriptions of our findings:
 The number of the nodeid is not meaningfully correlated to height
-```{r}
+```{r, echo=FALSE}
 ggplot(data_sub)+
   geom_point(aes(x=height, y=nodeid),color="darkgoldenrod")+
   ggtitle("nodeid by height")+
   theme_minimal()
 ```
 Humidity and Temperature by time and height
-```{r}
+```{r, echo=FALSE}
 ggplot(data_sub)+
   geom_point(aes(x=epoch, y=humid, alpha=0.3),color="firebrick2")+
   ggtitle("Humidity Over Time")+
@@ -236,7 +247,7 @@ ggplot(data_sub)+
 ```
 
 Reflective PAR over time loosely indicates cycles of daylight, and the maximum value observed of reflective PAR increases with height. 
-```{r}
+```{r, echo=FALSE}
 ggplot(data_sub)+
   geom_point(aes(x=epoch, y=reflect_PAR, alpha=0.3),color="deeppink1")+
   ggtitle("Reflective PAR Over Time")+
@@ -251,7 +262,7 @@ ggplot(data_sub)+
 Are any of the predictors associated with Incident PAR? If so, explain the relationship.
 
 Incident PAR is visibly cyclical over time. The relationship can be explained by the daily daylight cycle of the sun rising and setting, since Incident PAR measures direct sunlight. The second and third plots here show that certain nodes are exposed to more direct Sunlight, but not necessarily by height
-```{r}
+```{r, echo=FALSE}
 #Clearly shows daylight cycle
 ggplot(data_sub)+
   geom_point(aes(x=epoch, y=incident_PAR, alpha=0.3),color="orangered1")+
@@ -270,13 +281,13 @@ ggplot(data_sub)+
 ```
 *Next, we consider each variable in the context of it's temporal trends, with height as color cue:
 ( You can do it for different time scales during an hour, during a day or during the entire experiment). However, at least the plots with days as x-axis are required. As shown in the histogram below, I used epoch as the x variable for time here becuase their positive, linear relationship justifies our use of epoch as a standin for time that doesn't lose any information from data_log. We could also use result_time.
-```{r}
+```{r, echo=FALSE}
 ggplot(data_main %>% filter(result_time <= as.Date("2004-11-10"))) +
   geom_point(aes(x=result_time, y=epoch))+
   ggtitle("Linear relationship between epoch and result_time")
 ```
 During the day, incident PAR is noteably least at the lowest height of the tree. However, there's not a height gradient throughout. Reflective PAR lacks this trait. 
-```{r}
+```{r, echo=FALSE}
 ggplot(data_sub)+
   geom_point(aes(x=epoch, y=incident_PAR, alpha=0.3,color=height))+
   ggtitle("Incident PAR Over Time")+
@@ -288,7 +299,7 @@ ggplot(data_sub)+
   theme_minimal()
 ```
 The lowest temperatures occur and the least height when and only when temperature is rising during the day.
-```{r}
+```{r, echo=FALSE}
 ggplot(data_sub)+
   geom_point(aes(x=epoch, y=temp, alpha=0.3,color=height))+
   ggtitle("Temperature Over Time")+
@@ -314,7 +325,7 @@ PCA analysis & scree plot of the data:
 Before running PCA on the desired subset of the data, we select five variables of interest (temperature, humidity, incident PAR, reflected PAR, height). We use Kaiser's criterion to choose principal components, of those with variances greater than one. We see out of the five eigenvalues, the first two are greater than one. The scree plot also shows that 73% of the variability in this data is encompassed by the first two principal components. For these reasons, we conclude there is a two-dimensional representation of this multi-dimensional data. 
 
 
-```{r}
+```{r, echo=FALSE}
 # PCA analysis
 dat <- data_sub %>%
   select(c("temp", "humid", "incident_PAR", "reflect_PAR", "height"))
@@ -329,7 +340,7 @@ eigenvalues
 sum(eigenvalues)
 ```
 ####Scree Plot
-```{r}
+```{r, echo=FALSE}
 
 eigs_cum = cumsum(eigenvalues) / sum(eigenvalues)
 ggplot() + geom_point(aes(x = 1:length(eigenvalues), y=eigs_cum)) +
@@ -339,7 +350,7 @@ ggplot() + geom_point(aes(x = 1:length(eigenvalues), y=eigs_cum)) +
 ```
 
 The following scatter plots show PC1 places a high value on temperature and both PAR's, while PC2 places a high value on height. Both PC1 and PC2 place roughly the same weight on humidity. The nodes which experience high temperatures and high PAR readings will have a greater first principal component in absolute value, as is seen in the biplot. 
-```{r}
+```{r, echo=FALSE}
 # principal component scatter plots & biplot
 ggplot() + 
   geom_point(aes(x = scores[, 1], y=scores[, 2], alpha=0.1)) +
@@ -357,7 +368,7 @@ Unsupervised learning techniques like clustering allow us to study patterns with
 
 1. Finding 1.
 
-```{r}
+```{r, echo=FALSE}
 # hierarchical clutering on the data
 hierarch <- hclust(dist(scale(dat)), method="complete")
 summary(hierarch)
@@ -367,7 +378,7 @@ abline(h=7, col="red")
 ```
 
 We compare K-means clustering with K=6 to the hierarchical clustering that was just obtained, and make note of the differences. There are no zeros in the table below indicating that there is overlap between all clusters obtained by both K-means and hierarchical clustering. 
-```{r}
+```{r, echo=FALSE}
 # compare hierarchical clustering cut at 6 to K-means with K=6
 K6 <- kmeans(na.omit(dat), 6)
 km.clusters <- K6$cluster
@@ -375,7 +386,7 @@ table(km.clusters, hc.clusters[1:length(km.clusters)] )
 ```
 
 In an attempt to remove noise from the data, we perform hierarchical clustering on the first two principal components, and compare them to the original clusters performed on all the data. The dendograms depict clear differences between the two. When all the data is used, the clusters end up relatively close to eachother, but when using the principal components they come from opposite ends of the plot. The table below also portrays the differences between the two clustering methods. 
-```{r}
+```{r, echo=FALSE}
 # perform hierarchical clustering on the first 2 or  principal components..
 hc <- hclust(dist(scores[,1:2]))
 plot(hc, main="Hier. Clustering on First 2 Principal Components", xlab="", sub="",
@@ -391,14 +402,14 @@ table(cutree(hc, 6)) # on the principal components
 2. Finding 2:
  
 Another interesting finding is how little Incident and Reflective PAR(Direct and Ambien) seem to be correlated when you look at their 2 dimensional scatter plot, given that both measure energy available for photosynthesis and tell us about drivers for the carbon balance in the forest.
-```{r}
+```{r, echo=FALSE}
 ggplot(data_sub)+
   geom_point(aes(x=incident_PAR, y=reflect_PAR, alpha=0.3),color="darkgoldenrod")+
   ggtitle("Incident vs Refletive PAR")+
   theme_minimal()
 ```
 However, looking at both over time it's clear they experience similar cycles with the daylight, with the fluctuations of incident PAR having a much greater magnitude.
-```{r}
+```{r, echo=FALSE}
 ggplot(data_sub)+
   geom_line(aes(x=result_time, y=incident_PAR, color="red"))+
   geom_line(aes(x=result_time,y=reflect_PAR, color="blue"))+
@@ -406,14 +417,12 @@ ggplot(data_sub)+
   theme_minimal()
 ```
 
-3.(Bonus) Finding 3. Bonus is given only if we also find it interesting.
-
 
 #Graph Critique in the paper (40 pts)}\
 The overall quality of the paper by Tolle et al. is good. However, some plots are not perfect from a statistician's point of view.
 
 * Figure 3[a] shows the distributions of sensor readings projected onto the value dimension, using a histogram. It turns out that both the incident and reflected PAR have long tail. We could not read full information from this histogram. Try to make a better plot with log transform of the data.
-```{r}
+```{r, echo=FALSE}
 # 5a.
 ggplot(data_main) +
   geom_histogram(aes(x=incident_PAR),color="darkblue", fill="lightblue") +
@@ -438,6 +447,8 @@ ggplot(data_main) +
 ```
 
 *item Any suggestions for improving the first two plots in Figure 4? Can you distinguish all the colors in these two plots?
+
+Although the figures are mostly effective in getting the point across, you cannot distinguish all of the colors in the first two plots of figure 4. One reason for this is the small size; it would be helpful to have larger figures and translucent lines.
 
 *item Comment on Figure 7. Is it possible to generate a better visualization to highlight the difference between network and log data?
 
