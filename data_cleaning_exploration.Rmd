@@ -97,7 +97,7 @@ summary(data_log$humidity)
 ggplot(data_net, aes(x=humidity)) + geom_histogram()
 ggplot(data_log, aes(x=humidity)) + geom_histogram()
 ```
-```
+
 
 Incident PAR:hamatop? 
 ```{r}

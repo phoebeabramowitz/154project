@@ -142,6 +142,8 @@ na_vals <- df %>% filter(is.na(temp)) %>% filter(is.na(humid)) %>%
 #Remove missing Data rows
 df <- df %>% filter(!is.na(temp)) %>% filter(!is.na(humid)) %>%
   filter(!is.na(incident_PAR)) %>% filter(!is.na(reflect_PAR))
+
+
 ```
 
 
