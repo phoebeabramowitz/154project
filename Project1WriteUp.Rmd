@@ -142,9 +142,6 @@ na_vals <- df %>% filter(is.na(temp)) %>% filter(is.na(humid)) %>%
 #Remove missing Data rows
 df <- df %>% filter(!is.na(temp)) %>% filter(!is.na(humid)) %>%
   filter(!is.na(incident_PAR)) %>% filter(!is.na(reflect_PAR))
-
-df_nas <- df %>% filter(is.na(height))
-nrow(df_nas)
 ```
 
 
@@ -296,6 +293,9 @@ ggplot(data_sub)+
   theme_minimal()
 # WHERE DOES THIS BELONG using this subsection of the data, we get an accurate reading of result_time, by replacing data_log result time with respective data_net result_time using the epoch as an identifier (we noticed epoch and result time are linearly correlated). The last week of May experiences higher levels of daylight hours as the seasons begin to shift and the summer solstice gets closer. We postulate these extended day light hours will have certain affects on the 
 
+# using this subsection of the data, we get an accurate reading of result_time, by replacing data_log result time with respective data_net result_time using the epoch as an identifier (we noticed epoch and result time are linearly correlated). The last week of May experiences higher levels of daylight hours as the seasons begin to shift and the summer solstice gets closer. We postulate these extended day light hours will have certain affects on the 
+
+
 ggplot(data_sub)+
   geom_point(aes(x=epoch, y=humid, alpha=0.3,color=height))+
   ggtitle("Humidity Over Time")+
@@ -303,7 +303,10 @@ ggplot(data_sub)+
 
 ```
 
-PCA analysis & scree plot of the data. Can this data be approximated by some low-dimensional representation?
+```
+
+PCA analysis & scree plot of the data:
+Before running PCA on the desired subset of the data, we select five variables of interest (temperature, humidity, incident PAR, reflected PAR, height). We use Kaiser's criterion to choose principal components, of those with variances greater than one. We see out of the five eigenvalues, the first two are greater than one. The scree plot also shows that 73% of the variability in this data is encompassed by the first two principal components. For these reasons, we conclude there is a two-dimensional representation of this multi-dimensional data. 
 
 ```{r}
 # PCA analysis
@@ -329,6 +332,7 @@ ggplot() + geom_point(aes(x = 1:length(eigenvalues), y=eigs_cum)) +
 # use first two principal components because they both have variances greater than one (Kaiser's criterion)
 ```
 
+PC1 places a high value on temperature and both PAR's, while PC2 places a high value on height. Both PC1 and PC2 place roughly the same weight on humidity. The nodes which experience high temperatures and high PAR readings will have a greater first principal component in absolute value, as is seen in the biplot. 
 ```{r}
 # principal component scatter plots & biplot
 ggplot() + 
@@ -338,10 +342,11 @@ ggplot() +
 biplot(pca, scale=0)
 ```
 
+\end{enumerate}
 
-Describe two/three interesting findings from exploratory analysis of the data. Try to use the techniques that you have learned, such as histograms, PCA, K-means, GMM and hierachical clustering etc. Comment on your interesting findings. Different bonuses are given based on how interesing your result is.
-
-Finding 1.
+Describe two/three interesting findings from exploratory analysis of the data. Try to use the techniques that you have learned, such as histograms, PCA, K-means, GMM and hierachical clustering etc. Comment on your interesting findings.
+\begin{enumerate}[label=(\alph*)]
+\item Finding 1.
 ```{r}
 # hierarchical clutering on the data
 hierarch <- hclust(dist(scale(dat)), method="complete")

@@ -83,7 +83,7 @@ just_log <- anti_join(data_log, data_net, by = c("nodeid" = "nodeid", "epoch" = 
 all_readings <- full_join(data_net, just_log)
 all_readings <- all_readings[,1:11]
 
-# Cleaning all_readings before adding mote_location
+# Cleaning all_readings before adding mote_location3
 df <- all_readings %>%
   select(c("result_time", "epoch", "nodeid", "voltage", "humid_temp", "humid_adj", "hamatop", "hamabot")) %>%
   rename(temp = humid_temp) %>%
@@ -188,7 +188,7 @@ ggplot(data_main %>% filter(result_time <= as.Date("2004-11-10"))) +
   ggtitle("Occurences of Data Values Over Time")+
   theme_minimal()
 
-data_sub <- data_main %>% 
+data_sub <- data_main %>%
   filter(result_time >= as.Date("2004-05-23") & result_time <= as.Date("2004-05-30"))
 
 
@@ -264,3 +264,5 @@ ggplot(data_sub)+
   geom_point(aes(x=epoch, y=humid, alpha=0.3,color=height))+
   ggtitle("Humidity Over Time")+
   theme_minimal()
+
+
