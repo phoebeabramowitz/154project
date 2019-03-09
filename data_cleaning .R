@@ -181,6 +181,7 @@ ggplot(main) +
   theme_minimal()
 data_main <- main %>%
   filter(voltage >= 2.4 & voltage <= 3)
+data_main <- data_main %>% filter(!is.na(height))
 # removes 33,833 rows
 
 ggplot(data_main %>% filter(result_time <= as.Date("2004-11-10"))) +

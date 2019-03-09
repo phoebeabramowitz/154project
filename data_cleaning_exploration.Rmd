@@ -46,11 +46,19 @@ Change the data-log time values to date-times that exist for that epoch value in
 ggplot(data_main %>% filter(result_time <= as.Date("2004-11-10"))) +
   geom_histogram(aes(x=result_time,color="darkblue", fill="lightblue"), binwidth=100)
 
+
 r <- sample(3000:10000,1)
 r
+# the epoch value for the rth value of data_log(random)
+##THIS WORKS FOR RANDOM R
 epoch_test <- data_log[r,"epoch"]
+epoch_test
+
+#works for 7676th value of data_log where opuch is 4684
+#data_net where epoch = the random epoch from data_log
 net_epoch_test <- filter(data_net,epoch==epoch_test)
 net_epoch_test
+
 if (nrow(net_epoch_test)>0){
   print("nice")
   #from error, return function is wrong
@@ -58,20 +66,19 @@ if (nrow(net_epoch_test)>0){
 }
 date_time
 
-filter(data_net, "epoch"==7202)
 
-data_net[7202,]
 
 #for every row in data_log(expensive operation!)
 
 for(i in 1:nrow(data_log)){
   epoch_i <- data_log[i,"epoch"]
-  net_epoch_i <- filter(data_net,"epoch"==epoch_i)
+  net_epoch_i <- filter(data_net,epoch==epoch_i)
   if (nrow(net_epoch_i)>0){
-    data_log[i,"result_time"] <- net_epoch_i[1,"result_time"]
+    date_time_i <- net_epoch_i[1,"result_time"]
+    data_log[i,"result_time"] <- date_time_i
   }
 }
-summary(data_log$result_time)
+
 
 data_log$result_time[7202]
 
