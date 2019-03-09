@@ -160,8 +160,7 @@ main <- left_join(df, mote_location) %>%
 #337743 observations of 12 variables
 ```
 
-\item
-We worked to match the range of each variable as they are presented in the paper. It is clear in the following histograms that all of the variables contain some outliers. Instead of removing these data points per variable, we noticed that filtering out faulty voltage readings does the same job in one fell swoop. Just as is described in the paper, filtering out readings below 2.4V or above 3V removes 33,833 observations.
+We chose to match the range of each variable as they are presented in the paper. It is clear in the following histograms that all of the variables contain some outliers. Instead of removing these data points per variable, we noticed that filtering out rows with faulty voltage readings--which are not reliable, as detailed in the paper-- does the same job in one fell swoop. Just as is described in the paper, filtering out readings below 2.4V or above 3V removes 33,833 observations.
 ```{r, echo=FALSE}
 # use histograms and quantiles on main, to show outliers. data_main below gets rid of faulty voltage readings..
 ggplot(main) +
@@ -179,8 +178,6 @@ ggplot(main) +
   ggtitle("Humidity")+
   theme_minimal()
 
-summary(main$reflect_PAR)
-summary(main$incident_PAR)
 ```
 
 ```{r, include=FALSE}
@@ -189,12 +186,20 @@ data_main <- main %>%
 # removes 33,833 rows
 ```
 
-\item (Bonus) Discuss other possible outliers and explain your reason why it is better to remove them than to keep them.
-\end{enumerate}
+###(Bonus) Discuss other possible outliers and explain your reason why it is better to remove them than to keep them.
 
-\section{Data Exploration (40 pts)}
-\begin{enumerate}[label=(\alph*)]
-\item Make some pairwise scatterplots of some variables. Pick a reasonable time period. Explain your choice and describe your findings.
+
+#{Data Exploration (40 pts)}
+
+* Make some pairwise scatterplots of some variables. Pick a reasonable time period. Explain your choice and describe your findings.
+
+```{r}
+data_main %>% 
+  filter(result_time >= as.Date("2004-05-23") & result_time <= as.Date("2004-05-30"))
+
+# using this subsection of the data, we get an accurate reading of result_time, by replacing data_log result time with respective data_net result_time using the epoch as an identifier (we noticed epoch and result time are linearly correlated). The last week of May experiences higher levels of daylight hours as the seasons begin to shift and the summer solstice gets closer. We postulate this extended day light hours will have certain affects on the 
+```
+
 \item Are any of the predictors associated with Incident PAR? If so, explain the relationship.
 \item Each variable of our data basically have three dimensions: value, height and time. Consider each variable as a time series and look at its temporal trend. Generate such plots (value vs time) with height as color cue for at least four variables (Temperature, Relative Humidity, Incident PAR and Reflected PAR). You can do it for different time scales (during an hour, during a day or during the entire experiment). However, at least the plots with days as x-axis are required. Comment on the range, continuity and strange behaviors in these variables.
 \item After PCA analysis, generate scree plot of the data. Can this data be approximated by some low-dimensional representation?
@@ -218,7 +223,7 @@ The overall quality of the paper by Tolle et al. is good. However, some plots ar
 \end{enumerate}
 
 
-\newline 1: "10-bit Atmel Microcontroller with 128KBytes In-System Programmable Flash" http://ww1.microchip.com/downloads/en/DeviceDoc/doc2467.pdf
-\newline 2: "Analog to Digital Conversion" https://learn.sparkfun.com/tutorials/analog-to-digital-conversion/relating-adc-value-to-voltage
+* 1: "10-bit Atmel Microcontroller with 128KBytes In-System Programmable Flash" http://ww1.microchip.com/downloads/en/DeviceDoc/doc2467.pdf
+* 2: "Analog to Digital Conversion" https://learn.sparkfun.com/tutorials/analog-to-digital-conversion/relating-adc-value-to-voltage
 
-Things still do answer: 
+
