@@ -332,7 +332,7 @@ ggplot() + geom_point(aes(x = 1:length(eigenvalues), y=eigs_cum)) +
 # use first two principal components because they both have variances greater than one (Kaiser's criterion)
 ```
 
-PC1 places a high value on temperature and both PAR's, while PC2 places a high value on height. Both PC1 and PC2 place roughly the same weight on humidity. The nodes which experience high temperatures and high PAR readings will have a greater first principal component in absolute value, as is seen in the biplot. 
+The following scatter plots show PC1 places a high value on temperature and both PAR's, while PC2 places a high value on height. Both PC1 and PC2 place roughly the same weight on humidity. The nodes which experience high temperatures and high PAR readings will have a greater first principal component in absolute value, as is seen in the biplot. 
 ```{r}
 # principal component scatter plots & biplot
 ggplot() + 
@@ -344,9 +344,11 @@ biplot(pca, scale=0)
 
 \end{enumerate}
 
-Describe two/three interesting findings from exploratory analysis of the data. Try to use the techniques that you have learned, such as histograms, PCA, K-means, GMM and hierachical clustering etc. Comment on your interesting findings.
+Describe two interesting findings from exploratory analysis of the data and comment on these findings.
 \begin{enumerate}[label=(\alph*)]
 \item Finding 1.
+
+Unsupervised learning techniques like clustering allow us to study patterns within multi-dimensional data sets. To start off, we run hierarchical clustering with complete linkage on the subset of interest, and notice that six clusters is a good starting point for this data. 
 ```{r}
 # hierarchical clutering on the data
 hierarch <- hclust(dist(scale(dat)), method="complete")
@@ -356,6 +358,7 @@ cex = .01)
 abline(h=7, col="red")
 ```
 
+We compare K-means clustering with K=6 to the hierarchical clustering that was just obtained, and make note of the differences. There are no zeros in the table below indicating that there is overlap between all clusters obtained by both K-means and hierarchical clustering. 
 ```{r}
 # compare hierarchical clustering cut at 6 to K-means with K=6
 K6 <- kmeans(na.omit(dat), 6)
@@ -363,6 +366,7 @@ km.clusters <- K6$cluster
 table(km.clusters, hc.clusters[1:length(km.clusters)] )
 ```
 
+In an attempt to remove noise from the data, we perform hierarchical clustering on the first two principal components, and compare them to the original clusters performed on all the data. The dendograms depict clear differences between the two. When all the data is used, the clusters end up relatively close to eachother, but when using the principal components they come from opposite ends of the plot. The table below also portrays the differences between the two clustering methods. 
 ```{r}
 # perform hierarchical clustering on the first 2 or  principal components..
 hc <- hclust(dist(scores[,1:2]))
