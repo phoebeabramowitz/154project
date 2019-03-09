@@ -303,6 +303,7 @@ summary(hierarch)
 plot(hierarch, main="Complete Linkage", xlab="", sub="",
      cex = .01)
 abline(h=7, col="red")
+hc.clusters <- cutree(hierarch, 6)
 
 K6 <- kmeans(na.omit(dat), 6)
 km.clusters <- K6$cluster

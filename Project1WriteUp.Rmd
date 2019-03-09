@@ -375,6 +375,7 @@ summary(hierarch)
 plot(hierarch, main="Complete Linkage", xlab="", sub="",
 cex = .01)
 abline(h=7, col="red")
+hc.clusters <- cutree(hierarch, 6)
 ```
 
 We compare K-means clustering with K=6 to the hierarchical clustering that was just obtained, and make note of the differences. There are no zeros in the table below indicating that there is overlap between all clusters obtained by both K-means and hierarchical clustering. 
