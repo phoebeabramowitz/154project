@@ -303,7 +303,7 @@ ggplot(data_sub)+
 
 ```
 
-<<<<<<< HEAD
+
 
 ####PCA analysis 
 Can this data be approximated by some low-dimensional representation?
