@@ -184,6 +184,15 @@ data_main <- main %>%
 data_main <- data_main %>% filter(!is.na(height))
 # removes 33,833 rows
 
+for(i in 1:nrow(data_log)){
+  epoch_i <- data_log[i,"epoch"]
+  net_epoch_i <- filter(data_net,epoch==epoch_i)
+  if (nrow(net_epoch_i)>0){
+    date_time_i <- net_epoch_i[1,"result_time"]
+    data_log[i,"result_time"] <- date_time_i
+  }
+}
+
 ggplot(data_main %>% filter(result_time <= as.Date("2004-11-10"))) +
   geom_histogram(aes(x=result_time), color="violet",fill="darkblue", binwidth=100)+
   ggtitle("Occurences of Data Values Over Time")+
@@ -266,4 +275,68 @@ ggplot(data_sub)+
   ggtitle("Humidity Over Time")+
   theme_minimal()
 
+dat <- data_sub %>%
+  select(c("temp", "humid", "incident_PAR", "reflect_PAR", "height"))
 
+pca <- prcomp(na.omit(dat), scale. = TRUE)
+summary(pca)
+
+loadings <- pca$rotation
+scores <- pca$x
+eigenvalues <- pca$sdev^2
+eigenvalues
+sum(eigenvalues)
+
+eigs_cum = cumsum(eigenvalues) / sum(eigenvalues)
+ggplot() + geom_point(aes(x = 1:length(eigenvalues), y=eigs_cum)) +
+  labs(x = "Principal Component", y = "Fraction of Total Variance Explained") +
+  ggtitle("Screeplot") + theme_minimal()
+
+ggplot() +
+  geom_point(aes(x = scores[, 1], y=scores[, 2], alpha=0.1)) +
+  labs(x = "PC1", y = "PC2") + ggtitle("PC1 vs. PC2")
+
+biplot(pca, scale=0)
+
+hierarch <- hclust(dist(scale(dat)), method="complete")
+summary(hierarch)
+plot(hierarch, main="Complete Linkage", xlab="", sub="",
+     cex = .01)
+abline(h=7, col="red")
+
+K6 <- kmeans(na.omit(dat), 6)
+km.clusters <- K6$cluster
+table(km.clusters, hc.clusters[1:length(km.clusters)] )
+
+# perform hierarchical clustering on the first 2 or  principal components..
+hc <- hclust(dist(scores[,1:2]))
+plot(hc, main="Hier. Clustering on First 2 Principal Components", xlab="", sub="",
+     cex = .01)
+abline(h=5, col="red")
+
+# hierarchical clustering on the data vs on the first two principal components
+table(hc.clusters) # on the dat
+table(cutree(hc, 6)) # on the principal components
+
+ggplot(data_sub)+
+  geom_point(aes(x=incident_PAR, y=reflect_PAR, alpha=0.3),color="darkgoldenrod")+
+  ggtitle("Incident vs Refletive PAR")+
+  theme_minimal()
+
+ggplot(data_sub)+
+  geom_line(aes(x=result_time, y=incident_PAR, color="red"))+
+  geom_line(aes(x=result_time,y=reflect_PAR, color="blue"))+
+  ggtitle("Incident and Reflective PAR over Time")+
+  theme_minimal()
+
+ggplot(data_main) +
+  geom_histogram(aes(x=incident_PAR),color="darkblue", fill="lightblue") +
+  ggtitle("Incident PAR") +
+  scale_y_sqrt() +
+  theme_minimal()
+
+ggplot(data_main) +
+  geom_histogram(aes(x=reflect_PAR),color="darkblue", fill="lightblue") +
+  ggtitle("Reflected PAR") +
+  scale_y_sqrt() +
+  theme_minimal()

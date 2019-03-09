@@ -438,14 +438,9 @@ ggplot(data_main) +
 ```
 
 * What message do the boxplots in Figure 3[c] and 3[d] try to convey? Do you think the plots convey the right messages? If not generate a new plot with the same data. Hint: compare to some plots in Figure 4.
-```{r}
-# 5b.
-# What messages are figures 3c and 3d trying to convey? Do they convey the right message? If not, generate a new plot with the same data (compare to some plots in figure 4)
 
-# They are 'projecting onto height and value dimensions' to look for spatial trends. 3c shows the distribution of all the readings taken by each sensor at each height. 
-# We see a very different spatial trend in the temperature and humidity readings: nothing. Every sensor reached practically every point in the space of possible temperature and humidity readings. This suggests that the amount of variation over time overwhelmed the amount of variation over space. However, instead of just collapsing the temporal variation, we can explicitly remove it and focus more closely on the spatial trends. At every timestep, we take the mean of all the sensor readings. We can subtract the timestep mean from each sensor reading, and examine the distributions of the differences 3d
-```
-
+ Figure 3c shows the distribution of the sensor readings taken on each of height, including median, quartile range, and outliers. Figure 3d shows the distributions of sensor reading differences from the mean. Both effectively convey what they’re trying to. 3c conveys the relative consistency of the distributions for temperature and humidity, as well as the spatial trend of PAR over height. The figures show that there’s outliers at the bottom of the canopy which occasionally receive full sunlight, while the higher parts generally absorb much of the light before it can reach the bottom.
+ 
 *item Any suggestions for improving the first two plots in Figure 4? Can you distinguish all the colors in these two plots?
 
 Although the figures are mostly effective in getting the point across, you cannot distinguish all of the colors in the first two plots of figure 4. One reason for this is the small size; it would be helpful to have larger figures and translucent lines.
