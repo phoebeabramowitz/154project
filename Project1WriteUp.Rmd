@@ -438,8 +438,10 @@ ggplot(data_main) +
 ```
 
 *item Any suggestions for improving the first two plots in Figure 4? Can you distinguish all the colors in these two plots?
+
 *item Comment on Figure 7. Is it possible to generate a better visualization to highlight the difference between network and log data?
 
+Figure 7 of the paper aims to visualize the data yield analysis of this study, by adding up the number of nodes at each timepoint that report a data value and dividing by the total number of nodes. While both **sonoma-data-log.csv** and **sonoma-data-net.csv** had issues during their deployment time periods, figure 7 shows us that both are important for collecting data. One alternative way to highlighting the difference between the network and log data is to also remove outliers from the data yield analysis. The multi-dimensional analysis technique used to study the delivery performance of the sensor network only removes missing values from the yield, but considers all reported values - including faulty ones. Removing these outliers could drastically improve this analysis, considering roughly ten percent of recorded values were faulty. 
 
 
 * 1: "10-bit Atmel Microcontroller with 128KBytes In-System Programmable Flash" http://ww1.microchip.com/downloads/en/DeviceDoc/doc2467.pdf
