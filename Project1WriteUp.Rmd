@@ -143,7 +143,6 @@ na_vals <- df %>% filter(is.na(temp)) %>% filter(is.na(humid)) %>%
 df <- df %>% filter(!is.na(temp)) %>% filter(!is.na(humid)) %>%
   filter(!is.na(incident_PAR)) %>% filter(!is.na(reflect_PAR))
 
-
 ```
 
 

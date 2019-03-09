@@ -1,4 +1,4 @@
-#setwd("~/Desktop/Berkeley/Spring19/stat_154/154project")
+setwd("~/Desktop/Berkeley/Spring19/stat_154/154project")
 
 library(tidyverse)
 library(GGally)
