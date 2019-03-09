@@ -229,6 +229,13 @@ table(km.clusters, hc.clusters[1:length(km.clusters)] )
 
 ```{r}
 # perform hierarchical clustering on the first 2 or 3 principal components..
+hc <- hclust(dist(scores[,1:3]))
+plot(hc, main="Hier. Clustering on First 3 Principal Components", xlab="", sub="",
+cex = .01)
+abline(h=6.5, col="red")
+```
+```{r}
+table(cutree(hc, 6))
 ```
 
 ```{r}
