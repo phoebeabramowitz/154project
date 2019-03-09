@@ -2,9 +2,14 @@
 title: "Project 1 Redwood Data Report"
 author: "Phoebe Abramowitz(26386343) & Omri Newman(3032273024)"
 <<<<<<< HEAD
+<<<<<<< HEAD
 output:
   pdf_document: default
   pdf document: default
+=======
+date: "3/8/2019"
+output: pdf_document
+>>>>>>> d643f8a4fd9448a8d9213a3975c79b9049b3abb7
 =======
 date: "3/8/2019"
 output: pdf_document
@@ -297,12 +302,18 @@ ggplot(data_sub)+
   theme_minimal()
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # using this subsection of the data, we get an accurate reading of result_time, by replacing data_log result time with respective data_net result_time using the epoch as an identifier (we noticed epoch and result time are linearly correlated). The last week of May experiences higher levels of daylight hours as the seasons begin to shift and the summer solstice gets closer. We postulate these extended day light hours will have certain affects on the 
 =======
+=======
+>>>>>>> d643f8a4fd9448a8d9213a3975c79b9049b3abb7
 ggplot(data_sub)+
   geom_point(aes(x=epoch, y=humid, alpha=0.3,color=height))+
   ggtitle("Humidity Over Time")+
   theme_minimal()
+<<<<<<< HEAD
+>>>>>>> d643f8a4fd9448a8d9213a3975c79b9049b3abb7
+=======
 >>>>>>> d643f8a4fd9448a8d9213a3975c79b9049b3abb7
 ```
 
