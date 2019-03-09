@@ -189,21 +189,23 @@ ggplot() +
   geom_point(aes(x = scores[, 1], y=scores[, 5], alpha=0.1)) +
    labs(x = "PC1", y = "PC5") + ggtitle("PC1 vs. PC5")
 ```
-```{r}
-# trying to do kmeans on PC1 and PC2
-pca_kmeans <- kmeans(scores[,1:2], 3)
-plot(dat, col=(pca_kmeans$cluster+1), main="K-Means Results on First Two Principal Components (K=3)", xlab="", ylab="", pch=20, cex=2)
-```
+
 
 ```{r}
 biplot(pca, scale=0)
 #biplot(x = scores[1:500, 1:2], y=loadings)
 ```
 
+
 ```{r}
-# K-means
-K5 <- kmeans(na.omit(dat), 5)
-table(K5$cluster)
+# trying to do kmeans on PC1 and PC2
+pca_kmeans <- kmeans(scores[,1:2], 3)
+plot(dat, col=(pca_kmeans$cluster+1), main="K-Means Results on First Two Principal Components (K=3)", xlab="", ylab="", pch=20, cex=2)
+```
+```{r}
+# trying hierarchichal clustering...
+hierarch <- hclust(dist(dat), method="average")
+
 ```
 
 ```{r}
