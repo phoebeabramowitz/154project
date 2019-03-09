@@ -142,6 +142,7 @@ na_vals <- df %>% filter(is.na(temp)) %>% filter(is.na(humid)) %>%
 #Remove missing Data rows
 df <- df %>% filter(!is.na(temp)) %>% filter(!is.na(humid)) %>%
   filter(!is.na(incident_PAR)) %>% filter(!is.na(reflect_PAR))
+
 ```
 
 
@@ -163,7 +164,7 @@ main <- left_join(df, mote_location) %>%
 #337743 observations of 12 variables
 ```
 
-We chose to match the range of each variable as they are presented in the paper. It is clear in the following histograms that all of the variables contain some outliers. Instead of removing these data points per variable, we noticed that filtering out rows with faulty voltage readings--which are not reliable, as detailed in the paper-- does the same job in one fell swoop. Just as is described in the paper, filtering out readings below 2.4V or above 3V removes 33,833 observations. We also filter out readings that are missing values for height.
+We chose to match the range of each variable as they are presented in the paper. It is clear in the following histograms that all of the variables contain some outliers. Instead of removing these data points per variable, we noticed that filtering out rows with faulty voltage readings--which are not reliable, as detailed in the paper-- does the same job in one fell swoop. Just as is described in the paper, filtering out readings below 2.4V or above 3V removes 33,833 observations.
 ```{r, echo=FALSE}
 # use histograms and quantiles on main, to show outliers. data_main below gets rid of faulty voltage readings..
 ggplot(main) +
@@ -182,15 +183,13 @@ ggplot(main) +
   theme_minimal()
 data_main <- main %>%
   filter(voltage >= 2.4 & voltage <= 3)
-
-data_main <- data_main %>% filter(!is.na(height))
 # removes 33,833 rows
-
 ```
 
 
 ###(Bonus) Discuss other possible outliers and explain your reason why it is better to remove them than to keep them.
 
+Outliers in this dataset are ones with recorded sensor values that don't fit the context of this study. For example, a temperature reading of -40 degrees celsius in the middle June is clearly a mistake. While most of these issues were the result of faulty voltage readings, others were not; these outliers can be explained by a number of reasons. The paper details a robust deployment methodology, which utlizies multi-hop routing between sensors and the local gateway. Some of these faulty readings can be attributed to issues with the GPRS as it was sent to the offsite database, or how the data was queried using TinySQL over the TinyDB and TASK software. The more variables that are introduced, the more room there is for error, especially when working with electrical systems in the middle of a redwood forest. It is certainly better to remove these outliers because they would add unnecessary noise and misleading values to the data, and subsequently to the data analysis. If biologists wish to create quantitative models of sap flow rate, then these outliers will disproportionately affect their model. 
 
 #Data Exploration (40 pts)
 
