@@ -196,7 +196,7 @@ biplot(pca, scale=0)
 #biplot(x = scores[1:500, 1:2], y=loadings)
 ```
 
-PC1 places a high value on temperature and both PAR's, while PC2 places a high value on height. Both PC1 and PC2 place roughly the same weight on humidity. The nodes which experienced 
+PC1 places a high value on temperature and both PAR's, while PC2 places a high value on height. Both PC1 and PC2 place roughly the same weight on humidity. The nodes which experience high temperatures and high PAR readings will have a greater first principal component in absolute value, as is seen in the biplot. 
 ```{r}
 # hierarchichal clustering
 #test <- scale(dat[sample(1:28806, 16000),])
