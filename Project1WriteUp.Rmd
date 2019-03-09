@@ -29,7 +29,6 @@ library(lubridate)
 
 ***
 
-#{Data cleaning (40 pts)}
 #Data cleaning (40 pts)
   
 This data set contains gross outliers, inconsistencies, and lots of missing values. We use basic exploratory data analysis and data cleaning techniques to get a better understanding of the data, determine which values make sense in the context of the study, and remove missing values when necessary.
@@ -190,7 +189,6 @@ data_main <- main %>%
 ###(Bonus) Discuss other possible outliers and explain your reason why it is better to remove them than to keep them.
 
 
-#{Data Exploration (40 pts)}
 #Data Exploration (40 pts)
 
 * We choose the subset of the data occuring during the week of May 23rd through May 30th. There are more hours of sunlight in the last week of May as the summer solstice gets closer. This subset--containing ~28,000 values-- in particular has fewer missing values than other time periods, as shown in the histogram. 
