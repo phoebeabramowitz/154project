@@ -142,7 +142,6 @@ na_vals <- df %>% filter(is.na(temp)) %>% filter(is.na(humid)) %>%
 #Remove missing Data rows
 df <- df %>% filter(!is.na(temp)) %>% filter(!is.na(humid)) %>%
   filter(!is.na(incident_PAR)) %>% filter(!is.na(reflect_PAR))
-
 ```
 
 
@@ -164,7 +163,7 @@ main <- left_join(df, mote_location) %>%
 #337743 observations of 12 variables
 ```
 
-We chose to match the range of each variable as they are presented in the paper. It is clear in the following histograms that all of the variables contain some outliers. Instead of removing these data points per variable, we noticed that filtering out rows with faulty voltage readings--which are not reliable, as detailed in the paper-- does the same job in one fell swoop. Just as is described in the paper, filtering out readings below 2.4V or above 3V removes 33,833 observations.
+We chose to match the range of each variable as they are presented in the paper. It is clear in the following histograms that all of the variables contain some outliers. Instead of removing these data points per variable, we noticed that filtering out rows with faulty voltage readings--which are not reliable, as detailed in the paper-- does the same job in one fell swoop. Just as is described in the paper, filtering out readings below 2.4V or above 3V removes 33,833 observations. We also filter out readings that are missing values for height.
 ```{r, echo=FALSE}
 # use histograms and quantiles on main, to show outliers. data_main below gets rid of faulty voltage readings..
 ggplot(main) +
@@ -183,7 +182,10 @@ ggplot(main) +
   theme_minimal()
 data_main <- main %>%
   filter(voltage >= 2.4 & voltage <= 3)
+
+data_main <- data_main %>% filter(!is.na(height))
 # removes 33,833 rows
+
 ```
 
 
