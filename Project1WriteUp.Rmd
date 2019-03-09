@@ -349,15 +349,14 @@ biplot(pca, scale=0)
 ```
 
 
-<<<<<<< HEAD
 Describe two interesting findings from exploratory analysis of the data and comment on these findings.
 \begin{enumerate}[label=(\alph*)]
 \item Finding 1.
 
 Unsupervised learning techniques like clustering allow us to study patterns within multi-dimensional data sets. To start off, we run hierarchical clustering with complete linkage on the subset of interest, and notice that six clusters is a good starting point for this data. 
-=======
+
 1. Finding 1.
->>>>>>> 419865620eda6fa236c64e9c43cd2e1bd41b5d5b
+
 ```{r}
 # hierarchical clutering on the data
 hierarch <- hclust(dist(scale(dat)), method="complete")
