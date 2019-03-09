@@ -196,21 +196,13 @@ biplot(pca, scale=0)
 #biplot(x = scores[1:500, 1:2], y=loadings)
 ```
 
-
 ```{r}
-# trying to do kmeans on PC1 and PC2
-pca_kmeans <- kmeans(scores[,1:2], 3)
-plot(dat, col=(pca_kmeans$cluster+1), main="K-Means Results on First Two Principal Components (K=3)", xlab="", ylab="", pch=20, cex=2)
-```
-
-```{r}
-# trying hierarchichal clustering...
+# hierarchichal clustering
 #test <- scale(dat[sample(1:28806, 16000),])
 hierarch <- hclust(dist(scale(dat)), method="complete")
 summary(hierarch)
 ```
 ```{r}
-#par(mfrow=c(1,2))
 plot(hierarch, main="Complete Linkage", xlab="", sub="",
 cex = .01)
 abline(h=7, col="red")
@@ -228,14 +220,16 @@ table(km.clusters, hc.clusters[1:length(km.clusters)] )
 ```
 
 ```{r}
-# perform hierarchical clustering on the first 2 or 3 principal components..
-hc <- hclust(dist(scores[,1:3]))
-plot(hc, main="Hier. Clustering on First 3 Principal Components", xlab="", sub="",
+# perform hierarchical clustering on the first 2 or  principal components..
+hc <- hclust(dist(scores[,1:2]))
+plot(hc, main="Hier. Clustering on First 2 Principal Components", xlab="", sub="",
 cex = .01)
-abline(h=6.5, col="red")
+abline(h=5, col="red")
 ```
 ```{r}
-table(cutree(hc, 6))
+# hierarchical clustering on the data vs on the first two principal components 
+table(hc.clusters) # on the dat 
+table(cutree(hc, 6)) # on the principal components 
 ```
 
 ```{r}
