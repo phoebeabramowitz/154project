@@ -166,7 +166,7 @@ scores[1:5,]
 ```{r}
 eigs_cum = cumsum(eigenvalues) / sum(eigenvalues)
 ggplot() + geom_point(aes(x = 1:length(eigenvalues), y=eigs_cum)) +
-  labs(x = "first PCs", y = "fraction of total variance explained") +
+  labs(x = "Principal Component", y = "Fraction of Total Variance Explained") +
   ggtitle("Screeplot") + theme_minimal()
 # use first two principal components because they both have variances greater than one (Kaiser's criterion)
 ```
@@ -202,10 +202,33 @@ biplot(pca, scale=0)
 pca_kmeans <- kmeans(scores[,1:2], 3)
 plot(dat, col=(pca_kmeans$cluster+1), main="K-Means Results on First Two Principal Components (K=3)", xlab="", ylab="", pch=20, cex=2)
 ```
+
 ```{r}
 # trying hierarchichal clustering...
-hierarch <- hclust(dist(dat), method="average")
+#test <- scale(dat[sample(1:28806, 16000),])
+hierarch <- hclust(dist(scale(dat)), method="complete")
+summary(hierarch)
+```
+```{r}
+#par(mfrow=c(1,2))
+plot(hierarch, main="Complete Linkage", xlab="", sub="",
+cex = .01)
+abline(h=7, col="red")
+```
 
+```{r}
+hc.clusters <- cutree(hierarch, 6)
+table(hc.clusters)
+```
+```{r}
+# compare hierarchical clustering cut at 6 to K-means with K=6
+K6 <- kmeans(na.omit(dat), 6)
+km.clusters <- K6$cluster
+table(km.clusters, hc.clusters[1:length(km.clusters)] )
+```
+
+```{r}
+# perform hierarchical clustering on the first 2 or 3 principal components..
 ```
 
 ```{r}
