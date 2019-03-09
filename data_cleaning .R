@@ -24,27 +24,27 @@ data_all <- read.csv("./data/sonoma-data-all.csv")
 # Incident PAR histograms
 data_log <- filter(data_log, hamatop < 10*quantile(data_log$hamatop, na.rm=TRUE)[4])
 ggplot(data_net) +
-  geom_histogram(aes(x=hamatop),color="darkblue", fill="lightblue",binwidth=20)+
+  geom_histogram(aes(x=hamatop),color="darkblue", fill="lightblue")+
   ggtitle("Net Incident PAR")+
   theme_minimal()
 ggplot(data_log) +
-  geom_histogram(aes(x=hamatop),color="darkblue", fill="lightblue",binwidth=20)+
+  geom_histogram(aes(x=hamatop),color="darkblue", fill="lightblue")+
   ggtitle("Log Incident PAR")+
   theme_minimal()
 
 # Reflected PAR histograms
 ggplot(data_net) +
-  geom_histogram(aes(x=hamabot),color="darkblue", fill="lightblue",binwidth=6)+
+  geom_histogram(aes(x=hamabot),color="darkblue", fill="lightblue")+
   ggtitle("Net Reflected PAR")+
   theme_minimal()
 ggplot(data_log) +
-  geom_histogram(aes(x=hamabot),color="darkblue", fill="lightblue",binwidth=6)+
+  geom_histogram(aes(x=hamabot),color="darkblue", fill="lightblue")+
   ggtitle("Log Reflected PAR")+
   theme_minimal()
 
 # Voltage histograms
 ggplot(data_net) +
-  geom_histogram(aes(x=voltage),color="darkblue", fill="lightblue",binwidth=10)+
+  geom_histogram(aes(x=voltage),color="darkblue", fill="lightblue")+
   ggtitle("Net Unconverted Voltage")+
   theme_minimal()
 ggplot(data_log) +
