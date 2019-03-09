@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  8 MAR 2019 18:50
-=======
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  8 MAR 2019 22:27
->>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  8 MAR 2019 22:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -484,35 +480,6 @@ Package: titling 2009/09/04 v2.1d maketitle typesetting
 No file Project1WriteUp.aux.
 \openout1 = `Project1WriteUp.aux'.
 
-<<<<<<< HEAD
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 87.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 87.
-(/usr/local/texlive/2018/texmf-dist/tex/latex/base/ts1cmr.fd
-File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 87.
-(/usr/local/texlive/2018/texmf-dist/tex/latex/lm/t1lmr.fd
-File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Info: Redefining \microtypecontext on input line 87.
-=======
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 88.
 LaTeX Font Info:    ... okay on input line 88.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 88.
@@ -540,7 +507,6 @@ LaTeX Font Info:    Try loading font information for T1+lmr on input line 88.
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Info: Redefining \microtypecontext on input line 88.
->>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
@@ -589,11 +555,7 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box28
-<<<<<<< HEAD
-Package hyperref Info: Link coloring OFF on input line 87.
-=======
 Package hyperref Info: Link coloring OFF on input line 88.
->>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -601,15 +563,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count115
 )
-<<<<<<< HEAD
-LaTeX Info: Redefining \ref on input line 87.
-LaTeX Info: Redefining \pageref on input line 87.
-LaTeX Info: Redefining \nameref on input line 87.
-=======
 LaTeX Info: Redefining \ref on input line 88.
 LaTeX Info: Redefining \pageref on input line 88.
 LaTeX Info: Redefining \nameref on input line 88.
->>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 \@outlinefile=\write3
 \openout3 = `Project1WriteUp.out'.
 
@@ -649,11 +605,7 @@ File: Project1WriteUp_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (ty
 pe pdf)
 <use Project1WriteUp_files/figure-latex/unnamed-chunk-2-1.pdf>
 Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-2-1.p
-<<<<<<< HEAD
-df  used on input line 198.
-=======
 df  used on input line 199.
->>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 (pdftex.def)             Requested size: 206.77829pt x 206.77829pt.
 <Project1WriteUp_files/figure-latex/unnamed-chunk-2-2.pdf, id=15, 206.7725pt x 
 206.7725pt>
@@ -661,11 +613,7 @@ File: Project1WriteUp_files/figure-latex/unnamed-chunk-2-2.pdf Graphic file (ty
 pe pdf)
 <use Project1WriteUp_files/figure-latex/unnamed-chunk-2-2.pdf>
 Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-2-2.p
-<<<<<<< HEAD
-df  used on input line 200.
-=======
 df  used on input line 201.
->>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 (pdftex.def)             Requested size: 206.77829pt x 206.77829pt.
 [2 <./Project1WriteUp_files/figure-latex/unnamed-chunk-2-1.pdf>]
 <Project1WriteUp_files/figure-latex/unnamed-chunk-3-1.pdf, id=30, 206.7725pt x 
@@ -674,11 +622,7 @@ File: Project1WriteUp_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (ty
 pe pdf)
 <use Project1WriteUp_files/figure-latex/unnamed-chunk-3-1.pdf>
 Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-3-1.p
-<<<<<<< HEAD
-df  used on input line 207.
-=======
 df  used on input line 208.
->>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 (pdftex.def)             Requested size: 206.77829pt x 204.77072pt.
 <Project1WriteUp_files/figure-latex/unnamed-chunk-3-2.pdf, id=31, 206.7725pt x 
 204.765pt>
@@ -686,11 +630,7 @@ File: Project1WriteUp_files/figure-latex/unnamed-chunk-3-2.pdf Graphic file (ty
 pe pdf)
 <use Project1WriteUp_files/figure-latex/unnamed-chunk-3-2.pdf>
 Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-3-2.p
-<<<<<<< HEAD
-df  used on input line 209.
-=======
 df  used on input line 210.
->>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 (pdftex.def)             Requested size: 206.77829pt x 204.77072pt.
 [3 <./Project1WriteUp_files/figure-latex/unnamed-chunk-2-2.pdf> <./Project1Writ
 eUp_files/figure-latex/unnamed-chunk-3-1.pdf>]
@@ -700,11 +640,7 @@ File: Project1WriteUp_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (ty
 pe pdf)
 <use Project1WriteUp_files/figure-latex/unnamed-chunk-4-1.pdf>
 Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-4-1.p
-<<<<<<< HEAD
-df  used on input line 215.
-=======
 df  used on input line 216.
->>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 (pdftex.def)             Requested size: 206.77829pt x 206.77829pt.
 <Project1WriteUp_files/figure-latex/unnamed-chunk-4-2.pdf, id=51, 206.7725pt x 
 206.7725pt>
@@ -712,104 +648,242 @@ File: Project1WriteUp_files/figure-latex/unnamed-chunk-4-2.pdf Graphic file (ty
 pe pdf)
 <use Project1WriteUp_files/figure-latex/unnamed-chunk-4-2.pdf>
 Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-4-2.p
-<<<<<<< HEAD
-df  used on input line 217.
-(pdftex.def)             Requested size: 206.77829pt x 206.77829pt.
-[4 <./Project1WriteUp_files/figure-latex/unnamed-chunk-3-2.pdf> <./Project1Writ
-eUp_files/figure-latex/unnamed-chunk-4-1.pdf>]
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 225.
-=======
 df  used on input line 218.
 (pdftex.def)             Requested size: 206.77829pt x 206.77829pt.
 [4 <./Project1WriteUp_files/figure-latex/unnamed-chunk-3-2.pdf> <./Project1Writ
 eUp_files/figure-latex/unnamed-chunk-4-1.pdf>]
 LaTeX Font Info:    Try loading font information for OT1+lmr on input line 226.
->>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<<<<<<< HEAD
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 225.
-=======
 LaTeX Font Info:    Try loading font information for OML+lmm on input line 226.
->>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<<<<<<< HEAD
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 225
-=======
 LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 226
->>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 .
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<<<<<<< HEAD
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 225
-=======
 LaTeX Font Info:    Try loading font information for OMX+lmex on input line 226
->>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 .
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-<<<<<<< HEAD
-(Font)              <10> on input line 225.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 225.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 225.
-LaTeX Font Info:    Try loading font information for U+msa on input line 225.
-=======
 (Font)              <10> on input line 226.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 226.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 226.
 LaTeX Font Info:    Try loading font information for U+msa on input line 226.
->>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-<<<<<<< HEAD
-LaTeX Font Info:    Try loading font information for U+msb on input line 225.
-=======
 LaTeX Font Info:    Try loading font information for U+msb on input line 226.
->>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
+<Project1WriteUp_files/figure-latex/unnamed-chunk-9-1.pdf, id=70, 207.77625pt x
+ 206.7725pt>
+File: Project1WriteUp_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (ty
+pe pdf)
+<use Project1WriteUp_files/figure-latex/unnamed-chunk-9-1.pdf>
+Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-9-1.p
+df  used on input line 270.
+(pdftex.def)             Requested size: 207.78206pt x 206.77829pt.
+[5 <./Project1WriteUp_files/figure-latex/unnamed-chunk-4-2.pdf>]
+<Project1WriteUp_files/figure-latex/unnamed-chunk-9-2.pdf, id=83, 206.7725pt x 
+206.7725pt>
+File: Project1WriteUp_files/figure-latex/unnamed-chunk-9-2.pdf Graphic file (ty
+pe pdf)
+<use Project1WriteUp_files/figure-latex/unnamed-chunk-9-2.pdf>
+Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-9-2.p
+df  used on input line 272.
+(pdftex.def)             Requested size: 206.77829pt x 206.77829pt.
+<Project1WriteUp_files/figure-latex/unnamed-chunk-9-3.pdf, id=84, 206.7725pt x 
+204.765pt>
+File: Project1WriteUp_files/figure-latex/unnamed-chunk-9-3.pdf Graphic file (ty
+pe pdf)
+<use Project1WriteUp_files/figure-latex/unnamed-chunk-9-3.pdf>
+Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-9-3.p
+df  used on input line 274.
+(pdftex.def)             Requested size: 206.77829pt x 204.77072pt.
 
-! LaTeX Error: Lonely \item--perhaps a missing list environment.
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 278.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-<<<<<<< HEAD
-l.245 
-=======
-l.246 
->>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
-       
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 285.
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) [6 <./Project1WriteUp_files/figure-latex/unnamed-chunk-9-1.pdf> <./Project1Wr
+iteUp_files/figure-latex/unnamed-chunk-9-2.pdf> <./Project1WriteUp_files/figure
+-latex/unnamed-chunk-9-3.pdf>]
+<Project1WriteUp_files/figure-latex/unnamed-chunk-10-1.pdf, id=110, 211.79124pt
+ x 205.76875pt>
+File: Project1WriteUp_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (t
+ype pdf)
+<use Project1WriteUp_files/figure-latex/unnamed-chunk-10-1.pdf>
+Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-10-1.
+pdf  used on input line 292.
+(pdftex.def)             Requested size: 211.79073pt x 205.76823pt.
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 296.
+
+<Project1WriteUp_files/figure-latex/unnamed-chunk-11-1.pdf, id=111, 206.7725pt 
+x 206.7725pt>
+File: Project1WriteUp_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (t
+ype pdf)
+<use Project1WriteUp_files/figure-latex/unnamed-chunk-11-1.pdf>
+Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-11-1.
+pdf  used on input line 300.
+(pdftex.def)             Requested size: 206.77829pt x 206.77829pt.
+<Project1WriteUp_files/figure-latex/unnamed-chunk-12-1.pdf, id=112, 200.75pt x 
+206.7725pt>
+File: Project1WriteUp_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (t
+ype pdf)
+<use Project1WriteUp_files/figure-latex/unnamed-chunk-12-1.pdf>
+Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-12-1.
+pdf  used on input line 304.
+(pdftex.def)             Requested size: 200.75562pt x 206.77829pt.
+[7 <./Project1WriteUp_files/figure-latex/unnamed-chunk-10-1.pdf> <./Project1Wri
+teUp_files/figure-latex/unnamed-chunk-11-1.pdf>]
+<Project1WriteUp_files/figure-latex/unnamed-chunk-12-2.pdf, id=136, 200.75pt x 
+206.7725pt>
+File: Project1WriteUp_files/figure-latex/unnamed-chunk-12-2.pdf Graphic file (t
+ype pdf)
+<use Project1WriteUp_files/figure-latex/unnamed-chunk-12-2.pdf>
+Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-12-2.
+pdf  used on input line 306.
+(pdftex.def)             Requested size: 200.75562pt x 206.77829pt.
+<Project1WriteUp_files/figure-latex/unnamed-chunk-12-3.pdf, id=137, 200.75pt x 
+206.7725pt>
+File: Project1WriteUp_files/figure-latex/unnamed-chunk-12-3.pdf Graphic file (t
+ype pdf)
+<use Project1WriteUp_files/figure-latex/unnamed-chunk-12-3.pdf>
+Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-12-3.
+pdf  used on input line 308.
+(pdftex.def)             Requested size: 200.75562pt x 206.77829pt.
+<Project1WriteUp_files/figure-latex/unnamed-chunk-12-4.pdf, id=138, 200.75pt x 
+206.7725pt>
+File: Project1WriteUp_files/figure-latex/unnamed-chunk-12-4.pdf Graphic file (t
+ype pdf)
+<use Project1WriteUp_files/figure-latex/unnamed-chunk-12-4.pdf>
+Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-12-4.
+pdf  used on input line 310.
+(pdftex.def)             Requested size: 200.75562pt x 206.77829pt.
+[8 <./Project1WriteUp_files/figure-latex/unnamed-chunk-12-1.pdf> <./Project1Wri
+teUp_files/figure-latex/unnamed-chunk-12-2.pdf> <./Project1WriteUp_files/figure
+-latex/unnamed-chunk-12-3.pdf>]
+<Project1WriteUp_files/figure-latex/unnamed-chunk-13-1.pdf, id=174, 200.75pt x 
+206.7725pt>
+File: Project1WriteUp_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (t
+ype pdf)
+<use Project1WriteUp_files/figure-latex/unnamed-chunk-13-1.pdf>
+Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-13-1.
+pdf  used on input line 315.
+(pdftex.def)             Requested size: 200.75562pt x 206.77829pt.
+<Project1WriteUp_files/figure-latex/unnamed-chunk-13-2.pdf, id=175, 200.75pt x 
+206.7725pt>
+File: Project1WriteUp_files/figure-latex/unnamed-chunk-13-2.pdf Graphic file (t
+ype pdf)
+<use Project1WriteUp_files/figure-latex/unnamed-chunk-13-2.pdf>
+Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-13-2.
+pdf  used on input line 317.
+(pdftex.def)             Requested size: 200.75562pt x 206.77829pt.
+[9 <./Project1WriteUp_files/figure-latex/unnamed-chunk-12-4.pdf> <./Project1Wri
+teUp_files/figure-latex/unnamed-chunk-13-1.pdf>]
+<Project1WriteUp_files/figure-latex/unnamed-chunk-14-1.pdf, id=200, 200.75pt x 
+206.7725pt>
+File: Project1WriteUp_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (t
+ype pdf)
+<use Project1WriteUp_files/figure-latex/unnamed-chunk-14-1.pdf>
+Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-14-1.
+pdf  used on input line 328.
+(pdftex.def)             Requested size: 200.75562pt x 206.77829pt.
+<Project1WriteUp_files/figure-latex/unnamed-chunk-14-2.pdf, id=201, 200.75pt x 
+206.7725pt>
+File: Project1WriteUp_files/figure-latex/unnamed-chunk-14-2.pdf Graphic file (t
+ype pdf)
+<use Project1WriteUp_files/figure-latex/unnamed-chunk-14-2.pdf>
+Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-14-2.
+pdf  used on input line 330.
+(pdftex.def)             Requested size: 200.75562pt x 206.77829pt.
+[10 <./Project1WriteUp_files/figure-latex/unnamed-chunk-13-2.pdf> <./Project1Wr
+iteUp_files/figure-latex/unnamed-chunk-14-1.pdf>]
+<Project1WriteUp_files/figure-latex/unnamed-chunk-14-3.pdf, id=226, 200.75pt x 
+204.765pt>
+File: Project1WriteUp_files/figure-latex/unnamed-chunk-14-3.pdf Graphic file (t
+ype pdf)
+<use Project1WriteUp_files/figure-latex/unnamed-chunk-14-3.pdf>
+Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-14-3.
+pdf  used on input line 332.
+(pdftex.def)             Requested size: 200.76173pt x 204.77698pt.
+<Project1WriteUp_files/figure-latex/unnamed-chunk-15-1.pdf, id=227, 211.79124pt
+ x 205.76875pt>
+File: Project1WriteUp_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (t
+ype pdf)
+<use Project1WriteUp_files/figure-latex/unnamed-chunk-15-1.pdf>
+Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-15-1.
+pdf  used on input line 343.
+(pdftex.def)             Requested size: 211.79073pt x 205.76823pt.
+[11 <./Project1WriteUp_files/figure-latex/unnamed-chunk-14-2.pdf> <./Project1Wr
+iteUp_files/figure-latex/unnamed-chunk-14-3.pdf>]
+<Project1WriteUp_files/figure-latex/unnamed-chunk-16-1.pdf, id=252, 200.75pt x 
+206.7725pt>
+File: Project1WriteUp_files/figure-latex/unnamed-chunk-16-1.pdf Graphic file (t
+ype pdf)
+<use Project1WriteUp_files/figure-latex/unnamed-chunk-16-1.pdf>
+Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-16-1.
+pdf  used on input line 349.
+(pdftex.def)             Requested size: 200.75562pt x 206.77829pt.
+<Project1WriteUp_files/figure-latex/unnamed-chunk-16-2.pdf, id=253, 200.75pt x 
+206.7725pt>
+File: Project1WriteUp_files/figure-latex/unnamed-chunk-16-2.pdf Graphic file (t
+ype pdf)
+<use Project1WriteUp_files/figure-latex/unnamed-chunk-16-2.pdf>
+Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-16-2.
+pdf  used on input line 351.
+(pdftex.def)             Requested size: 200.75562pt x 206.77829pt.
+[12 <./Project1WriteUp_files/figure-latex/unnamed-chunk-15-1.pdf> <./Project1Wr
+iteUp_files/figure-latex/unnamed-chunk-16-1.pdf>]
+<Project1WriteUp_files/figure-latex/unnamed-chunk-17-1.pdf, id=277, 200.75pt x 
+206.7725pt>
+File: Project1WriteUp_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (t
+ype pdf)
+<use Project1WriteUp_files/figure-latex/unnamed-chunk-17-1.pdf>
+Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-17-1.
+pdf  used on input line 356.
+(pdftex.def)             Requested size: 200.75562pt x 206.77829pt.
+<Project1WriteUp_files/figure-latex/unnamed-chunk-17-2.pdf, id=278, 200.75pt x 
+206.7725pt>
+File: Project1WriteUp_files/figure-latex/unnamed-chunk-17-2.pdf Graphic file (t
+ype pdf)
+<use Project1WriteUp_files/figure-latex/unnamed-chunk-17-2.pdf>
+Package pdftex.def Info: Project1WriteUp_files/figure-latex/unnamed-chunk-17-2.
+pdf  used on input line 358.
+(pdftex.def)             Requested size: 200.75562pt x 206.77829pt.
+[13 <./Project1WriteUp_files/figure-latex/unnamed-chunk-16-2.pdf> <./Project1Wr
+iteUp_files/figure-latex/unnamed-chunk-17-1.pdf>]
+! Missing number, treated as zero.
+<to be read again> 
+                   \c@* 
+l.370 ...slash{}begin\{enumerate\}{[}label=(\alph*
+                                                  ){]} \item Finding 1. 
 Here is how much of TeX's memory you used:
- 11965 strings out of 492649
- 176772 string characters out of 6129622
-<<<<<<< HEAD
- 283088 words of memory out of 5000000
-=======
+ 12091 strings out of 492649
+ 182836 string characters out of 6129622
  283108 words of memory out of 5000000
->>>>>>> f03679cc125da3a6dbe78d0e455416428d34ae0b
- 15642 multiletter control sequences out of 15000+600000
- 44506 words of font info for 69 fonts, out of 8000000 for 9000
+ 15747 multiletter control sequences out of 15000+600000
+ 45120 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  32i,4n,38p,240b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
 
