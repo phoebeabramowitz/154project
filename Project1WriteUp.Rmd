@@ -264,9 +264,12 @@ ggplot(data_sub)+
   theme_minimal()
 ```
 *Next, we consider each variable in the context of it's temporal trends, with height as color cue:
-( You can do it for different time scales during an hour, during a day or during the entire experiment). However, at least the plots with days as x-axis are required. As justified before, I used epoch as the x variable for time here. We could also use result_time.)
-
-Comment on the range, continuity and strange behaviors in these variables.
+( You can do it for different time scales during an hour, during a day or during the entire experiment). However, at least the plots with days as x-axis are required. As shown in the histogram below, I used epoch as the x variable for time here becuase their positive, linear relationship justifies our use of epoch as a standin for time that doesn't lose any information from data_log. We could also use result_time.)
+```{r}
+ggplot(data_main %>% filter(result_time <= as.Date("2004-11-10"))) +
+  geom_point(aes(x=result_time, y=epoch))+
+  ggtitle("Linear relationship between epoch and result_time")
+```
 During the day, incident PAR is noteably least at the lowest height of the tree. However, there's not a height gradient throughout. Reflective PAR lacks this trait. 
 ```{r}
 ggplot(data_sub)+
@@ -294,7 +297,7 @@ ggplot(data_sub)+
 
 
 
-\item After PCA analysis, generate scree plot of the data. Can this data be approximated by some low-dimensional representation?
+PCA analysis & scree plot of the data. Can this data be approximated by some low-dimensional representation?
 \end{enumerate}
 
 \section{Interesting Findings (15 * 2 pts)}
