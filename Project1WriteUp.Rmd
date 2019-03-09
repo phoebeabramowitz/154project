@@ -30,6 +30,7 @@ library(lubridate)
 ***
 
 #{Data cleaning (40 pts)}
+#Data cleaning (40 pts)
   
 This data set contains gross outliers, inconsistencies, and lots of missing values. We use basic exploratory data analysis and data cleaning techniques to get a better understanding of the data, determine which values make sense in the context of the study, and remove missing values when necessary.
 
@@ -190,6 +191,7 @@ data_main <- main %>%
 
 
 #{Data Exploration (40 pts)}
+#Data Exploration (40 pts)
 
 * We choose the subset of the data occuring during the week of May 23rd through May 30th. There are more hours of sunlight in the last week of May as the summer solstice gets closer. This subset--containing ~28,000 values-- in particular has fewer missing values than other time periods, as shown in the histogram. 
 
@@ -303,15 +305,14 @@ ggplot(data_sub)+
 
 ```
 
+<<<<<<< HEAD
 
 ####PCA analysis 
 Can this data be approximated by some low-dimensional representation?
-=======
-```
 
 PCA analysis & scree plot of the data:
 Before running PCA on the desired subset of the data, we select five variables of interest (temperature, humidity, incident PAR, reflected PAR, height). We use Kaiser's criterion to choose principal components, of those with variances greater than one. We see out of the five eigenvalues, the first two are greater than one. The scree plot also shows that 73% of the variability in this data is encompassed by the first two principal components. For these reasons, we conclude there is a two-dimensional representation of this multi-dimensional data. 
->>>>>>> f5aeb4d62f8c734cdab74176874fe0b7c903e068
+
 
 ```{r}
 # PCA analysis
@@ -347,11 +348,8 @@ ggplot() +
 biplot(pca, scale=0)
 ```
 
-\end{enumerate}
 
-Describe two/three interesting findings from exploratory analysis of the data. Try to use the techniques that you have learned, such as histograms, PCA, K-means, GMM and hierachical clustering etc. Comment on your interesting findings.
-\begin{enumerate}[label=(\alph*)]
-\item Finding 1.
+1. Finding 1.
 ```{r}
 # hierarchical clutering on the data
 hierarch <- hclust(dist(scale(dat)), method="complete")
