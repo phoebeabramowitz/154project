@@ -145,7 +145,6 @@ df <- df %>% filter(!is.na(temp)) %>% filter(!is.na(humid)) %>%
 ```
 
 
-\item
 After removing missing data, reconciling inconsistencies, and joining the **sonoma-data-log.csv** and **sonoma-data-net.csv**, we incorporate the **mote-location-data.txt** using nodeid as a unique identifier for each sensor. All together we have the location of each mote, along with the respective sensor data. We selected only the variables of interest amongst the 11 to create a desired dataset of all the readings. Our main table has 337,744 observations and 12 variables.
 
 
@@ -181,14 +180,11 @@ ggplot(main) +
   geom_histogram(aes(x=humid),color="darkblue", fill="lightblue",binwidth=4)+
   ggtitle("Humidity")+
   theme_minimal()
-
-```
-
-```{r, include=FALSE}
 data_main <- main %>%
   filter(voltage >= 2.4 & voltage <= 3)
 # removes 33,833 rows
 ```
+
 
 ###(Bonus) Discuss other possible outliers and explain your reason why it is better to remove them than to keep them.
 
