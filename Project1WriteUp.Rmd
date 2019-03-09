@@ -15,9 +15,6 @@ library(dplyr)
 library(ggplot2)
 library(lubridate)
 ```
-
-
-
 #Paper Summary (20 pts)
 
   This study of microclimatic monitoring aims to get a better understanding of the life of a Redwood tree in Sonoma, CA. To do this, an interdisciplinary team from the University of California, Berkeley designed an experiment that paints a picture of a redwood tree’s ecophysiology spanning fourty-four days in Spring 2004. They did this using a unique network of nodes and wireless sensors to gather spatio-temporal and environmental dynamic data over the entire organism. Each of the thirty-three nodes collected hundreds of thousands of data points, which lie in four different three-dimensional spaces (time x height x value). This wireless sensor network, or macroscope, allows for rich analysis on an unprecedented dataset.  
@@ -191,16 +188,82 @@ data_main <- main %>%
 
 #{Data Exploration (40 pts)}
 
-* Make some pairwise scatterplots of some variables. Pick a reasonable time period. Explain your choice and describe your findings.
+* We choose the subset of the data occuring during the week of May 23rd through May 30th. There are more hours of sunlight in the last week of May as the summer solstice gets closer. This subset--containing ~28,000 values-- in particular has fewer missing values than other time periods, as shown in the histogram. 
 
 ```{r}
-data_main %>% 
-  filter(result_time >= as.Date("2004-05-23") & result_time <= as.Date("2004-05-30"))
+ggplot(data_main %>% filter(result_time <= as.Date("2004-11-10"))) +
+  geom_histogram(aes(x=result_time), color="violet",fill="darkblue", binwidth=100)+
+  ggtitle("Occurences of Data Values Over Time")+
+  theme_minimal()
 
-# using this subsection of the data, we get an accurate reading of result_time, by replacing data_log result time with respective data_net result_time using the epoch as an identifier (we noticed epoch and result time are linearly correlated). The last week of May experiences higher levels of daylight hours as the seasons begin to shift and the summer solstice gets closer. We postulate this extended day light hours will have certain affects on the 
+data_sub <- data_main %>% 
+  filter(result_time >= as.Date("2004-05-23") & result_time <= as.Date("2004-05-30"))
+```
+###Some pairwise scatterplots of some variables and descriptions of our findings:
+The number of the nodeid is not meaningfully correlated to height
+```{r}
+ggplot(data_sub)+
+  geom_point(aes(x=height, y=nodeid),color="darkgoldenrod")+
+  ggtitle("nodeid by height")+
+  theme_minimal()
+```
+Humidity and Temperature by time and height
+```{r}
+ggplot(data_sub)+
+  geom_point(aes(x=epoch, y=humid, alpha=0.3),color="firebrick2")+
+  ggtitle("Humidity Over Time")+
+  theme_minimal()
+
+ggplot(data_sub)+
+  geom_point(aes(x=height, y=humid, alpha=0.3),color="violet")+
+  ggtitle("Humidity by Height")+
+  theme_minimal()
+
+ggplot(data_sub)+
+  geom_point(aes(x=epoch, y=temp, alpha=0.2),color="orangered1")+
+  ggtitle("Temperature Over Time")+
+  theme_minimal()
+
+ggplot(data_sub)+
+  geom_point(aes(x=height, y=temp, alpha=0.3),color="deeppink1")+
+  ggtitle("Temperature by Height")+
+  theme_minimal()
 ```
 
-\item Are any of the predictors associated with Incident PAR? If so, explain the relationship.
+Reflective PAR over time loosely indicates cycles of daylight, and the maximum value observed of reflective PAR increases with height. 
+```{r}
+ggplot(data_sub)+
+  geom_point(aes(x=epoch, y=reflect_PAR, alpha=0.3),color="deeppink1")+
+  ggtitle("Reflective PAR Over Time")+
+  theme_minimal()
+
+ggplot(data_sub)+
+  geom_point(aes(x=height, y=reflect_PAR, alpha=0.3), color="deeppink1")+
+  ggtitle("Reflective PAR by Height")+
+  theme_minimal()
+```
+
+Are any of the predictors associated with Incident PAR? If so, explain the relationship.
+
+Incident PAR is visibly cyclical over time. The relationship can be explained by the daily daylight cycle of the sun rising and setting, since Incident PAR measures direct sunlight. The second and third plots here show that certain nodes are exposed to more direct Sunlight, but not necessarily by height
+```{r}
+#Clearly shows daylight cycle
+ggplot(data_sub)+
+  geom_point(aes(x=epoch, y=incident_PAR, alpha=0.3),color="orangered1")+
+  ggtitle("Incident PAR Over Time")+
+  theme_minimal()
+
+ggplot(data_sub)+
+  geom_point(aes(x=height, y=incident_PAR, alpha=0.3), color="deeppink1")+
+  ggtitle("Incident PAR by Height")+
+  theme_minimal()
+
+ggplot(data_sub)+
+  geom_point(aes(x=nodeid, y=incident_PAR, alpha=0.3), color="deeppink1")+
+  ggtitle("Incident PAR by Node")+
+  theme_minimal()
+```
+
 \item Each variable of our data basically have three dimensions: value, height and time. Consider each variable as a time series and look at its temporal trend. Generate such plots (value vs time) with height as color cue for at least four variables (Temperature, Relative Humidity, Incident PAR and Reflected PAR). You can do it for different time scales (during an hour, during a day or during the entire experiment). However, at least the plots with days as x-axis are required. Comment on the range, continuity and strange behaviors in these variables.
 \item After PCA analysis, generate scree plot of the data. Can this data be approximated by some low-dimensional representation?
 \end{enumerate}
